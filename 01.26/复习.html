@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.26</title>
+    <style>
+        #f{
+            width: 200px;
+            height: 200px;
+            background-color: wheat;
+        }
+        #s{
+            margin-top: 50px;
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="f"></div>
+    <div id="s"></div>
+
+    <script>
+        var oDivf = document.getElementById('f');
+        var oDivs = document.querySelector('#s');
+
+        //点击循环变色1
+        var count = 0;
+        oDivf.onclick = function(){
+            switch(count%3){
+                case 0: 
+                this.style.backgroundColor = 'black';
+                break;
+                case 1:
+                this.style.backgroundColor = 'yellow';
+                break;
+                case 2:
+                this.style.backgroundColor = 'wheat';
+            }
+            count++;
+        }
+
+        //点击循环变色2
+        var flag = true;
+        oDivs.onclick = function(){
+            if(flag){
+                this.style.backgroundColor = 'red';
+            }else{
+                this.style.backgroundColor = 'pink';
+            }
+            flag = !flag;
+        }
+    </script>
+</body>
+
+</html>

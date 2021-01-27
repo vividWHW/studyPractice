@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.26</title>
+    <style>
+        div{
+            width:200px;
+            height: 200px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" />
+    <div>
+        div
+    </div>
+    <script>
+        //获取input
+        oIpt = document.querySelector('input');
+        //获取div
+        oDiv = document.querySelector('div');
+        //绑定onkeydown到input。input获取焦点且按下键盘时触发
+        oIpt.onkeydown = function(){
+            console.log('按下了键盘');
+        }
+        //绑定onkeyup到input。input获取焦点且抬起键盘时触发
+        oIpt.onkeyup = function(){
+            console.log('抬起了键盘');
+        }
+        //在哪儿按下都能触发
+        document.onkeydown = function(){
+            console.log('aaaaaa');
+        }
+        //和上面效果一样
+        window.onkeydown = function(){
+            console.log('bbbbbb');
+        }
+        //绑定onkeydown到div。没有用，只能用于表单元素和document
+        oDiv.onkeydown = function(){
+            console.log('111');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.26</title>
+    <style>
+        .out{
+            width: 600px;
+            height: 50px;
+            border-bottom: 1px solid #B3B2B2;
+        }
+        .out > .in{
+            margin-left: 0%;
+            width: 30px;
+            height: 50px;
+        }
+        .out > .in > img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="out">
+        <div class="in">
+            <img src="./images/people.gif" />
+        </div>
+    </div>
+    <span class="num">0%</span>
+
+    <script>
+        //获取in
+        var oIn = document.querySelector('.in');
+        //获取num
+        var oNum = document.querySelector('.num');
+        //已经完成加载的图片数目
+        var count = 0;
+        for(let i = 1; i <= 30; i++){
+            var oImg = new Image();
+            oImg.src = './images/' + (i < 10 ? '0' + i : i) + '.jpg';
+            oImg.onload = function(){
+                count++;
+                oIn.style.marginLeft = count/30*100 + '%';
+                oNum.textContent = parseInt(count/30*100) + '%'
+            }
+        }
+    </script>
+</body>
+
+</html>

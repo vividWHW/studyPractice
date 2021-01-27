@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.26</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: gainsboro;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <button>btn</button>
+    <script>
+        window.onresize = function(){
+            console.log('onresize');
+        }
+
+        var oDiv = document.querySelector('div');
+        var oBtn = document.querySelector('button');
+        oBtn.onclick = function(){
+            oDiv.style.width = '300px';
+        }
+        //用不了！
+        oDiv.onresize = function(){
+            console.log('1111111111');
+        }
+    </script>
+</body>
+
+</html>

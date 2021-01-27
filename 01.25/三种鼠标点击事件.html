@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.25</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <button id="btn">btn</button>
+    <script>
+        //var oBtn = document.querySelector("#btn");
+        var oBtn = document.querySelectorAll("button")[0];
+        //console.log(oBtn)
+        //单击
+        oBtn.onclick = function(){
+            console.log('单击了！');
+        }
+        //双击
+        oBtn.ondblclick = function(){
+            console.log('双击了！');
+        }
+        //右键
+        oBtn.oncontextmenu = function(){
+            console.log('右键点击！');
+            //取消默认事件
+            return false;
+        }
+    </script>
+</body>
+
+</html>

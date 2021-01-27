@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.26</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <input type="text" />
+    <input type="text"/>
+    <p></p>
+    <script>
+        //获取第一个input
+        var oIpt = document.querySelector('input');
+        //获取第二个input
+        var oIpt2 = document.querySelector('input:nth-of-type(2)');
+        //获取p
+        var oP = document.querySelector('p');
+        //第一个input绑定oninput事件
+        oIpt.oninput = function(){
+            oP.textContent = oIpt.value;
+            oIpt2.value = oIpt.value;
+        }
+        //第2个input绑定oninput事件
+        oIpt2.oninput = function(){
+            oP.textContent = oIpt2.value;
+            oIpt.value = oIpt2.value;
+        }
+    </script>
+</body>
+
+</html>

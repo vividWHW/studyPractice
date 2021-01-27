@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.26</title>
+    <style>
+        .out{
+            width: 300px;
+            height: 300px;
+            background-color: gray;
+        }
+        .out > .in{
+            width: 100px;
+            height: 100px;
+            background-color: salmon;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="out">
+        <div class="in"></div>
+    </div>
+
+    <script>
+        //获取out
+        var oOut = document.querySelector('.out');
+        //获取in
+        var oIn = document.querySelector('.in');
+
+        //鼠标按下
+        oOut.onmousedown = function(){
+            console.log('onmousedown')
+        }
+
+        //鼠标抬起
+        oOut.onmouseup = function(){
+            console.log('onmouseup');
+        }
+
+        //鼠标移动
+/*         var lastTime = 0;
+        oOut.onmousemove = function(){
+            //获取现在的时间
+            var nowTime = Date.now();
+            //计算时间差
+            var time = nowTime - lastTime;
+            console.log('onmousemove', time);
+            //将当前时间赋值给lastTime，供下一次计算时间用
+            lastTime = nowTime;
+        } */
+
+        //鼠标移入(冒泡,从in移到out或从out移到in都会触发)
+/*         oOut.onmouseover = function(){
+            console.log('onmouseover');
+        }
+        //鼠标移出(冒泡)
+        oOut.onmouseout = function(){
+            console.log('onmouseout');
+        } */
+
+        //鼠标移入（从in移到out和从out移到in都不会触发）
+        oOut.onmouseenter = function(){
+            console.log('onmouseenter')
+        }
+        //鼠标移出
+        oOut.onmouseleave = function(){
+            console.log('onmouseleave');
+        }
+    </script>
+</body>
+
+</html>

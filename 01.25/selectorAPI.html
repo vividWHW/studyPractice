@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.25</title>
+
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <p>111</p>
+    <p>222</p>
+
+    <script>
+        //第一个p标签
+        var oP = document.querySelector('p');
+        oP.style.fontSize = '25px';
+        //第2个p标签
+        var oP2 = document.querySelectorAll('p')[1];
+        oP2.style.color = 'red';
+        //所有li标签
+        var oLis = document.querySelectorAll('li');
+        //遍历
+        oLis.forEach(function(value,index){
+            console.log(index,value);
+        })
+    </script>
+</body>
+
+</html>

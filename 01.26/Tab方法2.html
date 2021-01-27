@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.26</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #content{
+            width: 600px;
+            margin: 50px auto;
+            font-size: 0;
+        }
+        #content > .tab > span{
+            display: inline-block;
+            width: 200px;
+            height: 50px;
+            line-height: 50px;
+            border: 1px solid gray;
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 18px;
+        }
+        #content > .tab > span.active{
+            background-color: #E7FFCB;
+            border-bottom-width: 0;
+        }
+        #content > ul{
+            position: relative;
+            width: 100%;
+            height: 300px;
+            list-style-type: none;
+            font-size: 25px;
+        }
+        #content > ul > li{
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            line-height: 300px;
+            border: 1px solid gray;
+            border-top-width: 0;
+            box-sizing: border-box;
+            background-color: #E7FFCB;
+            text-align: center;
+        }
+        #content > ul > li.show{
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+        <div class="tab">
+            <span class="active">title1</span>
+            <span>title2</span>
+            <span>title3</span>
+        </div>
+        <ul>
+            <li class="show">content1</li>
+            <li>content2</li>
+            <li>content3</li>
+        </ul>
+    </div>
+
+    <script>
+        //获取所有标题
+        var oTitles = document.querySelectorAll('span');
+        //获取所有内容
+        var oCons = document.querySelectorAll('li');
+        //循环为所有标题添加点击事件
+        for(let i = 0; i < oTitles.length; i++){
+            //为oTitles的每个值添加一个index属性，值为它的下标,用于找到标题对应的内容
+            oTitles[i].index = i;
+            oTitles[i].onclick = function(){
+                //清空所有样式
+                for(let j = 0; j < oTitles.length; j++){
+                    oTitles[j].classList.remove('active');
+                    oCons[j].classList.remove('show');
+                }
+                //为当前点击的标题和对应的内容添加class
+                this.classList.add('active');
+                oCons[this.index].classList.add('show');
+            }
+        }
+    </script>
+</body>

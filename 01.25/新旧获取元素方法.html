@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.25</title>
+    <style>
+        #f{
+            width:200px;
+            height:800px;
+            border:1px solid red;
+        }
+        #f > div{
+            width:100px;
+            height:50px;
+            border:1px solid purple;
+        }
+    </style>
+</head>
+
+<body>
+    <button>增加div</button>
+    <div id="f">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <script>
+        /*
+            旧获取方法，动态的
+        */
+        //获取button
+/*         var oBtn = document.getElementsByTagName('button')[0];
+        //获取div#f
+        var oDiv = document.getElementById('f');
+        //获取内层div
+        var oDivs = oDiv.getElementsByTagName('div');
+        console.log(oDivs);
+        //绑定点击事件
+        oBtn.onclick = function(){
+            let length = oDivs.length;
+            //for(let i = 0; i < oDivs.length; i++){
+            for(let i = 0; i < length; i++){
+                //一个新div
+                var oNewDiv = document.createElement("div");
+                //把新div添加到div#f后面
+                document.getElementById('f').appendChild(oNewDiv);   
+            }
+        } */
+
+        /*
+            新获取方法，静态的
+        */
+        //获取button
+        var oBtn = document.querySelector("button");
+        //获取div#f
+        var oDiv = document.querySelector("#f");
+        //获取内层div
+        var oDivs = oDiv.querySelectorAll("div");
+        //绑定点击事件
+        oBtn.onclick = function(){
+            for(let i = 0; i < oDivs.length; i++){
+                //一个新div
+                var oNewDiv = document.createElement("div");
+                //把新div添加到div#f后面
+                document.getElementById('f').appendChild(oNewDiv);   
+            }
+        }
+    </script>
+</body>
+
+</html>

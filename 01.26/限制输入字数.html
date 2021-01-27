@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.26</title>
+    <style>
+        #ipt{
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="ipt" />
+    <p><span id="num">10</span>/10</p>
+    <script>
+        //获取input
+        var oIpt = document.getElementById('ipt');
+        //获取num
+        var oNum = document.getElementById('num');
+        //最大输入长度
+        var maxLength = 10;
+        //绑定oninput事件
+        oIpt.oninput = function(){
+            //已输入的长度
+            var nowLength = oIpt.value.length;
+            //边框默认为黑色
+            oIpt.style.borderColor = 'black';
+            if(nowLength >= maxLength){
+                //截取前maxLength个字符
+                oIpt.value = oIpt.value.slice(0, maxLength);
+                //现在长度为maxLength
+                nowLength = maxLength;
+                //边框颜色设置为红色
+                oIpt.style.borderColor = 'red';
+            }
+            oNum.textContent = maxLength - nowLength;
+        }
+    </script>
+</body>
+
+</html>

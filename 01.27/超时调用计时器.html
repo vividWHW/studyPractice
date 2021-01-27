@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.27</title>
+
+</head>
+
+<body>
+    <button>清除超时调用计时器</button>
+    <script>
+        var timer = setTimeout(function(){
+            alert('hello');
+        }, 3000);
+        var oBtn = document.querySelector('button');
+        oBtn.onclick = function(){
+            clearTimeout(timer);
+        }
+    </script>
+</body>
+
+</html>

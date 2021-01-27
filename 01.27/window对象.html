@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.27</title>
+    <style>
+        
+    </style>
+</head>
+
+<body>
+    <div id="f"></div>
+    <div id="s"></div>
+
+    <script>
+        /* console.log(document.documentElement.clientWidth);
+        console.log(document.body.clientWidth); */
+
+/*         var a = 1;
+        console.log(window.a);//1
+        console.log(window.a === a);//true
+
+        function fn(){
+            console.log('fn');
+        }
+        window.fn();//fn
+        console.log(fn === window.fn);//true */
+
+
+/*         do{
+            var res = confirm('确定吗');
+        }while(res === false)
+
+        alert('111'); */
+
+/*         function name(){
+            var res2 = prompt('输入名字');
+            if(res2){
+                var res3 = confirm('你的名字是：'+ res2 +'?');
+                if(res3){
+                    alert('hello,' + res2 + '!');
+                }else{
+                    name();
+                }
+            }else{
+                name();
+            }
+        }
+        name(); */
+        
+        function name(){
+            var res2 = prompt('输入名字');
+            if(res2){
+                var res3 = confirm('你的名字是：'+ res2 +'?');
+                if(res3){
+                    alert('hello,' + res2 + '!');
+                    return ;
+                }
+            }
+            name();
+        }
+        name();
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.25</title>
+
+</head>
+
+<body>
+    <ul id="f">
+        <li class="first">1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+
+    <script>
+        var oLis = document.querySelectorAll("#f li");
+        var oLis2 = document.getElementsByTagName('li');
+        console.log(oLis);//NodeList(3) [li.first, li, li]
+        console.log(oLis2);//HTMLCollection(3) [li.first, li, li]
+
+        var oLiFirst = document.querySelector(".first");
+        var oLiFirst2 = document.getElementsByClassName("first")[0];
+        console.log(oLiFirst);
+        console.log(oLiFirst2);
+        console.log(oLiFirst === oLiFirst2);//true
+    </script>
+</body>
+
+</html>

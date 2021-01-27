@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.27</title>
+    <style>
+        div{
+            width: 150px;
+            height: 150px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <button>go!</button>
+    <div></div>
+    <script>
+        oBtn = document.querySelector('button');
+        oDiv = document.querySelector('div');
+
+        //div的margin-left
+        var divMarginLeft = 0;
+        //存放计时器返回的id，用于清除
+        var timer = null;
+        //btn点击事件
+        oBtn.onclick = function(){
+            //清除上一次点击的计时器
+            clearInterval(timer);
+            //设置计时器。将返回的计时器id赋值给timer
+            timer = setInterval(function(){
+                divMarginLeft += 3;
+                //临界值
+                if(divMarginLeft >= 1000){
+                    divMarginLeft = 1000;
+                    clearInterval(timer);
+                }
+                oDiv.style.marginLeft = divMarginLeft + 'px';
+            }, 1000/60);
+        }
+    </script>
+</body>
+
+</html>

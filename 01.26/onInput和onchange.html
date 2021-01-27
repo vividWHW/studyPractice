@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.26</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <input type="text" />
+    <p></p>
+    <br />
+    <input type="text" />
+    <p></p>
+
+    <script>
+        //获取第一个input
+        var oIpt1 = document.querySelector('input');
+/*         //获取第一个p
+        var oP1 = oIpt1.nextElementSibling || oIpt1.nextSibling; */
+        //获取第2个input
+        var oIpt2 = document.querySelector('input:nth-of-type(2)');
+/*         //获取第2个p
+        var oP2 = oIpt2.nextElementSibling || oIpt2.nextSibling; */
+        //封装获取下一个相邻元素节点
+        function getNextEle(obj){
+            return obj.nextElementSibling || obj.nextSibling;
+        }
+        //获取第一个p
+        var oP1 = getNextEle(oIpt1);
+        //获取第2个p
+        var oP2 = getNextEle(oIpt2);
+
+        //绑定oninput到第一个input,当内容发生改变时触发
+        oIpt1.oninput = function(){
+            if(this.value.length < 5){
+                oP1.textContent = '再写点儿';
+            }else{
+                oP1.textContent = '';
+            }
+        }
+        //绑定onchange到第二个input，当内容发生改变且失去焦点时触发
+        oIpt2.onchange = function(){
+            if(this.value.length < 5){
+                oP2.textContent = '再写点儿';
+            }else{
+                oP1.textContent = '';
+            }
+        }
+    </script>
+</body>
+
+</html>

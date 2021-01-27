@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.25</title>
+
+</head>
+
+<body>
+    <ul id="f">
+        <li>1</li>
+        <!-- <li>2</li> -->
+        <li>3</li>
+    </ul>
+
+    <script>
+        var oUl = document.getElementById("f");
+        var oUlChildren = oUl.childNodes;
+        console.log(oUlChildren);//[text, li, text, comment, text, li, text]
+        console.log(oUlChildren[1].nodeType);//1
+        console.log(oUlChildren[1].nodeValue);//null
+        console.log(oUlChildren[1].nodeName);//LI
+    </script>
+</body>
+
+</html>

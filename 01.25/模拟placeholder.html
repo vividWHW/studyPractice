@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.25</title>
+
+</head>
+
+<body>
+    <input value="请输入用户名" />
+
+    <script>
+        //获取input
+        var oInput = document.querySelector('input');
+        //绑定focus事件
+        oInput.onfocus = function(){
+            if(oInput.value == "请输入用户名"){
+                oInput.value = "";
+            }
+        }
+        //绑定blur事件
+        oInput.onblur = function(){
+            if(!oInput.value){
+                oInput.value = "请输入用户名";
+            }
+        }
+    </script>
+</body>
+
+</html>

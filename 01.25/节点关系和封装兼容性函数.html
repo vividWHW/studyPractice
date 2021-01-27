@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.25</title>
+
+</head>
+
+<body>
+    <script>
+        /* 
+        笔记：
+            parentNode:获取父元素节点（全兼容）
+            
+            childNodes:获取一个元素的所有的子节点
+            children：获取一个元素的所有的子元素节点(IE8及以下 会获取到注释节点)
+        
+            1获取第一个子节点 /2获取最后一个子节点 /3上一个兄弟 /4下一个兄弟
+                1firstChild /2lastChild /3previousSibling /4nextSibling
+                    IE8会认为是获取第一个子元素节点
+                    高级浏览器认为是获取的第一个子节点
+            
+                1firstElementChild /2lastElementChild /3previousElementSibling /4nextElementSibling
+                    IE8没有这个属性
+                    高级浏览器获取的是第一个子元素节点
+
+        
+        */
+
+        //封装兼容性获取第一个子元素节点的函数
+        function getFirstEle(Obj) {
+            return Obj.firstElementChild || Obj.firstChild;
+        }
+
+        //封装兼容性获取最后一个子元素节点的函数
+        function getLastEle(Obj) {
+            return Obj.lastElementChild || Obj.lastChild;
+        }
+
+        //封装兼容性获取上一个元素节点的函数
+        function getPrevEle(obj) {
+            return obj.previousElementSibling || obj.previousSibling;
+        }
+
+        //封装兼容性获取下一个元素节点的函数
+        function getNextEle(obj) {
+            return obj.nextElementSibling || obj.nextSibling;
+        }
+
+    </script>
+</body>
+
+</html>

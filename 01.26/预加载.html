@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.26</title>
+    <style>
+        .out{
+            width: 800px;
+            height: 40px;
+            border: 1px solid pink;
+        }
+        .out > .in{
+            width: 0%;
+            height: 40px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="out">
+        <div class="in"></div>
+    </div>
+    <span class="num"></span>
+
+    <script>
+/*         var img = new Image();
+        img.src = './images/01.jpg'; */
+
+        //获取in（进度条）
+        var oIn = document.querySelector('.in');
+        //获取num（百分比数值）
+        var oNum = document.querySelector('.num');
+
+        for(let i = 1; i <= 30; i++){
+            var oImg = new Image();
+            oImg.src = './images/'+ (i < 10 ? '0' + i : i) + '.jpg';
+            //计数器，已加载完成的图片数目
+            var count = 0;
+            oImg.onload = function(){
+                count++;
+                oIn.style.width = count/30*100 + '%';
+                oNum.textContent = parseInt(count/30*100) + '%';
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.26</title>
+    <style>
+
+    </style>
+<!--     <script>
+/*         //获取img标签
+        var oImg = document.querySelector('img');
+        console.log(oImg);//null
+        console.log(oImg.offsetWidth);//报错 Cannot read property 'offsetWidth' of null */
+
+        window.onload = function(){
+            var oImg = document.querySelector('img');
+            console.log(oImg);
+            console.log(oImg.offsetWidth);//2300
+        }
+    </script> -->
+</head>
+
+<body>
+    <img src="./images/01.jpg" alt="这里是一张狗狗的图片" />
+
+    <script>
+        //获取img标签
+        var oImg = document.querySelector('img');
+        console.log(oImg);
+        console.log(oImg.offsetWidth);//0
+
+        //页面所有DOM节点加载完成、所有资源（图片、视频、音频等）加载完成后触发
+        window.onload = function(){
+            console.log(oImg);
+            console.log(oImg.offsetWidth);//2300。在'111'和'img加载完成啦'之后输出
+        }
+
+        oImg.onload = function(){
+            console.log('img加载完成啦');
+            console.log(oImg);
+            console.log(oImg.offsetWidth);//2300。在'111'之后输出
+            console.log('----------');
+        }
+
+        console.log('111');
+    </script>
+</body>
+
+</html>
