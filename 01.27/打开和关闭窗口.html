@@ -8,8 +8,31 @@
 </head>
 
 <body>
+    <button >打开百度</button>
+    <button>关闭新窗口</button>
+    <button>关闭当前窗口</button>
+
     <script>
-        
+        var oBtn1 = document.getElementsByTagName('button')[0];
+        var oBtn2 = document.getElementsByTagName('button')[1];
+        var oBtn3 = document.getElementsByTagName('button')[2];
+        var newWindow = null;
+        oBtn1.onclick = function(){
+            //默认在新标签页中打开
+            //window.open("http://www.baidu.com");
+            //在新标签页中打开
+            //window.open("http://www.baidu.com", "_blank");
+            //在当前标签页打开
+            //window.open("http://www.baidu.com", "_self");
+            //控制窗口特性,在_blank时生效
+            newWindow = window.open("http://www.baidu.com", "_blank", "width=300, height=300, left=50, top=50");
+        }
+        oBtn2.onclick = function(){
+            newWindow.close();
+        }
+        oBtn3.onclick = function(){
+            window.close();//Scripts may close only the windows that were opened by them.
+        }
     </script>
 </body>
 

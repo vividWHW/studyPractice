@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.27</title>
+
+</head>
+
+<body>
+    <p>距离2021年还有<span>5</span>秒</p>
+
+    <script>
+        var oP = document.querySelector('p');
+        var oSpan = document.querySelector('span');
+        var countTimer = setInterval(function(){
+            //获取当前秒数
+            var num = +oSpan.textContent;
+            if(num <= 0){
+                oP.textContent = '新年快乐！';
+                //清除计时器
+                clearInterval(countTimer);
+            }
+            oSpan.textContent = --num;
+        }, 1000);
+    </script>
+</body>
+
+</html>
