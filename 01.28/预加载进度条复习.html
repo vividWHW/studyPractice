@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.28</title>
+    <style>
+        .outer{
+            position: relative;
+            width: 600px;
+            height: 40px;
+            border: 1px solid lightgray;
+        }
+        .outer > .inner{
+            width: 0%;
+            height: 100%;
+            background-color: lightpink;
+        }
+        .outer > .num{
+            position: absolute;
+            top: 0;
+            right: 5px;
+            height: 40px;
+            line-height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner">
+        </div>
+        <span class="num"></span>
+    </div>
+    <script>
+        var oInner = document.querySelector('.inner');
+        var oNum = document.querySelector('.num');
+        //已经加载完成的图片数目
+        var count = 0;
+        //图片总数
+        var sum = 30
+        for(let i = 1; i <= sum; i++){
+            var oImg = new Image();
+            oImg.src = '../01.26/images/' + (i < 10 ? '0' + i : i) + '.jpg';
+            oImg.onload = function(){
+                count++;
+                //改变进度条和数字
+                oInner.style.width = count/30*100 + '%';
+                oNum.textContent = parseInt(count/30*100) + '%';
+            }
+        }
+    </script>
+</body>
+</html>

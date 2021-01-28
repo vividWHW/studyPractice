@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.28</title>
+    <style>
+        .outer{
+            margin: 20px auto;
+            width: 600px;
+            font-size: 0;
+        }
+        .title-box{
+            width: 100%;
+            height: 50px;
+        }
+        .title-box > span{
+            display: inline-block;
+            width: 200px;
+            height: 50px;
+            line-height: 50px;
+            border: 1px solid lightgray;
+            border-radius: 5px 15px 0 0;
+            box-sizing: border-box;
+            background-color: #EEEEEE;
+            text-align: center;
+            font-size: 15px;
+        }
+        .title-box > span.active{
+            border-bottom-width: 0;
+            background-color: white;
+        }
+        .content-box{
+            position: relative;
+            width: 100%;
+            height: 300px;
+            line-height: 300px;
+            border: 1px solid lightgray;
+            border-radius: 0 0 5px 5px;
+            border-top-width: 0;
+            box-sizing: border-box;
+        }
+        .content-box > div{
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 15px;
+        }
+        .content-box > div.show{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="title-box">
+            <span class="active">title1</span>
+            <span>title2</span>
+            <span>title3</span>
+        </div>
+        <div class="content-box">
+            <div class="show">content1</div>
+            <div>content2</div>
+            <div>content3</div>
+        </div>
+    </div>
+    <script>
+/*         //方法一
+        var oTitles = document.querySelectorAll('.title-box > span');
+        var oCons = document.querySelectorAll('.content-box > div');
+        //遍历title，为每个title绑定点击事件
+        for(let i = 0; i < oTitles.length; i++){
+            oTitles[i].onclick = function(){
+                //遍历找到当前点击的title
+                for(let j = 0; j < oTitles.length; j++){
+                    if(oTitles[j] === this){
+                        oTitles[j].classList.add('active');
+                        oCons[j].classList.add('show');
+                    }else{
+                        oTitles[j].classList.remove('active');
+                        oCons[j].classList.remove('show');
+                    }
+                }
+            }
+        } */
+
+        //方法三
+        /*
+            Node.childNodes和document.querySelectAll返回NodeList类型的节点的集合。
+            NodeList是类数组对象，但可以使用forEach()迭代
+            有些浏览器较为过时，没有实现 NodeList.forEach()
+            for...in用不了，length等其他属性也会被遍历出来
+            for...of可以
+        */
+/*         var oTitles = document.querySelectorAll('.title-box > span');
+        var oCons = document.querySelectorAll('.content-box > div');
+        //遍历titles，绑定点击事件
+        oTitles.forEach(function(value, index){
+            value.onclick = function(){
+                //清除所有active和show
+                oTitles.forEach(function(value, index){
+                    value.classList.remove('active');
+                    oCons[index].classList.remove('show');
+                })
+                //为当前的title和对应内容添加class
+                value.classList.add('active');
+                oCons[index].classList.add('show');
+            }
+        })  */
+        //试验
+/*         var oTitles = document.querySelectorAll('.title-box > span');
+        for(let i in oTitles){
+            console.log(oTitles[i])
+        }
+        for(let i of oTitles){
+            console.log(i)
+        } */
+
+
+        //方法二
+/*         var oTitles = document.querySelectorAll('.title-box > span');
+        var oCons = document.querySelectorAll('.content-box > div');
+        console.log(oTitles) */
+        
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

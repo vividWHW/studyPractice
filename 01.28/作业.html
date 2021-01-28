@@ -24,13 +24,14 @@
         function getArgus(url){
             var res = url.split('?').pop().split('&'); //["user=laoli", "pass=123456"]
             var obj = {};
+            //遍历分隔出来的参数数组
             res.forEach(function(value) {
                 obj[value.split('=')[0]] = value.split('=')[1];
             });
             return obj;
         }
         console.log(getArgus(address));
-        
+
         /*
             作业2
         */
@@ -38,6 +39,7 @@
         var urlHead = 'http://www.baidu.com:80';
         function getUrl(urlHead, paras){
             var paraStr = '?';
+            //遍历参数对象
             for(let item in paras){
                 paraStr = paraStr + item + '=' + paras[item] + '&';
             }
