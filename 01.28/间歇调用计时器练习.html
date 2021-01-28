@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.28</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: lightpink;
+        }
+    </style>
+</head>
+<body>
+    <button class="go">go</button>
+    <button class="go-faster">go faster</button>
+    <button class="go-slower">go slower</button>
+    <div></div>
+    <script>
+        var oBtn1 = document.querySelector('.go');
+        var oBtn2 = document.querySelector('.go-faster');
+        var oBtn3 = document.querySelector('.go-slower');
+        var oBox = document.querySelector('div');
+        //div的左外边距
+        var divMarginLeft = 0;
+        //移动计时器id
+        var moveTimer = null;
+        //速度计时器id,一个放点击go-faster生成的计时器的id的数组
+        var speedTimer = [];
+
+        //移动div
+        function moveDiv(){
+            divMarginLeft += 3;
+            //到达临界值时
+            if(divMarginLeft >= 1500){
+                divMarginLeft = 1500;
+                clearInterval(moveTimer);
+            }
+            oBox.style.marginLeft = divMarginLeft + 'px';
+        }
+
+        //点击第一个按钮时
+        oBtn1.onclick = function(){
+            //清除上一次点击的计时器
+            clearInterval(moveTimer);
+            moveTimer = setInterval(moveDiv, 1000/60);
+        }
+        //加快速度
+        oBtn2.onclick = function(){
+            if(moveTimer === null){
+                alert('需要先点击go');
+                return ;
+            }
+            //生成一个计时器让div加速，并将返回的id放进speedTimer中
+            speedTimer.push(setInterval(moveDiv, 1000/60));
+        }
+        //减慢速度
+        oBtn3.onclick = function(){
+            if(moveTimer === null){
+                alert('需要先点击go');
+                return ;
+            }
+            //没点击go时，或者时点击shower生成的计时器已经清除完了时
+            if(speedTimer.length === 0){
+                alert('不能再慢了耶~');//弹出的时候所有计时器暂停了
+                return ;
+            }
+            //从speenTimer中弹出最近一个点击faster生成的计时器的id并清除掉
+            clearInterval(speedTimer.pop());
+        }
+
+    </script>
+</body>
+</html>

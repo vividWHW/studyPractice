@@ -1,32 +1,49 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>01.28</title>
 </head>
 <body>
-    
+    <button>assign</button>
+    <button>reload</button>
+    <button>replace</button>
     <script>
-                /*
+        /*
             location的属性
         */
         //获取当前文档完整的url
-        
+        console.log(location.href);
         //http://127.0.0.1:5500/01.27/location%E5%AF%B9%E8%B1%A1.html?user=11&pass=222#1
         //协议部分，包括后缀冒号
-
+        console.log(location.protocol);
         //主机和端口名称
-
+        console.log(location.host);
         //主机名称
-
+        console.log(location.hostname);
         //端口号
-
+        console.log(location.port);
         //路径部分
-
+        console.log(location.pathname);
         //url的查询部分，包括前导问号
-
+        console.log(location.search);
         //锚部分，包括前导#
+        console.log(location.hash);
 
+        var oBtn1 = document.querySelectorAll("button")[0];
+        var oBtn2 = document.querySelectorAll("button")[1];
+        var oBtn3 = document.querySelectorAll("button")[2];
+
+        oBtn1.onclick = function(){
+            //location.assign('https://www.baidu.com/');
+            location.href = 'https://www.baidu.com/';
+        }
+        oBtn2.onclick = function(){
+            location.reload();
+        }
+        oBtn3.onclick = function(){
+            location.replace('https://www.baidu.com/');
+        }
     </script>
 </body>
 </html>

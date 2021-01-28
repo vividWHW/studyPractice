@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.28</title>
+    <style>
+        .outer{
+            margin: 100px auto;
+            width: 500px;
+            border: 1px solid lightgray;
+            text-align: center;
+        }
+        .outer > .title{
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            background-color: lightblue;
+        }
+        .outer > .content{
+            display: none;
+            width: 100%;
+            height: 300px;
+            line-height: 300px;
+            background-color: lightcyan;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="title">title</div>
+        <div class="content">content</div>
+    </div>
+    <script>
+        var oOuter = document.querySelector('.outer');
+        var oContent = document.querySelector('.outer > .content');
+        var contentTimer = null;
+        oOuter.onmouseenter = function(){
+            clearTimeout(contentTimer);
+            oContent.style.display = 'block';
+        }
+        oOuter.onmouseleave = function(){
+            contentTimer = setTimeout(function(){
+                oContent.style.display = 'none';
+            }, 300);
+        }
+    </script>
+</body>
+</html>
