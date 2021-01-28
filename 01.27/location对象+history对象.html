@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.27</title>
+
+</head>
+
+<body>
+    <button>assign</button>
+    <button>reload</button>
+    <button>replace</button>
+    <br />
+    <button>back</button>
+    <button>forward</button>
+
+    <script>
+        /*
+            location的属性
+        */
+        //获取当前文档完整的url
+        console.log(location.href);
+        //http://127.0.0.1:5500/01.27/location%E5%AF%B9%E8%B1%A1.html?user=11&pass=222#1
+        //协议部分，包括后缀冒号
+        console.log(location.protocol);//http:
+        //主机和端口名称
+        console.log(location.host);//127.0.0.1:5500
+        //主机名称
+        console.log(location.hostname);//127.0.0.1
+        //端口号
+        console.log(location.port);
+        //路径部分
+        console.log(location.pathname);///01.27/location%E5%AF%B9%E8%B1%A1.html
+        //url的查询部分，包括前导问号
+        console.log(location.search);//?user=11&pass=222
+        //锚部分，包括前导#
+        console.log(location.hash);//#1
+
+/*         //重定向
+        document.onclick = function(){
+            location.href = 'https://github.com/vividWHW';
+        } */
+
+        var oBtn1 = document.querySelectorAll("button")[0];
+        var oBtn2 = document.querySelectorAll("button")[1];
+        var oBtn3 = document.querySelectorAll("button")[2];
+        /*
+            location的方法
+        */
+        oBtn1.onclick = function(){
+            /*
+                重定向
+            */
+            location.assign("https://github.com/vividWHW");
+        }
+        oBtn2.onclick = function(){
+            /*
+                重新加载文档
+                参数可选，为布尔值。true：从服务器重新获取页面，false或不传参：可能从缓存中读取
+            */
+            location.reload(true);
+        }
+        oBtn3.onclick = function(){
+            /*
+                直接替换为新的文档，替换当前文档的历史记录（退回不了了）
+            */
+            location.replace("https://github.com/vividWHW");
+        }
+
+
+
+        /*
+            history对象
+        */
+        var oBtnBack = document.querySelectorAll("button")[3];
+        var oBtnForward = document.querySelectorAll("button")[4];
+        
+        oBtnBack.onclick = function(){
+            window.history.back();
+        }
+        oBtnForward.onclick = function(){
+            window.history.forward();
+        }
+    </script>
+</body>
+
+</html>

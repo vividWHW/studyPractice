@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.27</title>
+
+</head>
+
+<body>
+    <button>back</button>
+    <button>forward</button>
+
+    <script>
+        var oBtn1 = document.querySelectorAll("button")[0];
+        var oBtn2 = document.querySelectorAll("button")[1];
+        
+        oBtn1.onclick = function(){
+            window.history.back();
+        }
+        oBtn2.onclick = function(){
+            window.history.forward();
+        }
+    </script>
+</body>
+
+</html>

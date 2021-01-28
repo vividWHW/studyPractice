@@ -8,14 +8,32 @@
 </head>
 
 <body>
-    <button>清除超时调用计时器</button>
+<!--     <button>清除超时调用计时器</button> -->
+    <button>增加一个setTimeout</button>
+    <button>增加一个setInterval</button>
+
     <script>
-        var timer = setTimeout(function(){
+        
+/*         var timer = setTimeout(function(){
             alert('hello');
         }, 3000);
         var oBtn = document.querySelector('button');
         oBtn.onclick = function(){
             clearTimeout(timer);
+        } */
+
+        //setTimeout()和setInterval()共用编号顺序
+        var oBtn1 = document.querySelectorAll('button')[0];
+        var oBtn2 = document.querySelectorAll('button')[1];
+        oBtn1.onclick = function(){
+            var timer = setTimeout(function(){
+                console.log(timer);
+            }, 3000);
+        }
+        oBtn2.onclick = function(){
+            var timer = setInterval(function(){
+                console.log(timer);
+            }, 3000);
         }
     </script>
 </body>

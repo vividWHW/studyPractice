@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.27</title>
+
+</head>
+
+<body>
+
+    <script>
+        for(var i =0; i < 3; i++){
+            setTimeout(function(){
+                console.log(i);//3 3 3
+            }, 0);
+        }
+
+        //解决方法
+        for(var i = 0; i < 3; i++){
+            (function(i){
+                setTimeout(function(){
+                    console.log(i);//0 1 2
+                }, 0);
+            })(i);
+        }
+
+        //解决方法2
+        for(let i =0; i < 3; i++){
+            setTimeout(function(){
+                console.log(i);//0 1 2
+            }, 0);
+        }
+
+        //解决方法3（ie9及更早不支持回调函数传递额外参数——MDN）
+        for(var i =0; i < 3; i++){
+            setTimeout(function(i){
+                console.log(i);//0 1 2
+            }, 0, i);
+        }
+
+    </script>
+</body>
+
+</html>
