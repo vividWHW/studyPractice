@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.29</title>
+    <style>
+        .outer{
+            margin: 20px;
+            padding: 20px;
+            width: 500px;
+            height: 500px;
+            border: 1px solid salmon;
+        }
+        .outer .inner{
+            position: relative;
+            margin: 20px;
+            padding: 20px;
+            width: 300px;
+            height: 300px;
+            border: 1px solid skyblue;
+            overflow: auto;
+        }
+        .outer .inner .con{
+            margin: 10px;
+            padding: 10px;
+            width: 100px;
+            height: 800px;
+            border: 1px solid seagreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner">
+            <div class="con"></div>
+        </div>
+    </div>
+    <script>
+        var oOuter = document.querySelector('.outer');
+        var oInner = document.querySelector('.inner')
+        var oCon = document.querySelector('.con');
+        /* 
+            offsetLeft:
+                - 获取元素的左侧偏移位置
+                - 获取的是当前元素到最近定位父级的距离
+                - 如果找到根元素也没有定位父级，则获取的是相对文档边缘的距离
+                (当前元素边框外侧最近定位父级的边框内侧，和box-sizing无关)
+        */
+        console.log(oCon.offsetLeft);//30
+        console.log(oCon.offsetTop);//30
+        /* 
+            offsetParent:
+                - 获取元素的最近定位父级的节点
+        */
+        console.log(oCon.offsetParent);//inner
+        console.log(oCon.offsetParent.offsetParent);//body
+        console.log(oCon.offsetParent.offsetParent.offsetParent);//null
+        /* 
+            clientLeft:获取边框的宽度
+        */
+        console.log(oCon.clientLeft);//1
+        console.log(oCon.clientTop);//1
+        /* 
+            scrollLeft和scrollTop:
+                - 获取和 设置 元素滚动条已经滚动的距离
+        */
+        document.onclick = function(){
+            console.log(oInner.scrollTop);//0~542
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.29</title>
+    <style>
+        .box{
+            width: 3000px;
+            height: 6000px;
+        }
+        .toTop{
+            /* display: none; */
+            position: fixed;
+            bottom: 80px;
+            right: 10px;
+            padding: 10px;
+            width: 40px;
+            height: 40px;
+            background-color: lightpink;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        .show{
+            opacity: 1 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="toTop">回到顶部</div>
+
+    <script>
+        var oBtn = document.querySelector('.toTop');
+
+        //监听滚动条的移动，控制btn的显示和隐藏
+        window.onscroll = function(){
+            if(window.pageYOffset >= 600){
+                oBtn.classList.add('show');
+            }else{                
+                oBtn.classList.remove('show');                            
+            }
+        }
+
+        oBtn.onclick = function(){
+            var startLocation = window.pageYOffset;
+            var endLocation = 0;
+            var startStep = 0;
+            var totalStep = 50;
+            var everyStep = (endLocation - startLocation) / totalStep;
+            var timer = setInterval(function(){
+                startLocation += everyStep;
+                startStep++;
+                if(startStep >= totalStep){
+                    startLocation = endLocation;
+                    clearInterval(timer);
+                }
+                window.scrollTo(window.pageXOffset, startLocation);
+            }, 10);
+        }
+
+
+    </script>
+</body>
+</html>

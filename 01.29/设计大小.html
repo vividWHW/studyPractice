@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.29</title>
+    <style>
+        .box{
+            margin: 20px;
+            padding: 10px;
+            width: 100px;
+            height: 200px;
+            border: 1px solid salmon;
+        }
+        .box .inner{
+            width: 500px;
+            height: 500px;
+            border: 1px solid skyblue;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="inner"></div>
+    </div>
+
+    <script>
+
+        /* 
+            offsetWidth:
+                - 获取元素的占用的宽度大小(border-box的大小)
+                - 返回的number类型
+                - 当元素display隐藏的时候，元素的offsetWidth属性返回0
+        
+        */
+        /* 
+            clientWidth:
+                - 获取元素的宽度大小(padding-box的大小)
+                - 返回的number类型
+                - 当元素display隐藏的时候，元素的clientWidth属性返回0
+        
+        */
+        /* 
+            scrollWidth:
+                元素包含内容的完全宽度和padding
+        
+        */
+        var oBox = document.querySelector('.box');
+        console.log(oBox.offsetWidth);//122
+        console.log(oBox.offsetHeight);//222
+        console.log(oBox.clientWidth);//120
+        console.log(oBox.clientHeight);//220
+        console.log(oBox.scrollWidth);//512
+        console.log(oBox.scrollHeight);//512
+    </script>
+</body>
+</html>

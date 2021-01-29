@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.29</title>
+    <style>
+        div{
+            width: 2000px;
+            height: 2000px;
+        }
+
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        //窗口大小
+        console.log(document.documentElement.clientHeight);//(IE7+)
+        console.log(document.documentElement.clientWidth);
+        console.log(document.body.clientHeight);//(IE6-)
+        console.log(document.body.clientWidth);
+
+        //文档大小
+        console.log(document.documentElement.offsetHeight||document.body.offsetHeight);
+        console.log(document.documentElement.offsetWidth||document.body.offsetWidth);
+
+    </script>
+</body>
+</html>

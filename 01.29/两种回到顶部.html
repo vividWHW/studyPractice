@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.29</title>
+    <style>
+        .box{
+            width: 3000px;
+            height: 6000px;
+        }
+        .toTop1, .toTop2{
+            /* display: none; */
+            position: fixed;
+            bottom: 80px;
+            right: 10px;
+            padding: 10px;
+            width: 40px;
+            height: 40px;
+            background-color: lightpink;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        .toTop2{
+            bottom: 10px;
+            background-color: lightblue;
+        }
+        .show{
+            opacity: 1 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="toTop1">回到顶部</div>
+    <div class="toTop2">回到顶部</div>
+    <script>
+        var oBtn1 = document.querySelector('.toTop1');
+        var oBtn2 = document.querySelector('.toTop2');
+
+        //监听滚动条的移动，控制btn的显示和隐藏
+        window.onscroll = function(){
+            if(window.pageYOffset >= 600){
+                /* oBtn1.style.display = 'block';
+                oBtn2.style.display = 'block'; */
+                oBtn1.classList.add('show');
+                oBtn2.classList.add('show');
+            }else{                
+                oBtn1.classList.remove('show');                
+                oBtn2.classList.remove('show');
+                /* oBtn1.style.display = 'none';
+                oBtn2.style.display = 'none';  */               
+            }
+        }
+
+        //立即回到顶部
+        oBtn1.onclick = function(){
+            window.scrollTo(0, 0);
+        }
+
+/*         //动画回到顶部
+        oBtn2.onclick = function(){
+            var nowScroll = window.pageYOffset;
+            var toTopTimer = setInterval(function(){
+                nowScroll -= 150;
+                //临界值，已经到达顶部了
+                if(nowScroll <= 0){
+                    nowScroll = 0;
+                    clearInterval(toTopTimer);
+                }
+                window.scrollTo(0, nowScroll);
+            }, 10);
+        } */
+
+
+
+
+        //动画回到顶部-again
+        oBtn2.onclick = function(){
+            var nowScrollY = window.pageYOffset;
+            var toTopTimer = setInterval(function(){
+                nowScrollY -= 200;
+                if(nowScrollY <= 0){
+                    nowScrollY = 0;
+                    clearInterval(toTopTimer);
+                }
+                window.scrollTo(window.pageXOffset, nowScrollY);
+            }, 10);
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.29</title>
+    <style>
+        button{
+            margin-top: 300px;
+            margin-left: 300px;
+        }
+        .box{
+            width: 3000px;
+            height: 6000px;
+        }
+    </style>
+</head>
+<body>
+    <button>btn</button>
+    <div class="box"></div>
+    <script>
+        var oBtn = document.querySelector('button');
+        var oBox = document.querySelector('.box');
+
+        oBtn.onclick = function(){
+/*             console.log(window.pageYOffset);
+            console.log(document.documentElement.scrollTop);
+            console.log(document.body.scrollTop);
+            console.log('-------------');
+            console.log(window.pageXOffset);
+            console.log(document.documentElement.scrollLeft);
+            console.log(document.body.scrollLeft); */
+            //console.log(getWinScroll());
+            window.scrollTo(200,200);
+        }
+
+        //封装兼容性获取系统滚动条位置的函数
+        function getWinScroll(){
+            if(window.pageXOffset||window.pageYOffset){
+                return {
+                    x: window.pageXOffset,
+                    y: window.pageYOffset
+                }
+            }else if(document.documentElement.scrollLeft||document.documentElement.scrollTop){
+                return {
+                    x: document.documentElement.scrollLeft,
+                    y: document.documentElement.scrollTop
+                }
+            }else{
+                return {
+                    x: document.body.scrollLeft,
+                    y: document.body.scrollTop
+                }
+            }
+        }
+        
+
+        
+    </script>
+</body>
+</html>

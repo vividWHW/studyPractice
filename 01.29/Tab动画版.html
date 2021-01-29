@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1.29</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #content{
+            width: 500px;
+            margin: 50px auto;
+            font-size: 0;
+        }
+        #content > .tab > span{
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            border: 1px solid lightgray;
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 18px;
+        }
+        #content > .tab > span.active{
+            background-color: #DFE4FC;
+            border-bottom-width: 0;
+        }
+        #content > ul{
+            position: relative;
+            width: 100%;
+            height: 300px;
+            list-style-type: none;
+            font-size: 25px;
+        }
+        #content > ul > li{
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            line-height: 300px;
+            border: 1px solid lightgray;
+            border-top-width: 0;
+            box-sizing: border-box;
+            background-color: #DFE4FC;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+        <div class="tab">
+            <span class="active">title1</span>
+            <span>title2</span>
+            <span>title3</span>
+            <span>title4</span>
+            <span>title5</span>
+        </div>
+        <ul>
+            <li>content1</li>
+            <li>content2</li>
+            <li>content3</li>
+            <li>content4</li>
+            <li>content5</li>
+        </ul>
+    </div>
+
+    <script>
+        var oSpans = document.querySelectorAll('.tab > span');
+        var oLis = document.querySelectorAll('li');
+
+
+    </script>
+</body>
+
+</html>
