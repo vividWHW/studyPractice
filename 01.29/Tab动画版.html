@@ -28,17 +28,20 @@
             background-color: #DFE4FC;
             border-bottom-width: 0;
         }
-        #content > ul{
-            position: relative;
+        #content > .con{
             width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        #content  ul{
+            width: 2500px;
             height: 300px;
             list-style-type: none;
             font-size: 25px;
         }
-        #content > ul > li{
-            display: block;
-            position: absolute;
-            width: 100%;
+        #content  ul > li{
+            float: left;
+            width: 500px;
             height: 100%;
             line-height: 300px;
             border: 1px solid lightgray;
@@ -59,19 +62,60 @@
             <span>title4</span>
             <span>title5</span>
         </div>
-        <ul>
-            <li>content1</li>
-            <li>content2</li>
-            <li>content3</li>
-            <li>content4</li>
-            <li>content5</li>
-        </ul>
+        <div class="con">
+            <ul>
+                <li>content1</li>
+                <li>content2</li>
+                <li>content3</li>
+                <li>content4</li>
+                <li>content5</li>
+            </ul>
+        </div>
     </div>
 
     <script>
-        var oSpans = document.querySelectorAll('.tab > span');
-        var oLis = document.querySelectorAll('li');
+        var oTitles = document.querySelectorAll('.tab > span');
+        var oUl = document.querySelector('ul');
+        var oCon = document.querySelector('.con');
+        var oCons = document.querySelectorAll('li');
 
+        var tabTimer = null;
+        //为每个标题绑定点击事件
+        for(let i = 0; i < oTitles.length; i++){
+            //为每个title扩展一个表示下标的属性
+            oTitles[i].index = i;
+            oTitles[i].onclick = function(){
+                //清除计时器
+                clearInterval(tabTimer);
+                //清除所有title样式
+                for(let i = 0; i < oTitles.length; i++){
+                    oTitles[i].classList.remove('active');
+                }
+                //为当前title添加class
+                this.classList.add('active');
+                //动画切换到对应content
+                //起始位置:当前滚动条所在位置
+                var startLocation = oCon.scrollLeft;
+                console.log(startLocation)
+                //结束位置：点击的标题对应的内容滚动条所在位置。它前面的content的个数（等于它的下标）乘以content占用的宽度
+                var endLocation = this.index * oCons[0].offsetWidth;
+                //起始步数
+                var startStep = 0;
+                //总步数
+                var totalStep = 40;
+                //每一步要走的距离
+                var everyStep = (endLocation - startLocation) / totalStep;
+                tabTimer = setInterval(function(){
+                    startStep++;
+                    //临界值,清除计时器
+                    if (startStep >= totalStep) {
+                        clearInterval(tabTimer);
+                    }
+                    startLocation += everyStep;
+                    oCon.scrollLeft = startLocation;
+                }, 10);
+            }
+        }
 
     </script>
 </body>
