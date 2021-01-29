@@ -119,10 +119,23 @@
 
 
         //方法二
-/*         var oTitles = document.querySelectorAll('.title-box > span');
+        var oTitles = document.querySelectorAll('.title-box > span');
         var oCons = document.querySelectorAll('.content-box > div');
-        console.log(oTitles) */
-        
+        //遍历给所有title绑定点击事件
+        for(let i = 0; i < oTitles.length; i++){
+            //为每个title添加一个属性，值为它的下标，用于找到标题对应的内容
+            oTitles[i].index = i;
+            oTitles[i].onclick = function(){
+                //清除所有样式
+                for(let j = 0; j < oTitles.length; j++){
+                    oTitles[j].classList.remove('active');
+                    oCons[j].classList.remove('show');
+                }
+                //为当前点击的标题和对应内容添加class
+                this.classList.add('active');
+                oCons[this.index].classList.add('show');
+            }
+        }
 
 
 
