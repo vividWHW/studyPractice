@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.30</title>
+    <style>
+        ul li{
+            height: 50px;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <button>删除选中的</button>
+    <ul class="box">
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+        <li>444</li>
+        <li>555</li>
+        <li>666</li>
+    </ul>
+    <script>
+        var oBox = document.querySelector('ul');
+        var oLis = document.querySelectorAll('li');
+        var oBtn = document.querySelector('button');
+
+        //遍历lis，为每个li添加点击事件
+        oLis.forEach(function(value, index){
+            value.onclick = function(){
+                //点击的li改变背景颜色
+                value.style.background = 'lightpink';
+                //点击的li添加属性，作为删除的标志
+                value.setAttribute('willdel', 'yes');
+            }
+        });
+        oBtn.onclick = function(){
+            //遍历lis，删除有willdel属性的li
+            oLis.forEach(function(value, index){
+                if(value.getAttribute('willdel')){
+                    value.remove();
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>

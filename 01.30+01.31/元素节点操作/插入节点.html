@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.30</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <button>button</button>
+    <ul class="box">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <script>
+        /* 
+            插入节点：
+                A.appendChild(B):
+                    - 把B插入到A中，作为A的最后一个子节点
+                    - 不仅仅可以插入新节点，也可以插入已经存在的节点(相当于移动了原来节点的位置)
+
+                A.insertBefore(new,old):
+                    - old是A的子节点
+                    - 将new元素 作为old的兄弟插入到old的前边
+         */
+        var oBox = document.querySelector('.box');
+        var oLis = document.querySelectorAll('li');
+        var oLis2 = document.getElementsByTagName('li');
+        var oBtn = document.querySelector('button');
+
+        oBtn.onclick = function(){
+            var newLi = document.createElement('li');
+            newLi.textContent = '这是新的li';
+
+/*             //appendChild插入新元素节点
+            oBox.appendChild(newLi); */
+
+/*             //appendChild插入已经存在的元素节点
+            oBox.appendChild(oLis[2]);//12453 */
+
+/*             //insertBefore插入新元素节点
+            oBox.insertBefore(newLi, oLis[1]);//1新li2345 */
+
+/*             //insertBefore插入已经存在的元素节点
+            oBox.insertBefore(oLis[4], oLis[1]);//15234 //15234(多次点击不会再变，因为querySelector获取的是静态的)
+            console.log(oLis);//还是12345的顺序 */
+            oBox.insertBefore(oLis2[4], oLis2[1]);//15234 //14523(多次点击会变，因为getElementsByTagName获取的是动态的)
+            console.log(oLis2);
+        }
+    </script>
+</body>
+</html>

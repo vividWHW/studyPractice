@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.30</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <input type="text" value="hello" id="ipt" class="ipt" hi="hi"/>
+    <script>
+        /* 
+            元素的属性分为两种：
+                - 自有属性
+                    - 元素提供的一些属性
+                    - 可以直接通过点操作符获取或者修改
+                    - 也有特殊的：对于class属性，必须使用className属性名，因为class是JavaScript语言的保留字
+                                对于for属性，则必须使用htmlFor属性名
+                - 自定义属性
+                    - 我们可以给一个元素设置自定义属性，用来保存一些值
+                    - 但是 直接通过点操作符获取自定义属性的时候，会把DOM节点当做一个js对象，获取的是这个对象的属性，不是DOM节点上的属性
+                
+                    - getAttribute(key):获取某个自定义属性
+                    - setAttribute(key,value):设置某个自定义属性,可以覆盖之前存在的值
+                    - removeAttribute(key)：删除某个自定义属性
+        */
+        var oIpt = document.getElementById('ipt');
+        document.onclick = function(){
+            //自有属性
+/*             console.log(oIpt.value);//'hello'
+            console.log(oIpt.type);//'text'
+            console.log(oIpt.class);//undefined
+            console.log(oIpt.className);//'ipt'
+            console.log(oIpt.hi);//undefined */
+
+            //自定义属性
+/*             console.log(oIpt.getAttribute('hi'));//hi
+            console.log(oIpt.getAttribute('class'));//ipt
+            console.log(oIpt.getAttribute('className'));//null
+            console.log(oIpt.getAttribute('value'));//'hello' */
+            console.log(oIpt.setAttribute('time', '123'));//undefined,增加属性time="123"
+            console.log(oIpt.removeAttribute('hi'));//undefined,删除属性hi="hi"
+        }
+    </script>
+</body>
+</html>
