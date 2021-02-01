@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02.01</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html, body{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            position: relative; 
+        }
+        .box{
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-image: radial-gradient(white, lightpink);
+            border-radius: 50%;
+            box-shadow: 1px 1px 2px lightgray;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+
+    <script>
+        var oBody = document.querySelector('body');
+        var oBox = document.querySelector('.box');
+
+        //box的位置
+        var boxLeft = 0, boxTop = 0;
+        //移动方向的标记
+        var toLeft = false, toTop = false;
+        var moveTimer = null;
+
+        moveTimer = setInterval(function () {
+            if (toLeft) {
+                //向左移动
+                boxLeft -= 2;
+                //boxTop碰到屏幕左侧时
+                if (boxLeft <= 0) {
+                    toLeft = !toLeft;
+                }
+            } else {
+                //向右移动
+                boxLeft += 2;
+                //boxTop碰到屏幕右侧时
+                if (boxLeft >= oBody.clientWidth - oBox.offsetWidth) {
+                    toLeft = !toLeft;
+                }
+            }
+
+            if (toTop) {
+                //向上移动
+                boxTop -= 2;
+                //boxTop碰到屏幕上方时
+                if (boxTop <= 0) {
+                    toTop = !toTop;
+                }
+            } else {
+                //向下移动
+                boxTop += 2;
+                //boxTop碰到屏幕下方时
+                if (boxTop >= oBody.clientHeight - oBox.offsetHeight) {
+                    toTop = !toTop;
+                }
+            }
+            oBox.style.left = boxLeft + "px";
+            oBox.style.top = boxTop + "px";
+        }, 1)
+    </script>
+</body>
+</html>

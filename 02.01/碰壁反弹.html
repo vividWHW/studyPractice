@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02.01</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html, body{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            position: relative; 
+        }
+        .box{
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-image: radial-gradient(white, lightblue);
+            border-radius: 50%;
+            box-shadow: 1px 1px 2px lightgray;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+
+    <script>
+        var oBody = document.querySelector('body');
+        var oBox = document.querySelector('.box');
+
+        //box所在位置
+        var boxLeft = 0, boxTop = 0;
+        //移动方向的标记,起始位置左上角向右下移动
+        var toLeft = false, toTop = false;
+        //计时器
+        var moveTimer = null;
+
+        moveTimer = setInterval(function () {
+            if (toLeft) {
+                //向左移动，left减少
+                boxLeft -= 2;
+                //boxTop移动到屏幕最左边时
+                if (boxLeft <= 0) {
+                    //改变横向移动方向
+                    toLeft = !toLeft;
+                }
+            } else {
+                //向右移动，left增加
+                boxLeft += 2;
+                //boxTop移动到屏幕最右边时
+                if (boxLeft >= oBody.clientWidth - oBox.offsetWidth) {
+                    //改变横向移动方向
+                    toLeft = !toLeft;
+                }
+            }
+
+            if (toTop) {
+                //向上移动，top值减少
+                boxTop -= 2;
+                //boxTop移动到屏幕最上面时
+                if (boxTop <= 0) {
+                    //改变纵向移动方向
+                    toTop = !toTop;
+                }
+            } else {
+                //向下移动，top增加
+                boxTop += 2;
+                //boxTop移动到屏幕最下面时
+                if (boxTop >= oBody.clientHeight - oBox.offsetHeight) {
+                    //改变纵向移动方向
+                    toTop = !toTop;
+                }
+            }
+            oBox.style.left = boxLeft + "px";
+            oBox.style.top = boxTop + "px";
+        }, 1)
+    </script>
+</body>
+</html>

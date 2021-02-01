@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02.01</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .outer{
+            position: relative;
+            margin: 50px auto;
+            width: 800px;
+            height: 450px;
+            overflow: hidden;
+        }
+        .outer ul.img{
+            position: absolute;
+            top: 0;
+            left: 0px;
+            width: 5600px;
+            height: 100%;
+            list-style-type: none;
+        }
+        .outer ul.img li{
+            width: 800px;
+            height: 100%;
+            float: left;
+        }
+        .outer ul.img img{
+            width: 800px;
+            height: 450px;
+        }
+        .outer ul.list{
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            list-style-type: none;
+        }
+        .outer ul.list li{
+            display: inline-block;
+            margin: 0 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 1px;
+            background-color: rgba(255, 255, 255, 0.35);
+            cursor: pointer;
+        }
+        .outer ul.list li.active{
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .outer .left, .outer .right{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 41px;
+            height: 69px;
+            background-image: url('./images/icon-slides.png');
+            cursor: pointer;
+        }
+        .outer .left{
+            left: 0;
+            background-position: -84px 0;
+        }
+        .outer .right{
+            right: 0;
+            background-position: -123px 0;
+        }
+        .outer:hover .left{
+            background-position: 0 0;
+        }
+        .outer:hover .right{
+            background-position: -42px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <ul class="img">
+            <li><img src="./images/hlr.jpg" alt=""></li>
+            <li><img src="./images/01.jpg" alt=""></li>
+            <li><img src="./images/02.jpg" alt=""></li>
+            <li><img src="./images/03.jpg" alt=""></li>
+            <!-- <li><img src="./images/04.jpg" alt=""></li>
+            <li><img src="./images/05.jpg" alt=""></li> -->
+            <li><img src="./images/hlr.jpg" alt=""></li>
+        </ul>
+        <div class="left"></div>
+        <div class="right"></div>
+        <ul class="list">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <!-- <li></li>
+            <li></li> -->
+        </ul>
+    </div>
+</body>
+<script>
+    var oImgUl = document.querySelector('ul.img');
+    var oImgLis = document.querySelectorAll('ul.img li');
+    var oLeft = document.querySelector('.left');
+    var oRight = document.querySelector('.right');
+    var oPages = document.querySelectorAll('ul.list li');
+
+    //移动动画计时器
+    var moveTimer = null;
+    //自动切换计时器
+    var autoMoveTimer = null;
+    //当前所在li下标
+    var i = 0;
+    //img宽度
+    var imgWidth = oImgLis[0].offsetWidth;
+
+    //自动切换
+    function autoMove(){
+        autoMoveTimer = setInterval(function(){
+            clearInterval(moveTimer);
+            i++;
+            //超出边界，即当前为最后一张图片
+            if(i > oImgLis.length - 1){
+                //跳转到第一张
+                oImgUl.style.left = 0;
+                i = 1;
+            }
+            move();
+            lichange();
+        }, 2000);
+    }
+    autoMove();
+
+    //移动动画
+    function move(){
+        var startLocation = oImgUl.offsetLeft; 
+        var endLocation = -i*imgWidth;
+        var startStep = 0;
+        var endStep = 50;
+        var everyStep = (endLocation - startLocation) / endStep;
+        moveTimer = setInterval(function(){
+            startStep++;
+            if(startStep >= endStep){
+                clearInterval(moveTimer);
+            }
+            startLocation += everyStep;
+            oImgUl.style.left = startLocation + 'px';
+        }, 10);
+    }
+
+    //清除两种计时器
+    function clearTimers(){
+        clearInterval(autoMoveTimer);
+        clearInterval(moveTimer);
+    }
+    
+    //点击向左按钮
+    oLeft.onclick = function(){
+        //清除两种计时器
+        clearTimers();
+        i--;
+        //在第一张时,跳到最后一张再去移动
+        if(i < 0){
+            oImgUl.style.left = -(oImgLis.length - 1)*imgWidth + 'px';
+            i = oImgLis.length - 2;
+        }
+        move();
+        autoMove();
+        lichange();
+    }
+    //点击向右按钮
+    oRight.onclick = function(){
+        //清除两种计时器
+        clearTimers();
+        i++;
+        //在最后一张时,跳到第一张再去移动
+        if(i > oImgLis.length - 1){
+            oImgUl.style.left = 0;
+            i = 1;
+        }
+        move();
+        autoMove();
+        lichange();
+    }
+
+    //list中的li绑定点击事件
+    oPages.forEach(function(item, index){
+        item.onclick = function(){
+            i = index;
+            lichange();
+            clearTimers();
+            move();
+            autoMove();
+        }
+    });
+
+    //改变list的li的样式
+    function lichange() {
+        //清除所有li样式
+        oPages.forEach(function (item) {
+            item.classList.remove('active');
+        });
+        //当前点击的li添加样式
+        //因为最后一张和第一张重复的，所以到最后一张时，给list的第一个li添加active
+        if(i >= oPages.length){
+            oPages[0].classList.add('active');
+        }else{
+            oPages[i].classList.add('active');
+        }
+    }
+</script>
+</html>
