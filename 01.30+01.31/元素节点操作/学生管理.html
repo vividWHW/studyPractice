@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.31</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <form action="#" id="form">
+        <label>姓名：<input type="text" id="user"></label>
+        <br />
+        <label>年龄：<input type="text" id="age"></label>
+        <br />
+        <label>性别：<input type="text" id="sex"></label>
+        <br />
+        <button id="add">添加</button>
+    </form>
+
+    <br />
+    <br />
+    <br />
+
+    <table width="500" border="1" style="border-collapse: collapse; text-align: center;">
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+            <th>操作</th>
+        </tr>
+        <tr>
+            <td>111</td>
+            <td>11</td>
+            <td>女</td>
+            <td><a href="#" class="del">删除</a></td>
+        </tr>
+    </table>
+    
+    <script>
+        var oForm = document.querySelector('form');
+        var oTbody = document.querySelector('table > tbody');
+        var oUser = document.getElementById('user');
+        var oAge = document.getElementById('age');
+        var oSex = document.getElementById('sex');
+        //表单被提交时
+        oForm.onsubmit = function () {
+            //创建一个新的tr
+            var newTr = document.createElement("tr");
+            //获取表单输入的内容填入
+            newTr.innerHTML = '<td>' + oUser.value + '</td><td>' + oAge.value + '</td><td>' + oSex.value + '</td><td><a href="#" class="del">删除</a></td>';
+            //将新的tr放到tbody最后面
+            oTbody.appendChild(newTr)
+            //重新获取删除按钮，给所有的删除绑定点击事件
+            var oDels = document.querySelectorAll('.del');
+            for (var i = 0; i < oDels.length; i++) {
+                oDels[i].onclick = function () {
+                    this.parentNode.parentNode.remove();
+                }
+            }
+            //阻止表单提交
+            return false;
+        }
+        //为所有删除绑定点击事件
+        var oDels = document.querySelectorAll('.del');
+        //var oDels = document.getElementsByTagName('a');//还是需要在添加后重新获取a，重新绑定点击事件
+        for (var i = 0; i < oDels.length; i++) {
+            oDels[i].onclick = function () {
+                //移除a的父节点的父节点，即a所在的tr
+                this.parentNode.parentNode.remove();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.30</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <button id="btn">按钮</button>
+    <ul id="box">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <script>
+        /* 
+            替换节点：
+                A.replaceChild(new,old):
+                    - old是A的子节点
+                    - 使用new 取代old的位置 old元素消失
+                    - 这个new可以是新创建的元素 也可以是已经存在的元素       
+         */
+        var oBtn = document.getElementById('btn');
+        var oBox = document.getElementById('box');
+        //var oLis = document.querySelectorAll('#box li');
+        var oLis = document.getElementsByTagName('li');
+        oBtn.onclick = function () {
+            var newLi = document.createElement("li");
+            newLi.textContent = "我是li";
+            //替换节点
+            //oBox.replaceChild(newLi, oLis[1]);//1新li34
+            oBox.replaceChild(oLis[1], oLis[0]);//234
+            console.log(oBox);
+        }
+    </script>
+</body>
+</html>

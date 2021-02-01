@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.31</title>
+    <style>
+
+    </style>
+</head>
+<body>
+        <button>add</button>
+        <ul class="box">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    <script>
+        var oBox = document.querySelector('.box');
+        var oBtn = document.querySelector('button');
+        oBtn.onclick = function(){
+            //创建一个文档碎片节点
+            var oFrag = document.createDocumentFragment();
+            //循环创建100个li，放入文档碎片节点中
+            for (var i = 0; i < 100; i++) {
+                //创建新li，添加内容
+                var newLi = document.createElement("li");
+                newLi.textContent = '新li';
+                //把创建的li放进文档碎片节点中
+                oFrag.appendChild(newLi);
+            }
+            //把文档碎片节点插入ul
+            oBox.appendChild(oFrag);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01.31</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <button id="btn">按钮</button>
+    <div><a href="#">aaa</a></div>
+    <script>
+        /* 
+            innerHTML：
+                读取元素节点的内容:会把内部的标签当做字符串解析出来
+                设置元素节点的内容：会把字符串中的标签 解析
+
+            outerHTML：
+                读取元素节点的内容:包含当前节点
+                设置元素节点内容: 设置的时候会把当前的元素一起替换
+        
+        */
+        /* 
+            innerText：
+                读取元素节点的内容:不会获取到标签，不会把内部的标签解析成字符串
+                设置元素节点的内容：设置的时候不会解析标签，而是把标签当做字符串显示出来
+
+            outerText：
+                读取元素节点的内容:读取标签内容 和innerText一样
+                设置元素节点内容: 设置的时候会把当前的元素一起替换，不解析标签
+        
+        */
+
+        var oBtn = document.querySelector('button');
+        var oDiv = document.querySelector('div');
+        oBtn.onclick = function(){
+/*             console.log(oDiv.innerHTML);//<a href="#">aaa</a>
+            console.log(oDiv.outerHTML);//<div><a href="#">aaa</a></div> */
+/*             oDiv.innerHTML = "<h2>h2</h2>";
+            console.log(oDiv);//打印的还是原来的
+            oDiv.outerHTML = "<h2>h2</h2>"
+            console.log(oDiv);//打印的还是原来的 */
+            oDiv.innerText = '111';
+            console.log(oDiv);//打印的是被改变后的
+        }
+    </script>
+</body>
+</html>
