@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02.01</title>
+    <style>
+        div{
+            padding: 20px;
+            border: 1px solid rebeccapurple;    
+        }
+    </style>
+</head>
+<body>
+    <div class="div1">
+        <div class="div2">
+            <div class="div3">
+                <div class="div4">
+                    <div class="div5">555</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var oDiv5 = document.querySelectorAll('div')[4];
+        function listen(ele, type, handler, method){
+            //DOM2
+            if(ele.addEventListener){
+                ele.addEventListener(type, handler, method || false);
+            }else if(ele.attachEvent){
+                //IE
+                ele.attachEvent('on'+type, handler);
+            }else{
+                //DOM0
+                ele['on'+type] = handler;
+            }
+        }
+
+        listen(oDiv5, 'click', fun, false);
+        function fun(){
+            alert('test');
+        }
+    </script>
+</body>
+</html>

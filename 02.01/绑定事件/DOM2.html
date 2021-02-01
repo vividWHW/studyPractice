@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02.01</title>
+    <style>
+        div{
+            padding: 20px;
+            border: 1px solid rebeccapurple;    
+        }
+    </style>
+</head>
+<body>
+    <div class="div1">
+        <div class="div2">
+            <div class="div3">
+                <div class="div4">
+                    <div class="div5">555</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button>btn</button>
+    <script>
+        oDivs = document.querySelectorAll('div');
+        oBtn = document.querySelector('button');
+
+        oDivs.forEach(function(ele, index) {
+            /* ele.onclick = function(){
+                alert(index + 1);
+            } */
+            ele.addEventListener('click', function(){
+                alert(index + 1);//24531
+            }, (index+1)%2===0?true:false)//24true,135false
+        });
+
+
+        oDivs[1].addEventListener('click', fun, true);
+        function fun(){
+            alert('div2!!!');//2div2!!!4531
+        }
+        oBtn.addEventListener('click', function(){
+            oDivs[1].removeEventListener('click', fun, true);//24513
+        });
+/*         oDivs[0].onclick = function(){
+            alert('div1');
+        }
+
+        oBtn.onclick = function(){
+            oDivs[1].onclick = null;
+        } */
+    </script>
+</body>
+</html>

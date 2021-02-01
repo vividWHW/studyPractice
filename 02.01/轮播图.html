@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02.01</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .outer{
+            position: relative;
+            margin: 50px auto;
+            width: 800px;
+            border: 1px solid red;
+        }
+        .inner{
+            overflow: auto;
+        }
+        .inner .con{
+            display: flex;
+            width: 5000px;
+        }
+        .inner img{
+            width: 800px;
+            height: 450px;
+        }
+        .outer ul{
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            list-style-type: none;
+        }
+        .outer ul li{
+            display: inline-block;
+            margin: 0 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 1px;
+            background-color: rgba(255, 255, 255, 0.35);
+        }
+        .outer ul li.active{
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .outer .left, .outer .right{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 41px;
+            height: 69px;
+            background-image: url('./images/icon-slides.png');
+            cursor: pointer;
+        }
+        .outer .left{
+            left: 0;
+            background-position: -84px 0;
+        }
+        .outer .right{
+            right: 0;
+            background-position: -123px 0;
+        }
+        .outer:hover .left{
+            background-position: 0 0;
+        }
+        .outer:hover .right{
+            background-position: -42px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner">
+            <div class="con">
+                <img src="./images/hlr.jpg" alt="">
+                <img src="./images/01.jpg" alt="">
+                <img src="./images/02.jpg" alt="">
+                <img src="./images/03.jpg" alt="">
+            </div>
+        </div>
+        <div class="left"></div>
+        <div class="right"></div>
+        <ul>
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+<script>
+    var oInner = document.querySelector('.inner');
+    var oImgs = document.querySelectorAll('.con img');
+    var oLeft = document.querySelector('.left');
+    var oRight = document.querySelector('.right');
+    var oLis = document.querySelectorAll('.outer ul li');
+
+    var moveTimer = null;
+    var autoMoveTimer = null;
+    //当前图片的下标
+    var i = 0;
+
+    //自动切换
+    function autoMove(){
+        autoMoveTimer = setInterval(function(){
+            console.log('autoMoveTimer');
+            clearInterval(moveTimer);
+            i++;
+            //临界值
+            if(i >= oImgs.length){
+                i = 0;
+            }
+            move();
+        }, 2000);
+    }
+    autoMove();
+
+    //移动动画
+    function move(){
+        //初始位置
+        var startLocation = oInner.scrollLeft;
+        //结束位置
+        var endLocation = i*oImgs[0].offsetWidth;
+        //起始步数
+        var startStep = 0;
+        //结束步数
+        var endStep = 30;
+        //步长
+        var everyStep = (endLocation - startLocation) / endStep;
+        //滚动动画
+        moveTimer = setInterval(function(){
+            console.log('moveTimer');
+            startStep++;
+            if(startStep >= endStep){
+                startStep = endStep;
+                clearInterval(moveTimer);
+            }
+            startLocation += everyStep;
+            oInner.scrollLeft = startLocation;
+        }, 10);
+        lisChange();
+    }
+
+    //清除两种计时器
+    function clearTimer(){
+        clearInterval(moveTimer);
+        clearInterval(autoMoveTimer);
+    }
+
+    //点击左侧按钮
+    oLeft.onclick = function(){
+        clearTimer();
+        i--;
+        //判断临界值，已经到第一张了
+        if(i < 0){
+            i = oImgs.length - 1;
+        }
+        move();
+        autoMove();
+    }
+    //点击右侧按钮
+    oRight.onclick = function(){
+        clearTimer();
+        i++;
+        //判断临界值，已经到最后一张了
+        if(i > oImgs.length -1){
+            i = 0;
+        }
+        move();
+        autoMove();
+    }
+
+    //遍历lis，给每个li绑定点击事件
+    oLis.forEach(function(item, index) {
+        item.onclick = function(){
+            //把将要跳转到的图片下标赋值给i
+            i = index;
+            //改变lis样式
+            lisChange();
+            //清掉所有计时器
+            clearTimer();
+            //跳转到点击的图片
+            move();
+            //开始自动切换
+            autoMove();
+        }
+    });
+
+    //lis样式随着切换改变
+    function lisChange(){
+        //去掉所有li的active class
+        for(let i = 0; i < oLis.length; i++){
+            oLis[i].classList.remove('active');
+        }
+        //给当前图片添加class
+        oLis[i].classList.add('active');
+    }
+</script>
+</html>

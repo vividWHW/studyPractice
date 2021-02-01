@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02.01</title>
+    <style>
+        div{
+            padding: 20px;
+            border: 1px solid rebeccapurple;    
+        }
+    </style>
+</head>
+<body>
+    <div class="div1">
+        <div class="div2">
+            <div class="div3">
+                <div class="div4">
+                    <div class="div5">555</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button>btn</button>
+    <script>
+        oDivs = document.querySelectorAll('div');
+        oBtn = document.querySelector('button');
+
+        oDivs.forEach(function(ele, index) {
+            ele.attachEvent('onclick', function(){
+                alert(index+1);
+            })
+        });
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02.01</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+        .bar{
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+        .bar li{
+            margin-top: 5px;
+            position: relative;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+        .bar li a{
+            position: relative;
+            display: block;
+            width: 50px;
+            height: 50px;
+            background-color: lightblue;
+            z-index: 1;
+        }
+        .bar li span{
+            display: block;
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 50px;
+            background-color: lightpink;
+        }
+    </style>
+</head>
+<body>
+    <ul class="bar">
+        <li>
+            <a>title1</a>
+            <span>title1的内容</span>
+        </li>
+        <li>
+            <a>title2</a>
+            <span>title2的内容</span>
+        </li>
+        <li>
+            <a>title3</a>
+            <span>title3的内容</span>
+        </li>
+    </ul>
+
+    <script>
+        oLis = document.querySelectorAll('.bar li');
+        oSpan = document.querySelectorAll('.bar span');
+        //遍历olis，给每个li绑定鼠标移入事件
+        oLis.forEach(function(li, index) {
+            var left = 0;
+            var outTimer = null;
+            var inTimer = null;
+            li.onmouseenter = function(){
+                clearInterval(inTimer);
+                clearInterval(outTimer);
+                //oSpan[index].style.left = '-100px';
+                //span的动画
+                outTimer = setInterval(function(){
+                    left -= 3;
+                    if(left <= -100){
+                        left = -100;
+                        clearInterval(outTimer);
+                    }
+                    oSpan[index].style.left = left + 'px';
+                }, 10);
+            }
+            li.onmouseleave = function(){
+                clearInterval(inTimer);
+                clearInterval(outTimer);
+                //span的动画
+                inTimer = setInterval(function(){
+                    left += 3;
+                    if(left >= 0){
+                        left = 0;
+                        clearInterval(inTimer);
+                    }
+                    oSpan[index].style.left = left + 'px';
+                }, 10);
+            }
+        });
+    </script>
+</body>
+</html>
