@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02.02</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <script>
+        //生成某个区间随机数
+        function randomNum(min, max){
+            return min + Math.floor(Math.random()*(max - min));
+        }
+        console.log(randomNum(10, 80));
+        console.log(randomNum(1, 2));
+
+
+        //七天以后的现在的时间
+        var date = new Date();
+        date.setDate(new Date().getDate()+3);
+        //Date.prototype.toLocaleString()方法返回该日期对象的字符串
+        console.log(date.toLocaleString());
+
+    </script>
+</body>
+</html>

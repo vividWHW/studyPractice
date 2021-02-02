@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02.02</title>
+    <style>
+        html, body{
+            width: 100%;
+            height: 100%;
+        }
+        div{
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        var oDiv = document.querySelector('div');
+        oDiv.onmousedown= function(e){
+            //获取鼠标点击的点距离div左上角的距离
+            var clickPoint = {
+                x: e.offsetX,
+                y: e.offsetY
+            }
+            //鼠标移动时
+            document.onmousemove = function(e){
+                //div距离浏览器左边的距离 = 鼠标在的点距离浏览器左边 减去 点击时鼠标距离div左边的距离
+                var divLeft = e.clientX - clickPoint.x;
+                //距离上边的距离计算同上
+                var divTop = e.clientY - clickPoint.y;
+                //判断临界
+                //左边界
+                if(divLeft <= 0){
+                    divLeft = 0;
+                }
+                //上边界
+                if(divTop <= 0){
+                    divTop = 0;
+                }
+                //右边界
+                if(divLeft >= document.body.clientWidth - oDiv.offsetWidth){
+                    divLeft = document.body.clientWidth - oDiv.offsetWidth;
+                }
+                //下边界
+                if(divTop >= document.body.clientHeight - oDiv.offsetHeight){
+                    divTop = document.body.clientHeight - oDiv.offsetHeight;
+                }
+                //赋值，改变div位置
+                oDiv.style.left = divLeft + 'px';
+                oDiv.style.top = divTop + 'px';
+            }
+            //鼠标抬起时
+            oDiv.onmouseup = function(e){
+                //清除鼠标移动事件和鼠标抬起事件，下一次鼠标按下都会重新绑定
+                document.onmousemove = null;
+                oDiv.onmouseup = null;
+            }
+        }
+    </script>
+</body>
+</html>

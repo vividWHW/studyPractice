@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02.02</title>
+    <style>
+        html, body{
+            width: 100%;
+            height: 100%;
+        }
+        .contextMenu{
+            position: absolute;
+            display: none;
+            padding: 0px 10px;
+            width: 200px;
+            height: 300px;
+            border: 1px solid lightgray;
+            box-shadow: 1px 1px 1px lightgray;
+        }
+    </style>
+</head>
+<body>
+    <div class="contextMenu">
+        <p>自定义菜单</p>
+    </div>
+
+
+    <script>
+        oMenu = document.querySelector('.contextMenu');
+        document.oncontextmenu = function(e){
+            //让菜单显示
+            oMenu.style.display = 'block';
+            //菜单的left、top
+            var menuLeft = e.clientX, menuTop = e.clientY;
+            //判断临界值,left、top的最大值
+            var maxLeft = document.body.clientWidth - oMenu.offsetWidth;
+            var maxTop = document.body.clientHeight - oMenu.offsetHeight;
+            if(menuLeft > maxLeft){
+                menuLeft -= oMenu.offsetWidth;
+            }
+            if(menuTop > maxTop){
+                menuTop -= oMenu.offsetHeight;
+            }
+            //给menu赋值
+            oMenu.style.left = menuLeft + 'px';
+            oMenu.style.top = menuTop + 'px';
+            //阻止默认事件
+            return false;
+        }
+        //点击任意区域，菜单消失
+        document.onclick = function(e){
+            console.log(111)
+            oMenu.style.display = 'none';
+        }
+        //阻止点击事件传播，在点击menu的时候不会触发document.onclick隐藏菜单
+        oMenu.onclick = function(e){
+            e.stopPropagation();
+        } 
+    </script>
+</body>
+</html>

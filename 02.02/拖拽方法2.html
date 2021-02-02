@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02.02</title>
+    <style>
+        html, body{
+            width: 100%;
+            height: 100%;
+        }
+        div{
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        var oDiv = document.querySelector('div');
+        oDiv.onmousedown = function(e){
+            var clickPoint = {
+                x: e.clientX,
+                y: e.clientY
+            };
+            var divOffset = {
+                x: oDiv.offsetLeft,
+                y: oDiv.offsetTop
+            };
+            //鼠标移动时
+            document.onmousemove = function(e){
+                //计算div的left、top值
+                var divLeft = e.clientX - (clickPoint.x - divOffset.x);
+                var divTop = e.clientY - (clickPoint.y - divOffset.y);
+
+                //判断临界
+                var maxLeft = document.body.clientWidth - oDiv.offsetWidth;
+                var maxTop = document.body.clientHeight - oDiv.offsetHeight;
+                if(divLeft >= maxLeft){
+                    divLeft = maxLeft;
+                }
+                if(divTop >= maxTop){
+                    divTop = maxTop;
+                }
+                if(divLeft <= 0){
+                    divLeft = 0;
+                }
+                if(divTop <= 0){
+                    divTop = 0;
+                }
+
+                //设置div的left、top值
+                oDiv.style.left = divLeft + 'px';
+                oDiv.style.top = divTop + 'px';
+            }
+            //鼠标抬起时
+            oDiv.onmouseup = function(){
+                //清除移动和抬起事件
+                document.onmousemove = null;
+                oDiv.onmouseup = null;
+            }
+        }
+    </script>
+</body>
+</html>
