@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02.02</title>
+    <style>
+        html, body{
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        div{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: lightskyblue;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+
+    <script>
+        var oDiv = document.querySelector('div');
+        //div是否向左移动、是否向右移动、是否向上移动、是否向下移动的标志
+        var toLeft = false, toRight = false, toTop = false, toBottom = false;
+        //div的left、top
+        var divLeft = 0, divTop = 0;
+
+        //div移动的动画
+        setInterval(function(){
+            //向左移动
+            if(toLeft){
+                //判断临界值
+                if(divLeft <= 0){
+                    divLeft = 0;
+                }else{
+                    divLeft--;
+                }
+            }
+            //向右移动
+            if(toRight){
+                //判断临界值
+                if(divLeft >= document.body.clientWidth - oDiv.offsetWidth){
+                    divLeft = document.body.clientWidth - oDiv.offsetWidth;
+                }else{
+                    divLeft++;
+                }
+            }
+            //向上移动
+            if(toTop){
+                //判断临界值
+                if(divTop <= 0){
+                    divTop = 0;
+                }else{
+                    divTop--;
+                }
+            }
+            if(toBottom){
+                //判断临界值
+                if(divTop >= document.body.clientHeight - oDiv.offsetHeight){
+                    divTop = document.body.clientHeight - oDiv.offsetHeight;
+                }else{
+                    divTop++;
+                }
+            }
+            //将变化后的left、top赋值给div的left、top
+            oDiv.style.left = divLeft + 'px';
+            oDiv.style.top = divTop + 'px';
+        }, 2);
+
+        //键盘事件改变移动方向标记
+        //按下方向键时向那个方向移动
+        document.onkeydown = function(e){
+            switch(e.keyCode){
+                case 37: 
+                toLeft = true;
+                break;
+                case 38:
+                toTop = true;
+                break;
+                case 39:
+                toRight = true;
+                break;
+                case 40:
+                toBottom = true;
+                break;
+            }
+        }
+        //抬起方向键时停止向那个方向移动
+        document.onkeyup = function(e){
+            switch(e.keyCode){
+                case 37: 
+                toLeft = false;
+                break;
+                case 38:
+                toTop = false;
+                break;
+                case 39:
+                toRight = false;
+                break;
+                case 40:
+                toBottom = false;
+                break;
+            }
+        }
+    </script>
+</body>
+</html>

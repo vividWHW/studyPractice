@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>02.02</title>
+        <style>
+            #outer{
+                width: 550px;
+                margin: 50px auto;
+                border: 1px solid lightgray;
+                overflow: hidden;
+            }
+            .con1, .con2{
+                margin: 0;
+                padding: 15px;
+                width: 250px;
+                height: 400px;
+                float: left;
+                box-sizing: border-box;
+                list-style-type: none;
+                background-color: lightcyan;
+            }
+            .con2{
+                float: right !important;
+            }
+            .con1 li, .con2 li{
+                height: 30px;
+                line-height: 30px;
+                cursor: pointer;
+            }
+            #box{
+                width: 50px;
+                height: 400px;
+                line-height: 200px;
+                float: left;
+                background-color: lightblue;
+                text-align: center;
+            }
+            .con1 .check, .con2 .check{
+                background-color: white;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="outer">
+            <ul class="con1">
+                <li>1.1</li>
+                <li>1.2</li>
+                <li>1.3</li>
+                <li>1.4</li>
+            </ul>
+            <div id="box">
+                <button id="right">&gt;&gt;&gt;</button>
+                <button id="left">&lt;&lt;&lt;</button>
+            </div>
+            <ul class="con2">
+                <li>2.1</li>
+                <li>2.2</li>
+                <li>2.3</li>
+                <li>2.4</li>
+            </ul>
+        </div>
+        
+        <script>
+            var oOuter = document.querySelector('#outer');
+            var oRight = document.querySelector('#right');
+            var oLeft = document.querySelector('#left');
+            var oCon1 = document.querySelector('.con1');
+            var oCon2 = document.querySelector('.con2');
+            //var oLeftLis = oCon1.getElementsByTagName('li');
+
+            oOuter.onclick = function(e){
+                //点击了li时,改变点击的li的背景颜色，添加一个自定义属性check表示选中。如果已经选中则去掉背景和check
+                if(e.target.nodeName === 'LI'){
+                    //判断是否被选中
+                    if(e.target.dataset.check){
+                        e.target.style.backgroundColor = '';
+                        delete e.target.dataset.check;
+                    }else{
+                        e.target.style.backgroundColor = 'white';
+                        e.target.dataset.check = 'yes';
+                    }
+                }
+            }
+
+            //点击了右移按钮
+            oRight.onclick = function(){
+                //获取当前lis
+                var oLeftLis = document.querySelectorAll('.con1 li');
+                var oRightLis = document.querySelectorAll('.con2 li');
+                //创建文档碎片节点存放找的 被选中的li
+                var oFrag = document.createDocumentFragment();
+                //遍历左侧lis，找到被选中的li放进oFrag中
+                oLeftLis.forEach(function(li, index){
+                    if(li.dataset.check){
+                        //去掉背景和标记
+                        li.style.backgroundColor = '';
+                        delete li.dataset.check;
+                        oFrag.appendChild(li);
+                        console.log(oLeftLis)
+                    }
+                });
+                //插入右侧lis
+                oCon2.appendChild(oFrag);
+            }
+            //点击了左移按钮
+            oLeft.onclick = function(){
+                //获取当前lis
+                var oLeftLis = document.querySelectorAll('.con1 li');
+                var oRightLis = document.querySelectorAll('.con2 li');
+                //创建文档碎片节点存放找的 被选中的li
+                var oFrag = document.createDocumentFragment();
+                //遍历右侧lis，找到被选中的li放进oFrag中
+                oRightLis.forEach(function(li, index){
+                    if(li.dataset.check){
+                        //去掉背景和标记
+                        li.style.backgroundColor = '';
+                        delete li.dataset.check;
+                        oFrag.appendChild(li);
+                    }
+                });
+                //插入左侧lis
+                oCon1.appendChild(oFrag);
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02.02</title>
+    <style>
+        ul li{
+            height: 40px;
+            line-height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <button>btn</button>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+
+    <script>
+        var oBtn = document.querySelector('button');
+        var oUl = document.querySelector('ul');
+        //var oLis = document.getElementsByTagName('li');//返回HTMLCollection类型，没有forEach方法
+        var oLis = document.querySelectorAll('li');
+/*         oLis.forEach(function(item, index){
+            item.onclick = function(){ //新添加的li没有绑定，且每个li的onclick都有一个函数，占用内存
+                this.style.color = 'blue';
+            }
+        }); */
+
+            oUl.onclick = function(e){
+                if(e.target.nodeName === 'LI'){
+                    e.target.style.color = 'lightblue';
+                }
+            }
+
+/*         for(let i = 0; i < oLis.length; i++){
+            oLis[i].onclick = function(){
+                this.style.color = 'lightblue';
+            }
+        } */
+
+        oBtn.onclick = function(){
+            /* var newLi = document.createElement('li');
+            newLi.textContent = 'new';
+            oUl.appendChild(newLi); */
+            oUl.insertBefore(oLis[1],oLis[0]);
+            console.log(oUl)
+        }
+    </script>
+</body>
+</html>

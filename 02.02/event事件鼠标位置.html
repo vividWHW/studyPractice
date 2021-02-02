@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02.02</title>
+    <style>
+        .outer{
+            width: 500px;
+            height: 500px;
+            background-color: lightgray;
+        }
+        .outer .inner{
+            margin-left: 50px;
+            width: 200px;
+            height: 200px;
+            background-color: royalblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner"></div>
+    </div>
+
+    <script>
+        var oOuter = document.querySelector('.outer');
+/*         oOuter.onclick = function(e){
+            var width = {
+                clientX: e.clientX,
+                offsetX: e.offsetX,
+                pageX: e.pageX,
+                screenX: e.screenX
+            };
+            var height = {
+                clientY: e.clientY,
+                offsetY: e.offsetY,
+                pageY: e.pageY,
+                screenY: e.screenY
+            };
+            console.log(width);
+            console.log(height);
+        } */
+        oOuter.addEventListener('click', function(e){
+            var width = {
+                clientX: e.clientX,
+                offsetX: e.offsetX,
+                pageX: e.pageX,
+                screenX: e.screenX
+            };
+            var height = {
+                clientY: e.clientY,
+                offsetY: e.offsetY,
+                pageY: e.pageY,
+                screenY: e.screenY
+            };
+            console.log(width);
+            console.log(height);
+        }, false);
+    </script>
+</body>
+</html>
