@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .outer{
+/*             padding: 15px; */
+            width: 500px;
+            height: 500px;
+            background-color: lightblue;
+/*             position: absolute; */
+            position: relative;
+        }
+        .outer .content{
+/*             width: auto;
+            height: auto; */
+            position: absolute;
+/*             top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px; */
+            width: 200px;
+            height: 480px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: lightpink;
+/*             float: left; */
+        }
+
+/*         .con{
+            margin-top: 100px;
+            margin-left: 200px;
+            width: 300px;
+            height: 28px;
+        }
+        .con .email, .con .phone{
+            position: relative;
+            width: 50%;
+            height: 28px;
+            line-height: 28px;;
+            background-color: #0479D6;
+            float: left;
+            color: #ffffff;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .con .email::after{
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: #0479D6;
+        }
+        .con .phone{
+            background-color: #ECECEC;
+            color: #656570;
+        }
+        .con .phone img{
+            position: absolute;
+            top: -15px;
+        } */
+
+        ul, li{
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+        ul.menu{
+            position: relative;
+            width: 210px;
+            border: 1px solid lightgray;
+            box-sizing: border-box;
+        }
+        ul.menu li{
+            padding-left: 5px;
+            height: 30px;
+            line-height: 30px;
+            border-bottom: 1px  dotted  gray;
+            font-size: 14px;
+        }
+        ul.menu li.clearBorder{
+            border-width: 0;
+        }
+        ul.menu li a{
+            color: #333333;
+            text-decoration: none;
+        }
+        ul.menu li:hover .content{
+            display: block;
+        }
+        ul.menu .content{
+            display: none;
+            position: absolute;
+            left: 208px;
+            top: -1px;
+            width: 500px;
+            height: 100%;
+            border: 1px solid lightgray;
+        }
+    </style>
+</head>
+<body>
+<!--     <div class="outer">
+        <div class="content"></div>
+    </div> -->
+
+<!--     <div class="con">
+        <div class="email">
+            <span>注册新浪邮箱</span>
+        </div>
+        <div class="phone">
+            <span>注册手机邮箱</span>
+            <img src="./images/registerNew.gif" />
+        </div>
+    </div> -->
+
+    <ul class="menu">
+        <li>
+            <a href="#">服装</a>/
+            <a href="#">鞋靴</a>/
+            <a href="#">箱包</a>
+            <div class="content">1</div>
+        </li>
+        <li>
+            <a href="#">美妆</a>/
+            <a href="#">个护</a>
+            <div class="content">2</div>
+        </li>
+        <li>
+            <a href="#">玩具</a>/
+            <a href="#">母婴</a>
+            <div class="content">3</div>
+        </li>
+        <li class="clearBorder">
+            <a href="#">钟表</a>/
+            <a href="#">首饰</a>
+            <div class="content">4</div>
+        </li>
+    </ul>
+</body>
+</html>

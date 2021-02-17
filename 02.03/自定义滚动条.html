@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02.03</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html, body{
+            overflow: hidden;
+        }
+        .scroll{
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 20px;
+            height: 100%;
+            border: 1px solid lightgray;
+            border-radius: 15px ;
+        }
+        .scroll .box{
+            position: absolute;
+            top:0;
+            margin-left: 2%;
+            width: 96%;
+            height: 150px;
+            background-color: gainsboro;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll">
+        <div class="box"></div>
+    </div>
+    <div class="con"></div>
+    <script>
+        var oScroll = document.querySelector('.scroll');
+        var oBox = document.querySelector('.box');
+        var oCon = document.querySelector('.con');
+
+        //创建内容
+        var htmlStr = '';
+        for(let i = 0; i < 300; i++){
+            htmlStr += i +'<br />';
+        }
+        oCon.innerHTML = htmlStr;
+
+        //拖拽滚动条
+        oBox.onmousedown = function(e){
+            var mouseToTop = e.clientY;
+            //阻止默认事件，即选中文本
+            e.preventDefault();
+            //鼠标移动时
+            document.onmousemove = function(e){
+                
+            }
+        }
+    </script>
+</body>
+</html>

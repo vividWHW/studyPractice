@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02.03</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <script>
+        //七天以后的现在的时间
+        var date = new Date();
+        date.setDate(date.getDate()+7);
+        //Date.prototype.toLocaleString()方法返回该日期对象的字符串
+        console.log(date.toLocaleString());
+
+        console.log(new Date('2021-10-1 10:0:0'));//Fri Oct 01 2021 10:00:00 GMT+0800 (中国标准时间)
+        console.log(new Date('2021-12-07'));//Tue Dec 07 2021 08:00:00 GMT+0800 (中国标准时间)
+        console.log(new Date('2021'));//Fri Jan 01 2021 08:00:00 GMT+0800 (中国标准时间)
+        console.log(new Date('14:10:10'));//Invalid Date
+        console.log(new Date(2021, 12, 11));//Tue Jan 11 2022 00:00:00 GMT+0800 (中国标准时间)
+
+    </script>
+</body>
+</html>

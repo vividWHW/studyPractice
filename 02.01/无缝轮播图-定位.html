@@ -203,11 +203,13 @@
         });
         //当前点击的li添加样式
         //因为最后一张和第一张重复的，所以到最后一张时，给list的第一个li添加active
-        if(i >= oPages.length){
+        /* if(i >= oPages.length){
             oPages[0].classList.add('active');
         }else{
             oPages[i].classList.add('active');
-        }
+        } */
+        //简洁写法
+        oPages[i >= oPages.length ? 0 : i].classList.add('active');
     }
 </script>
 </html>
