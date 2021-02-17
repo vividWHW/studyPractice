@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul, li{
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+        .show li{
+            position: relative;
+            display: inline-block;
+            margin: 0 5px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            font-size: 0;
+        }
+        .show li::after{
+            display: none;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 8px solid rgba(255, 255, 255, 0.6);
+        }
+        .show li:hover::after{
+            display: block;
+        }
+        .show li a img{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <ul class="show">
+        <li>
+            <a href="#" target="">
+                <img src="./images/hlr-1.jpg" />
+            </a>
+        </li>
+        <li>
+            <a href="#" target="">
+                <img src="./images/hlr-2.jpg" />
+            </a>
+        </li>
+        <li>
+            <a href="#" target="">
+                <img src="./images/hlr-3.jpg" />
+            </a>
+        </li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: lightgray;
+        }
+        div{
+            position: relative;
+            margin: 0 auto;
+            margin-top: 50%;
+            padding: 10px;
+            width: 300px;
+            background-size: 20px 20px;
+            background-image: radial-gradient(transparent 0px, transparent 5px, white 5px);
+            background-repeat: repeat; 
+            background-position: -10px -10px;
+            box-sizing: border-box;
+
+            font-size: 0;
+        }
+        div img{
+            width: 100%;
+        }
+        div::after{
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            content: 'luchen&vivid';
+            color: rgba(255, 255, 255);
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="./images/hlr-2.jpg" />
+    </div>
+</body>
+</html>

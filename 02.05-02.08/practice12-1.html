@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .radioBox, .checkBox{
+            margin-bottom: 50px;
+            margin-left: 50px;
+        }
+        .radioBox h3, .checkBox h3{
+            color: #494949;
+        }
+        .radioBox label, .checkBox label{
+            position: relative;
+            margin-top: 5px;
+            margin-left: 25px;
+            padding-left: 5px;
+            display: block;
+            width: 150px;
+            height: 30px;
+            line-height: 30px;
+
+            font-size: 18px;
+            color: gray;
+            cursor: pointer;
+        }
+        .radioBox label::before{
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            border: 1px solid lightblue;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+        .radioBox input, .checkBox input{
+            display: none;
+        }
+        .radioBox input:checked + label, .checkBox input:checked + label{
+            color: #494949;
+            font-weight: bold;
+        }
+        .radioBox input:checked + label::before{
+            content: '√';
+            color: lightblue;
+            text-align: center;
+        }
+        .radioBox input[id="luchen"]:checked + label::after{
+            margin-left: 5px;
+            content: '同行之人';
+            color: lightblue;
+        }
+
+        .checkBox label{
+            background-color: lightblue;
+        }
+        .checkBox label::before{
+            content: '×';
+            position: absolute;
+            left: -30px;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            background-color: lightblue;
+            text-align: center;
+        }
+        .checkBox input:checked + label::before{
+            content: '√';
+            color: white;
+        }
+        .checkBox input[id="luchen2"]:checked + label::after{
+            margin-left: 5px;
+            content: '同行之人';
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="radioBox">
+        <h3>自定义样式单选框</h3>
+        <input type="radio" id="luchen" name="radio"/><label for="luchen">luchen</label>
+        <input type="radio" id="silan" name="radio"/><label for="silan">silan</label>
+        <input type="radio" id="aiyin" name="radio"/><label for="aiyin">aiyin</label>
+        <input type="radio" id="luoxia" name="radio"/><label for="luoxia">luoxia</label>
+        <input type="radio" id="yexuan" name="radio"/><label for="yexuan">yexuan</label>
+    </div>
+    
+    <div class="checkBox">
+        <h3>自定义样式复选框</h3>
+        <input type="checkbox" id="luchen2" name="checkbox" /><label for="luchen2">luchen</label>
+        <input type="checkbox" id="silan2" name="checkbox" /><label for="silan2">silan</label>
+        <input type="checkbox" id="aiyin2" name="checkbox" /><label for="aiyin2">aiyin</label>
+        <input type="checkbox" id="luoxia2" name="checkbox" /><label for="luoxia2">luoxia</label>
+        <input type="checkbox" id="yexuan2" name="checkbox" /><label for="yexuan2">yexuan</label>
+    </div>
+</body>
+</html>
