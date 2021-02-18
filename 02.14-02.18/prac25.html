@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Product(id, cate, details){
+            this.id = id;
+            this.cate = cate;
+            this.details = details;
+            /* this.show = function(){
+                console.log(this);
+            } */
+        }
+        Product.prototype.show = function(){
+            console.log(this);
+        }
+        function Book(id, cate, name, pages, author){
+            this.name = name;
+            this.pages = pages;
+            this.author = author;
+            return new Product(id, cate, this);
+        }
+        function CD(id, cate, name, time, author){
+            this.name = name;
+            this.time = time;
+            this.author = author;
+            return new Product(id, cate, this);
+        }
+
+        var cd1 = new CD(1, 'cd', '同行之人', "3'07", '汤成君Jun');
+        var book1 = new Book(2, 'book', '《1984》', '180', '忘了');
+/*         console.log(cd1);
+        console.log(book1);
+        console.log(cd1 instanceof Product);
+        console.log(cd1.constructor === Product);
+        console.log(cd1.__proto__ === Product.prototype) */
+        cd1.show();
+        book1.show();
+        console.log(cd1.show === book1.show)
+    </script>
+</body>
+</html>

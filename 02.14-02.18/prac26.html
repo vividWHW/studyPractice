@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var startDate = Date.now();
+/*         console.log(Math.ceil(0.4));//1
+        console.log(Math.ceil(-0.8));//-0
+
+        console.log(Math.floor(1.1));//1
+        console.log(Math.floor(-1.1));//-2
+        console.log(Math.floor(1.0));//1
+
+        console.log(Math.round(1.1));//1
+        console.log(Math.round(-1.1));//-1
+        console.log(Math.round(1));//1 */
+
+/*         var min = Math.min(1,2,-4);
+        console.log(min);//-4
+        var arr = [1,2,3,-5];
+        console.log(Math.max(...arr));//3 */
+
+/*         console.log(Math.abs(-1));//1
+        console.log(Math.abs(0));//0
+        console.log(Math.abs(1));//1 */
+
+/*         console.log(Math.pow(2,50));
+        console.log(Math.PI);
+        console.log(Math.floor(Math.random() * (10 - 0 + 1) + 0));//0~10的随机数
+        var endDate = Date.now();
+        console.log(endDate - startDate);
+
+        var date = new Date();
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var week = date.getDay();
+        var hour = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+        console.log(year+'/'+month+'/'+day+' 星期'+week+' '+hour+':'+minutes+':'+seconds);
+*/
+
+/*         var str1 = 'abc123def456';
+        console.log(str1.charAt());
+        console.log(str1.charAt(0)); */
+
+/*         var str1 = '123';
+        var str2 = '456';
+        var str3 = '789';
+        var newStr = str1.concat(str2, str3);
+        console.log(str1);//'123'
+        console.log(newStr);//'123456789' */
+
+        //var str = '012abc678';
+/*         console.log(str.indexOf(6)); //6
+        console.log(str.indexOf(6, 7)); //-1
+        console.log(str.indexOf(6, -1)); //6 */
+/*         var newStr = str.slice(1, -1); //'12abc67'
+        console.log(newStr);
+        var newStr2 = str.substr(1, 2); //'12'
+        console.log(newStr2); */
+
+/*         var str = '123123';
+        console.log(str.split());//['123123']
+        console.log(str.split(''));//["1", "2", "3", "1", "2", "3"]
+        console.log(str.split(1));//["", "23", "23"]
+        console.log(str.split(1, 1));//[""] */
+
+/*         var n = new Number(5);
+        console.log(n);
+        n.name = 1;
+        console.log(n.name);//1
+        console.log(n.valueOf());//5
+        var n2 = 100;
+        console.log(n2.valueOf());//100
+        var obj = {
+            name: 'luchen',
+            age: '20'
+        }
+        console.log(obj.valueOf());//{name: "luchen", age: "20"}
+        console.log(obj.toString());//[object Object] */
+
+/*         var str = '0123456789';
+        console.log(str.search('3'));//3
+        console.log(str.search(3));//3
+        console.log(str.search('10'));//-1 */
+
+/*         var s = 'hello world';
+        console.log(s.includes('o'));//true
+        console.log(s.includes('h',1));//false
+        var str = '0123456789';
+        console.log(str.includes('3'));//true
+        console.log(str.includes('3',4));//false
+        console.log(str.includes(3));//true
+        console.log(str.includes(3,4));//false */
+
+/*         var str = '0123456789';
+        console.log(str.startsWith('012'));//true
+        console.log(str.startsWith('23',2));//true
+        console.log(str.endsWith('789'));//true
+        console.log(str.endsWith('78',9));//true
+        console.log(str.endsWith('78',8));//false */
+
+/*         var str = 'abc';
+        console.log(str.repeat(5));//'abcabcabcabcabc'
+        console.log(str.padStart(5,1));//11abc'
+        console.log(str.padStart(5));//'  abc'
+        console.log(str.padEnd(5,1));//'abc11'
+        console.log(str.padEnd(5));//'abc  ' */
+
+        var obj1 = {
+            name: 'luchen',
+            /* say: function(){
+                console.log(name);
+                console.log(this.name);
+            } */
+            say: say
+        }
+        function say(){
+            console.log(name)
+            console.log(this.name);
+        }
+        var obj2 = {
+            name: 'silan'
+        }
+        obj1.say();
+        obj1.say.call(obj2);
+    </script>
+</body>
+</html>

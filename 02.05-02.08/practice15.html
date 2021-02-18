@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .outer{
+            position: relative;
+            width: 500px;
+            height: 500px;
+            border: 1px solid red;
+        }
+        .outer .imgBox{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50px;
+            height: 100px;
+            background-image: url('./images/toright.gif');
+            background-size: contain;
+            background-repeat: no-repeat;
+            border: 1px solid green;
+            animation-name: toright, tobottom, toleft, totop;
+            animation-duration: 2s;
+            animation-delay: 0s, 2s, 4s, 6s;
+            animation-timing-function: linear;
+        }
+        @keyframes toright{
+            0%{
+                background-image: url('./images/toright.gif');
+                top: 0;
+                left: 0;
+            }
+            100%{
+                background-image: url('./images/toright.gif');
+                top: 0;
+                left: 450px;
+            }
+        }
+        @keyframes tobottom{
+            0%{
+                background-image: url('./images/tobottom.gif');
+                top: 0;
+                left: 450px;
+            }
+            100%{
+                background-image: url('./images/tobottom.gif');
+                top: 400px;
+                left: 450px;
+            }
+        }
+        @keyframes toleft{
+            0%{
+                background-image: url('./images/toleft.gif');
+                top: 400px;
+                left: 450px;
+            }
+            100%{
+                background-image: url('./images/toleft.gif');
+                top: 400px;
+                left: 0;
+            }
+        }
+        @keyframes totop{
+            0%{
+                background-image: url('./images/totop.gif');
+                top: 400px;
+                left: 0;
+            }
+            100%{
+                background-image: url('./images/totop.gif');
+                top: 0;
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="imgBox"></div>
+    </div>
+</body>
+</html>

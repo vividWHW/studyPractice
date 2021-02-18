@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            background-color: lightblue
+        }
+    </style>
+</head>
+<body>
+    <input type="text" value="请输入..." />
+    <div id="box"></div>
+
+    <script>
+        //模拟placeholder
+        var oIpt = document.querySelector('input');
+        oIpt.onfocus = function(){
+            if(oIpt.value == '请输入...'){
+                oIpt.value = '';
+            }
+        }
+        oIpt.onblur = function(){
+            if(oIpt.value == ''){
+                oIpt.value = '请输入...';
+            }
+        }
+
+        //点击循环变色
+        var oBox = document.getElementById('box');
+        var count = 0;
+        oBox.onclick = function(){
+            switch(count % 3){
+                case 0:
+                    oBox.style.backgroundColor = 'lightpink';
+                    break;
+                case 1:
+                    oBox.style.backgroundColor = 'black';
+                    break;
+                case 2:
+                    oBox.style.backgroundColor = 'lightblue';
+                    break;
+            }
+            count++;
+        }
+    </script>
+</body>
+</html>

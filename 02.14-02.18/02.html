@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #text{
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <input id="ipt1" type="text" />
+    <p>你输入的是：<span class="ipt1-span"></span></p>
+
+    <textarea id="text" cols="30" rows="10"></textarea>
+    <p><span class="text-span">10</span>/10</p>
+
+
+    <script>
+        //模拟数据双向绑定
+        var oIpt1 = document.querySelector('#ipt1');
+        var oSpan1 = document.querySelector('.ipt1-span');
+        oIpt1.oninput = function(){
+            oSpan1.textContent = oIpt1.value;
+        }
+
+        //限制输入字数
+        var oText = document.getElementById('text');
+        var oTextSpan = document.querySelector('.text-span');
+        oText.oninput = function(){
+            if(oText.value.length <= 10){
+                oText.style.borderColor = 'black';
+                oTextSpan.textContent = 10 - oText.value.length;
+            }else{
+                oText.value = oText.value.slice(0, 10);
+                oText.style.borderColor = 'red';
+            }
+        }
+        oText.onblur = function(){
+            if(oText.value.length <= 10){
+                oText.style.borderColor = 'black';
+            }
+        }
+
+    </script>
+</body>
+</html>
