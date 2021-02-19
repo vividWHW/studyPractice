@@ -6,25 +6,116 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-    
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .outer{
+            margin: 30px auto;
+            width: 600px;
+            height: 600px;
+        }
+        .outer .btn{
+            width: 10%;
+            height: 100%;
+            float: left;
+            background-color: #E6E6E6;
+        }
+        .outer ul{
+            padding: 5px 0;
+            width: 45%;
+            height: 100%;
+            float: left;
+            list-style-type: none;
+            background-color: #ECECEC;
+            box-sizing: border-box;
+        }
+        .outer ul li{
+            padding: 0 10px;
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+        .outer ul li.gray{
+            background-color: gray;
+        }
     </style>
 </head>
 <body>
     <div class="outer">
         <ul class="con1">
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>星辰破碎</li>
+            <li>静夜思绪</li>
+            <li>月与晨星</li>
         </ul>
+        <div class="btn">
+            <button id="toLeft">&lt;&lt;&lt;</button>
+            <button id="toRight">&gt;&gt;&gt;</button>
+        </div>
         <ul class="con2">
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>光辉未来</li>
+            <li>明媚四季</li>
+            <li>水镜告别</li>
         </ul>
     </div>
 
     <script>
-    
+        oCon1 = document.querySelector('.outer .con1');
+        oCon2 = document.querySelector('.outer .con2');
+        oLis = document.querySelectorAll('.outer li');
+        oToLeft = document.getElementById('toLeft');
+        oToRight = document.getElementById('toRight');
+        //为所有li绑定点击事件
+        oLis.forEach(function(li) {
+            li.onclick = function(){
+                //有selected则去掉selected属性和样式class，没有则添加
+                if(this.dataset.selected){
+                    delete this.dataset.selected;
+                    this.classList.remove('gray');
+                }else{
+                    this.dataset.selected = 'yes';
+                    this.classList.add('gray');
+                }
+            }
+        });
+        //点击左移按钮
+        oToLeft.onclick = function(){
+            //每次点击都新获取con1和con2中的lis
+            oCon1Lis = document.querySelectorAll('.outer .con1 li');
+            oCon2Lis = document.querySelectorAll('.outer .con2 li');
+            //创建文档碎片节点，存放con2中被选中的li
+            var oFrag = document.createDocumentFragment();
+            //遍历con2中的li，把选中的放进碎片节点中，并去掉选中标志和样式
+            oCon2Lis.forEach(function(li){
+                if(li.dataset.selected){
+                    oFrag.appendChild(li);
+                    delete li.dataset.selected;
+                    li.classList.remove('gray');
+                }
+            });
+            //将文档碎片节点插入con1
+            oCon1.appendChild(oFrag);
+        }
+        //点击右移按钮
+        oToRight.onclick = function(){
+            //每次点击都新获取con1和con2中的lis
+            oCon1Lis = document.querySelectorAll('.outer .con1 li');
+            oCon2Lis = document.querySelectorAll('.outer .con2 li');
+            //创建文档碎片节点，存放con1中被选中的li
+            var oFrag = document.createDocumentFragment();
+            //遍历con1中的li，把选中的放进碎片节点中，并去掉选中标志和样式
+            oCon1Lis.forEach(function(li){
+                if(li.dataset.selected){
+                    oFrag.appendChild(li);
+                    delete li.dataset.selected;
+                    li.classList.remove('gray');
+                }
+            });
+            //将文档碎片节点插入con2
+            oCon2.appendChild(oFrag);
+        }
     </script>
 </body>
 </html>

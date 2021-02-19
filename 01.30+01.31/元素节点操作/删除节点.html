@@ -23,8 +23,14 @@
                 B.remove();
                     移除B
          */
-        var oBox = document.getElementById('box');
+        //var oBox = document.getElementById('box');
         var oLis = document.querySelectorAll('#box li');
+        var oAs = document.querySelectorAll('#box a');
+        oAs.forEach(function(a, index){
+            a.onclick = function(){
+                oLis[index].remove();
+            }
+        });
 
     </script>
 </body>
