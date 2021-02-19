@@ -6,20 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-/*         #text{
-            outline: none;
-        }
-        .outer{
-            width: 500px;
-            height: 20px;
-            border: 1px solid lightgreen;
-        }
-        .outer .inner{
-            width: 0%;
-            height: 100%;
-            background-color: lightgreen;
-        } */
-
 /*         .outer{
             margin: 20px auto;
             width: 600px;
@@ -115,16 +101,6 @@
     </style>
 </head>
 <body>
-<!--     <input id="ipt1" type="text" />
-    <p>你输入的是：<span class="ipt1-span"></span></p>
-
-    <textarea id="text" cols="30" rows="10"></textarea>
-    <p><span class="text-span">10</span>/10</p> -->
-
-<!--     <div class="outer">
-        <div class="inner"></div>
-    </div>
-    <p><span class="num">0</span>%</p> -->
 <!-- 
     <div class="outer">
         <div class="title-box">
@@ -214,45 +190,7 @@
             }
         }); */
 
-/*         //模拟数据双向绑定
-        var oIpt1 = document.querySelector('#ipt1');
-        var oSpan1 = document.querySelector('.ipt1-span');
-        oIpt1.oninput = function(){
-            oSpan1.textContent = oIpt1.value;
-        }
 
-        //限制输入字数
-        var oText = document.getElementById('text');
-        var oTextSpan = document.querySelector('.text-span');
-        oText.oninput = function(){
-            if(oText.value.length <= 10){
-                oText.style.borderColor = 'black';
-                oTextSpan.textContent = 10 - oText.value.length;
-            }else{
-                oText.value = oText.value.slice(0, 10);
-                oText.style.borderColor = 'red';
-            }
-        }
-        oText.onblur = function(){
-            if(oText.value.length <= 10){
-                oText.style.borderColor = 'black';
-            }
-        } */
-
-/*         //预加载
-        var oInner = document.querySelector('.inner');
-        var oNum = document.querySelector('.num');
-        var total = 5;
-        var count = 0
-        for(var i = 1; i <= total; i ++){
-            var newImg = new Image();
-            newImg.src = './images/hlr-' + i + '.jpg';
-            newImg.onload = function(){
-                count++;
-                oInner.style.width = count / total * 100 + '%';
-                oNum.textContent = Math.floor(count / total * 100);
-            }
-        } */
 
     </script>
 </body>
