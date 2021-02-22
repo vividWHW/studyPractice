@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Function.prototype.myapply = function(thisArg){
+            //判断thisArg是否是undefined或null，若是则为window
+            if(thisArg === undefined || thisArg === null){
+                thisArg = window;
+            }
+            //判断thisArg是否是基本数据类型，若是则为它的包装对象
+            if(typeof thisArg !== 'undefined' && typeof thisArg !== 'function' && typeof thisArg !== 'object'){
+                thisArg = Object(thisArg);
+            }
+            //获取传递给fn的参数组成的数组
+            var args = arguments[1];
+            //利用时间戳生成一个不会重名的名字
+            var key = Date.now().toString(32);
+            //用这个名字给thisArg拓展一个方法，这个方法就是this（即调用myapply的对象，即fn）
+            thisArg[key] = this;
+            //调用这个方法并传参、拿到返回值
+            var res = thisArg[key](...args);
+            //删除拓展的方法
+            delete thisArg[key];
+            //返回这个方法的返回值
+            return res;
+        }
+
+        var obj = {
+            name: 'whw'
+        }
+        
+        function fn(a, b){
+            console.log(this.name);
+            console.log(a + b);
+            return a;
+        }
+        console.log(fn.apply(obj, [1, 2]));
+        console.log(fn.myapply(obj, [1, 2]));
+        console.log('-------');
+        console.log(fn.apply(null, [3, 4]));
+        console.log(fn.myapply(null, [3, 4]));
+        console.log('-------');
+        console.log(fn.apply('123', [5, 6]));
+        console.log(fn.myapply('123', [5, 6]));
+        
+    </script>
+</body>
+</html>

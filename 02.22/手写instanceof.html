@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //自定义封装instanceof函数，myInstanceof(A, B)相当于 A instanceof B，判断B的原型对象是否在A的原型链上
+        function myInstanceof(A, B){
+            while(A){
+                //判断A的__proto__是否为B的原型对象
+                if(A.__proto__ === B.prototype){
+                    return true;
+                }
+                //把A变为A的上一级原型链
+                A = A.__proto__;
+            }
+            //若循环结束了都没有找到，则B的原型对象不在A的原型链上，返回false
+            return false;
+        }
+
+        function Person(){
+
+        }
+        var p = new Person();
+        console.log(Array instanceof Object);
+        console.log(myInstanceof(Array, Object));
+        console.log(p instanceof Person);
+        console.log(myInstanceof(p, Person));
+        console.log(Function instanceof Function);
+        console.log(myInstanceof(Function, Function));
+        console.log(p instanceof Function);
+        console.log(myInstanceof(p, Function));
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Function.prototype.mycall = function (context){
+            //判断context是否是undefined或null，如果是则context是window
+            if(context === undefined || context === null){
+                context = window;
+            }
+            //判断context是不是基本数据类型，是基本类型时context为这个值的包装对象
+            if(typeof context !== 'object' && typeof context !== 'undefined' && typeof context !== 'function'){
+                context = Object(context);
+            }
+            //获取用户传递的给要调用的函数的参数，即除了第一个参数以外剩下的参数组成的数组
+            var args = Array.from(arguments).slice(1);
+            //利用时间戳取一个不会重名的名字
+            var uniqKey = Date.now().toString(32);
+            //给context拓展一个方法，这个方法就是this
+            context[uniqKey] = this;
+            //调用这个方法并传参，或者用eval('context[uniqKey]('+ args.toString() +')')
+            //var re = context[uniqKey](...args);
+            eval('var re = context[uniqKey](' + args.toString() + ')');
+            //删除拓展的方法
+            delete context[uniqKey];
+            //返回函数的返回值
+            return re;
+        }
+        var obj1 = {
+            name: 'vivid'
+        }
+        function fn(a, b, c){
+            console.log(this);
+            console.log(a + b + c);
+            return a;
+        }
+        var res = fn.mycall(obj1, 1, 2, 3);
+        console.log(res);
+    </script>
+</body>
+</html>

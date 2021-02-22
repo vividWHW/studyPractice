@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Function.prototype.mybind = function(thisArg){
+            var _this = this;
+            var args = Array.from(arguments).slice(1);
+            return function(){
+                return _this.apply(thisArg, args);
+            }
+        }
+
+        var obj = {
+            name: '123'
+        }
+        function fn(a, b, c){
+            console.log(this.name);
+            console.log(a + b + c);
+            return a;
+        }
+        var fn1 = fn.bind(obj, 1, 2, 3);
+        console.log(fn1());
+        var fn2 = fn.mybind(obj, 1, 2, 3);
+        console.log(fn2());
+    </script>
+</body>
+</html>

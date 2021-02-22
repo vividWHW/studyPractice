@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Function.prototype.mycall = function(thisArg){
+            //如果thisArg为undefined或null，则为window
+            if(thisArg === undefined || thisArg === null){
+                thisArg = window;
+            }
+            //如果thisArg为基本数据类型值，则为它的包装对象
+            if(typeof thisArg !== 'undefined' && typeof thisArg !== 'object' && typeof thisArg !== 'function'){
+                thisArg = Object(thisArg);
+            }
+            //获取传递给fn的参数组成的数组
+            var args = Array.from(arguments).slice(1);
+            //利用时间戳取一个不会重名的名字
+            var key = Date.now().toString(32);
+            //用这个名字给thisArg拓展一个方法，这个方法是this（即调用mycall的对象，即fn）
+            thisArg[key] = this;
+            //调用这个方法并传递参数和获取它的返回值
+            var res = thisArg[key](...args);
+            //删除拓展的方法
+            delete thisArg[key];
+            //返回它的返回值
+            return res;
+        }
+
+        var obj = {
+            name: 'whw'
+        }
+        function fn(a, b){
+            console.log(this.name);
+            console.log(a + b);
+            return a;
+        }
+        console.log(fn.call(obj, 1, 2));
+        console.log(fn.mycall(obj, 1, 2));
+        console.log(fn.call(undefined, 2, 3));
+        console.log(fn.mycall(undefined, 2, 3));
+    </script>
+</body>
+</html>

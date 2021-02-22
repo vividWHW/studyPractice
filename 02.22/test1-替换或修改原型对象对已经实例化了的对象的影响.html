@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function A(){
+
+        }
+        A.prototype.n = 1;
+        var a1 = new A();
+        //用新对象替换（覆盖）了原型对象，不影响前面已经实例化了的a1的原型链查找
+        A.prototype = {
+            n: 5,
+            m: 6
+        }
+        var a2 = new A();
+        console.log(a1.n, a1.m);//1 undefined
+        console.log(a2.n, a2.m);//5 6
+
+        /* ------- */
+        function B(){
+
+        }
+        B.prototype.n = 1;
+        B.prototype.bb = 'bb';
+        var b1 = new B();
+        //修改或增加或删除原型对象上的属性，会影响前面已经实例化了的b1的原型链查找
+        B.prototype.n = 2;
+        B.prototype.m = 3;
+        delete B.prototype.bb;
+        var b2 = new B();
+        console.log(b1.n, b1.m, b1.bb);//2 3 undefined
+        console.log(b2.n, b2.m, b2.bb);//2 3 undefined
+    </script>
+</body>
+</html>

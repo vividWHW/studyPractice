@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Function.prototype.myapply = function(context){
+            if(context === undefined || context === null){
+                context = window;
+            }
+            if(typeof context !== 'undefined' && typeof context !== 'function' && typeof context !== 'object'){
+                context = Object(context);
+            }
+            var args = arguments[1];
+            var funcName = Date.now().toString(32);
+            context[funcName] = this;
+            var re = context[funcName](...args);
+            delete context[funcName];
+            return re;
+        }
+
+
+        var obj1 = {
+            name: '123'
+        }
+        function fn(a, b, c){
+            console.log(this);
+            console.log(a + b + c);
+            return a;
+        }
+        console.log(fn.apply(obj1, [1, 2, 3]));
+        console.log(fn.myapply(obj1, [1, 2, 3]));
+    </script>
+</body>
+</html>
