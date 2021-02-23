@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            局部变量对象：
+                1.变量对象中首先要包含所有的行参和实参（arguments）
+                2.在变量对象中添加当前作用域的所有的函数声明，以健值对的方式表示，如果变量对象中有同名则直接覆盖
+                3.在变量对象中添加当前作用域中的变量声明，以健值对的方式表示，如果变量对象中有同名的函数或行参，则不干扰当前已存在的属性
+        */
+        //变量对象
+/*         function foo(a) {
+            var VO = {
+                arguments: {
+                    0: 1,
+                    1: 2,
+                    length: 2
+                },
+                a: 1,
+                c: function () {
+
+                },
+                b: 2,
+                d: function () {
+
+                }
+
+            }
+            var b = 2;
+
+            function c() {}
+            var d = function () {};
+            b = 3;
+        }
+        foo(1, 2); */
+
+
+
+/*         function fn1(a) {
+            console.log(a); //1
+            var a = 2;
+            console.log(a); //2
+        }
+        fn1(1); */
+
+
+/*         function fn2() {
+            console.log(foo); //f
+
+            function foo() {}
+            var foo = 1;
+            console.log(foo);//1
+        }
+        fn2(); */
+
+
+/*         function a() {}
+        var a;
+        console.log(typeof a) //function */
+
+
+/*         if (!(b in window)) {
+            var b = 1;
+        }
+        console.log(b) //undefined */
+
+
+        var c = 1
+
+        function c(c) {
+            console.log(c)
+            var c = 3
+        }
+        c(2) //报错 c is not a function
+    </script>
+</body>
+</html>

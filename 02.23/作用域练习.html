@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //练习1
+        /* var x = 10;
+
+        function fn() {
+            console.log(x); //10
+        }
+
+        function show(f) {
+            var x = 20;
+            f();
+        }
+        show(fn); */
+
+        //练习2
+        /* var fn = function () {
+            console.log(fn) //fn
+        }
+        fn() */
+
+        //练习3
+        /* var obj = {
+            fn2: function () {
+                console.log(fn2) //报错
+            }
+        }
+        obj.fn2() */
+
+
+
+        /* var scope = "a";
+
+        function ff1() {
+            var scope = "b";
+
+            function f() {
+                return scope;
+            }
+            return f();
+        }
+        console.log(ff1()); //b */
+
+        var scope = "a";
+
+        function ff2() {
+            var scope = "b";
+
+            function f() {
+                return scope;
+            }
+            return f;
+        }
+        console.log(ff2()());//b
+    </script>
+</body>
+</html>

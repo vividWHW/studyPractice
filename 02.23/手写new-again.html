@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function myNew(constr){
+            //创建一个空对象作为最后返回的实例化对象
+            var obj = {};
+            //截取传递给constr的参数，调用constr并让它的this指向obj，拿到constr的返回值
+            var re = constr.apply(obj, Array.from(arguments).slice(1));
+            //让obj的隐式原型指向constr的显式原型
+            obj.__proto__ = constr.prototype;
+            //判断constr返回值是否是对象或函数，若是则返回这个re，不是则返回实例化对象
+            if((typeof re === 'object' && re !== null) || (typeof re === 'function')){
+                return re;
+            }
+            return obj;
+        }
+
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+            return null;
+        }
+        var p1 = new Person('Alkaid', 20);
+        var p2 = myNew(Person, 'luchen', 20);
+        console.log(p1);
+        console.log(p2);
+        console.log(p1.constructor === p2.constructor);
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function myNew(constr){
+            //
+        }
+
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+            return null;
+        }
+        var p1 = new Person('Alkaid', 20);
+        var p2 = myNew(Person, 'luchen', 20);
+        console.log(p1);
+        console.log(p2);
+        console.log(p1.constructor === p2.constructor);
+    </script>
+</body>
+</html>

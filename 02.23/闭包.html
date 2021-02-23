@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* function fn1(){
+            debugger;
+            var a = 1;
+            function fn2(){
+                console.log(a);
+            }
+            return fn2;
+        }
+        fn1(); */
+
+        /* function fn1() {
+            debugger;
+            var a = 1;
+            var b = 2;
+
+            function fn2() {
+                console.log(a);
+            }
+            return fn2; //把当前函数return出去 就可以看到closure对象
+        }
+        fn1();  */
+
+        function fn1(){
+            var n = 0;
+            function fn2(){
+                console.log(++n);
+            }
+            return fn2;
+        }
+        var f = fn1();
+        f();//1
+        f();//2
+        f();//3
+        var ff = fn1();
+        ff();//1
+        ff();//2
+        f();//4
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Good(id, type, detail){
+            this.id = id;
+            this.type = type;
+            this.detail = detail;
+        }
+        Good.prototype.showDetail = function(){
+            console.log(this.detail);
+        }
+        function Book(id, type, name, author, page, price){
+            this.name = name;
+            this.author = author;
+            this.page = page;
+            this.price = price;
+            return new Good(id, type, this);
+        }
+        var book1 = new Book(123, 'book', '夜莺与玫瑰', '王尔德', 120, 30);
+        console.log(book1);
+        book1.showDetail();
+    </script>
+</body>
+</html>

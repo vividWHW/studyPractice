@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/*         // 1. 将函数作为另一个函数的返回值
+        function fn1() {
+            var a = 2;
+            function fn2() {
+
+                a++;
+                console.log(a);
+            }
+            return fn2;
+        }
+        var f = fn1();
+        f(); // 3
+        f(); // 4
+        var f2 = fn1();
+        f2();//3
+        f2();//4
+        f();//5
+        f = null;
+        f2 = null; */
+
+        function fun(n, o) {
+            debugger;
+            console.log(o)
+            return {
+                fun: function (m) {
+                    return fun(m, n)
+                }
+            }
+        }
+        var a = fun(0)
+        a.fun(1)
+        a.fun(2)
+        a.fun(3) //undefined,?,?,?
+
+        var b = fun(0).fun(1).fun(2).fun(3) //undefined,?,?,?
+        //console.log(b.fun);
+        b.fun(4)
+
+        var c = fun(0).fun(1)
+        c.fun(2)
+        c.fun(3) //undefined,?,?,?
+
+    </script>
+</body>
+</html>
