@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+        div.box{
+            position: absolute;
+            width: 150px;
+            height: 150px;
+        }
+        #b1{
+            background-color: lightgreen;
+        }
+        #b2{
+            background-color: lightcoral;
+        }
+        #b3{
+            background-color: lightskyblue;
+        }
+        #b4{
+            background-color: lightgoldenrodyellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="b1"></div>
+    <div class="box" id="b2"></div>
+    <div class="box" id="b3"></div>
+    <div class="box" id="b4"></div>
+    <script>
+        function Drag(id){
+            //通过id获取元素，并把这个元素保存在它的实例化对象中
+            //构造函数中this指向它的实例化对象
+            this.ele = document.getElementById(id);
+            //保存this
+            var _this = this;
+            //给元素绑定鼠标按下事件
+            this.ele.onmousedown = function(e){
+                //console.log(1)
+                _this.downFun(e);
+            }
+        }
+        Drag.prototype.downFun = function(e){
+            //获取鼠标按下时距离元素边缘的距离，并保存在元素的实例化对象中
+            //因为是元素的实例化对象调用的downFun，所以this就指向元素的实例化对象
+            this.mouseToEle = {
+                x: e.offsetX,
+                y: e.offsetY
+            }
+            var _this = this;
+            //给document绑定鼠标移动事件
+            document.onmousemove = function(e){
+                _this.moveFun(e);
+            }
+            //给document绑定鼠标抬起事件
+            document.onmouseup = function(){
+                _this.upFun();
+            }
+        }
+        Drag.prototype.moveFun = function(e){
+            //计算元素的位置
+            var elePos = {
+                left: e.clientX - this.mouseToEle.x,
+                top:  e.clientY - this.mouseToEle.y
+            }
+            //判断临界值
+            if(elePos.left <= 0){
+                elePos.left = 0;
+            }
+            if(elePos.top <= 0){
+                elePos.top = 0;
+            }
+            //给元素赋值
+            this.ele.style.left = elePos.left + 'px';
+            this.ele.style.top = elePos.top + 'px';
+        }
+        Drag.prototype.upFun = function(){
+            //鼠标抬起时清除鼠标移动和自身
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+
+
+        new Drag('b1');
+        new Drag('b2');
+        new Drag('b3');
+        new Drag('b4');
+    </script>
+</body>
+</html>
