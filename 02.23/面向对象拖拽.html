@@ -44,6 +44,7 @@
             this.ele = ele;
             //给ele绑定鼠标按下事件
             ele.onmousedown = function(e){
+                e.preventDefault();
                 //console.log('onmousedown');
                 //console.log(_this);
                 _this.downFun(e);
@@ -59,11 +60,13 @@
             var _this = this;
             //给document绑定鼠标移动事件
             document.onmousemove = function(e){
+                e.preventDefault();
                 //console.log('onmousemove');
                 _this.moveFun(e);
             }
             //给document绑定鼠标抬起事件
             document.onmouseup = function(e){
+                e.preventDefault();
                 _this.upFun(e);
             }
 

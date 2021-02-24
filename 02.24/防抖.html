@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="ipt" />
+
+    <script>
+        var oIpt = document.getElementById('ipt');
+
+        //逻辑代码
+        function getData(){
+            console.log('发送数据');
+        }
+
+        oIpt.oninput = debounce(getData, 500);
+
+        //通用节流函数
+        function debounce(func, time){
+            var timer = null;
+            //返回的函数是真正的事件函数
+            return function(){
+                //触发时清除上一次的计时器
+                clearTimeout(timer);
+                //this为触发事件的对象
+                var _this = this;
+                //从实参中获取event事件对象
+                var e = arguments[0];
+                //进入到函数中时，延迟time的时间执行逻辑代码
+                timer = setTimeout(function(){
+                    //调用func并将它的this指向触发事件的对象，即this，传递参数e
+                    func.call(_this, e);
+                }, time);
+            }
+        }
+    </script>
+</body>
+</html>

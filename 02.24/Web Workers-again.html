@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="ipt1">单线程计算</button>
+    <button id="ipt2">多线程计算</button>
+    <button id="ipt3">测试是否假死</button>
+    <script>
+        var oIpt1 = document.getElementById('ipt1');
+        var oIpt2 = document.getElementById('ipt2');
+        var oIpt3 = document.getElementById('ipt3');
+        var max = 100000000;
+        //计算的函数
+        function calculate(max){
+            var num = 0;
+            for(var i = 0; i < max; i++){
+                num += i;
+                num += Math.sqrt(num);
+            }
+            return num;
+        }
+        oIpt1.onclick = function(){
+            var beginTime = Date.now();
+            console.log(calculate(max));
+            console.log('用时：' + (Date.now() - beginTime));
+        }
+        oIpt2.onclick = function(){
+            //创建一个worker
+            var wk = new Worker('worker-again.js');
+            //向worker发送数据
+            wk.postMessage({
+                //会报错，can not be cloned
+                calculate: calculate,
+                max: max
+            });
+            //当分线程向主线程发送数据时触发
+            wk.onmessage = function(e){
+                console.log(e.data.result);
+                console.log(e.data.time);
+            }
+            //在主线程中终止分线程
+            wk.terminate();
+        }
+        oIpt3.onclick = function(){
+            console.log('测试');
+        }
+    </script>
+</body>
+</html>

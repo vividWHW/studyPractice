@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Good(id, type){
+            this.id = id;
+            this.type = type;
+        }
+        Good.prototype.showId = function(){
+            console.log(this.id);
+        }
+        function Book(id, type, name, author){
+            //构造函数继承
+            //调用父类，并让父类的this指向当前子类的this
+            Good.call(this, id, type);
+            this.name = name;
+            this.author = author;
+        }
+        //子类的原型为父类的实例
+        Book.prototype = new Good;
+        //修正子类的constructor
+        Book.constructor = Book;
+        Book.prototype.showName = function(){
+            console.log(this.name);
+        }
+        var b1 = new Book(111, 'book', '夜莺与玫瑰', '王尔德');
+        console.log(b1);
+        b1.showId();
+        b1.showName();
+    </script>
+</body>
+</html>

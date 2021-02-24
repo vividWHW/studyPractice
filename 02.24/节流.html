@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 150px;
+            height: 150px;
+        }
+        #box1{
+            background-color: lightgreen;
+        }
+        #box2{
+            background-color: lightpink;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <script>
+        oBox1 = document.getElementById('box1');
+        oBox2 = document.getElementById('box2');
+
+        //逻辑代码
+        function move1(e){
+            console.log(e);
+            console.log(e.offsetX);
+            console.log('move1');
+        }
+        function move2(){
+            console.log('move2');
+        }
+
+        oBox1.onmousemove = throttle(move1, 300);
+        oBox2.onmousemove = throttle(move2, 600);
+
+        //通用节流函数
+        function throttle(func, time){
+            //储存上一次执行的时间
+            var lastTime = 0;
+            //这个返回的函数才是真正的事件函数
+            return function(e){
+                //获取当前时间
+                var nowTime = Date.now();
+                //判断距离上一次执行的时间是否小于规定的间隔时间
+                if(nowTime - lastTime < time){
+                    //如果比规定的时间间隔小则直接返回，不执行逻辑代码
+                    return;
+                }
+                //执行逻辑代码，并把它的this指向触发这个事件的元素
+                //把事件对象也作为参数传递给逻辑代码
+                //func.call(this, arguments[0]); //通过arguments获取一样的
+                func.call(this, e); 
+                //执行了逻辑代码后把本次的时间赋值给lastTime，给下一次判断使用
+                lastTime = nowTime;
+            }
+        }
+    </script>
+</body>
+</html>
