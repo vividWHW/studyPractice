@@ -17,14 +17,17 @@
             obj.__proto__ = constr.prototype;
             //判断constr的返回值re是否是函数或对象
             if((typeof re === 'object' && re !== null) || (typeof re === 'function')){
-                //
+                //返回值如果是函数或对象，则返回这个函数或对象
+                return re;
             }
+            //如果返回的不是函数或对象，则返回这个实例化对象obj
+            return obj;
         }
 
         function Person(name, age){
             this.name = name;
             this.age = age;
-            return 10;
+            return 123;
         }
         var p1 = new Person('Alkaid', 20);
         var p2 = myNew(Person, 'luchen', 20);

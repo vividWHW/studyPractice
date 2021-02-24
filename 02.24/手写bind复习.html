@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Function.prototype.mybind = function(thisArg){
+            //这里的this是调用mybind的fn
+            var _this = this;
+            //获取传递给fn的参数组成的数组
+            var args = Array.from(arguments).slice(1);
+            //返回一个函数
+            return function(){
+                //调用返回的函数时，执行fn并改变它的this指向为thisArg，并传参，返回fn的返回值
+                return _this.apply(thisArg, args);
+            }
+        }
+
+
+        var obj = {
+            name: 'Alkaid'
+        }
+        function fn(a, b){
+            console.log(this);
+            return a + b;
+        }
+        var fn1 = fn.bind(obj, 1, 2);
+        console.log(fn1());
+        var fn2 = fn.mybind(obj, 1, 2);
+        console.log(fn2());
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 150px;
+            height: 150px;
+            background-color: lightpink;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <input id="ipt" type="text" />
+
+    <script>
+        var oBox = document.getElementById('box');
+        var oIpt = document.getElementById('ipt');
+
+        //逻辑代码
+        function move(e){
+            //console.log(this)
+            console.log(e);
+        }
+        function print(e){
+            console.log(this.value);
+        }
+
+        oBox.onmousemove = throttle(move, 300);
+        oIpt.oninput = throttle(print, 300);
+
+        //通用节流函数
+        function throttle(fn, time){
+            //用于保存上一次调用事件函数且执行了逻辑代码的时间
+            var lastTime = 0;
+            //返回一个函数，这个函数才是事件触发时调用的函数
+            return function(e){
+                //获取现在的时间
+                var nowTime = Date.now();
+                //计算和上一次执行逻辑代码的时间间隔，判断是否小于time
+                if(nowTime - lastTime < time){
+                    //如果小于time，则不能执行逻辑代码，直接返回
+                    return;
+                }
+                //大于time时执行逻辑代码，并将逻辑代码中的this指向触发事件函数的对象，将event作为参数传递
+                fn.call(this, e);
+                //console.log(this)
+                //执行了逻辑代码，则将这次的时间赋值给lastTime，用于下一次计算时间间隔
+                lastTime = nowTime;
+            }
+        }
+    </script>
+</body>
+</html>

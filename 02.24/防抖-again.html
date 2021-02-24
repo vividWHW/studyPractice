@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="ipt" type="text" />
+
+    <script>
+        var oIpt = document.getElementById('ipt');
+        
+        //逻辑代码
+        function getData(e){
+            console.log(this.value);
+            console.log(e);
+            console.log('获取数据');
+        }
+
+        oIpt.oninput = debounce(getData, 500);
+
+        //通用防抖函数
+        function debounce(fn, time){
+            //存放计时器id，用于在计时器还没执行完时又触发了事件函数添加了新计时器的情况下，清除上一个计时器
+            var timer = null;
+            //返回一个函数，这个函数才是事件触发时调用的函数
+            return function(e){
+                //清除上一个计时器
+                clearTimeout(timer);
+                //这里的this是调用事件函数的对象
+                var _this = this;
+                //设置一个计时器，延迟time时间执行逻辑代码
+                timer = setTimeout(function(){
+                    //执行逻辑代码，并将逻辑代码中的this指向调用事件函数的对象，传递event对象参数
+                    fn.call(_this, e);
+                }, time);
+            }
+        }
+
+    </script>
+</body>
+</html>

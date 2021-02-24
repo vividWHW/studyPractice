@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //myInstanceof(a, b)相当于 a instanceof b，判断b的原型对象是否在a的原型链上
+        function myInstanceof(a, b){
+            //当a不为null时进入循环
+            while(a){
+                //判断a的隐式原型和b的显式原型是否相同
+                if(a.__proto__ === b.prototype){
+                    //如果相同，则b的原型对象肯定在a的原型链上，返回true
+                    return true;
+                }
+                //将a变为它的原型链上一级，用于下一次循环中判断
+                a = a.__proto__;
+            }
+            //若循环结束都没返回true，说明没找到，则返回false
+            return false;
+        }
+
+        function Person(){
+            
+        }
+        var p = new Person();
+        console.log(Array instanceof Object);
+        console.log(myInstanceof(Array, Object));
+        console.log(p instanceof Person);
+        console.log(myInstanceof(p, Person));
+        console.log(Function instanceof Function);
+        console.log(myInstanceof(Function, Function));
+        console.log(p instanceof Function);
+        console.log(myInstanceof(p, Function));
+    </script>
+</body>
+</html>

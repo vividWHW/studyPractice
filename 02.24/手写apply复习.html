@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Function.prototype.myapply = function(thisArg){
+            //判断thisArg是否为undefined或null，若是则指向window
+            if(thisArg === null || thisArg === undefined){
+                thisArg = window;
+            }
+            //判断thisArg是否为基本数据类型，若是则指向它的包装对象
+            if(typeof thisArg !== 'object' && typeof thisArg !== 'function' && thisArg !== undefined){
+                thisArg = Object(thisArg);
+            }
+            //利用时间戳取一个不会重名的名字
+            var key = Date.now().toString(32);
+            //用这个名字给thisArg拓展一个方法，这个方法就是this，即调用myapply的fn
+            thisArg[key] = this;
+            //获取传递给fn的参数数组
+            var args = arguments[1];
+            //调用这个方法，传递参数并拿到返回值
+            var res = thisArg[key](...args);
+            //删除拓展的方法
+            delete thisArg[key];
+            //返回fn的返回值，即res
+            return res;
+        }
+
+
+        var obj = {
+            name: 'Alkaid'
+        }
+        function fn(a, b){
+            console.log(this);
+            return a + b;
+        }
+        console.log(fn.apply(obj, [1, 2]));
+        console.log(fn.myapply(obj, [1, 2]));
+    </script>
+</body>
+</html>
