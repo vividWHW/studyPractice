@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //通用事件侦听器函数
+        function listen(element, type, handler, method){
+            if(element.addEventListener){
+                element.addEventListener(type, handler, method || false);
+            }else if(element.attachEvent){
+                element.attachEvent('on' + type, handler);
+            }else{
+                element['on' + type] = handler;
+            }
+        }
+
+        //生成[a, b)的随机数
+        function random(a, b){
+            return a + Math.floor(Math.random() * (b - a));
+        }
+
+        //七天以后的现在的时间
+        var date = new Date();
+        date.setDate(date.getDate() + 7);
+        console.log(date.toLocaleString());
+
+        function fn(){
+            var a = 1;
+            function add(){
+                a++;
+                console.log(a);
+            }
+            return add;
+        }
+        var f = fn();
+        f();
+        f();
+        f();
+        var f2 = fn();
+        f2();
+        f2();
+        f();
+    </script>
+</body>
+</html>

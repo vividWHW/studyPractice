@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        手写节流复习
+    </title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+        }
+        .con{
+            height: 1500px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <div class="con"></div>
+
+    <script>
+        var oBox = document.getElementById('box');
+        oBox.onmousemove = throttle(move, 300);
+        document.onscroll = throttle(print, 500);
+        function print(e){
+            //console.log(e);
+            //console.log(this)
+            console.log(window.pageYOffset);
+            console.log(document.documentElement.scrollTop);
+            console.log(document.body.scrollTop);
+            console.log('----------');
+        }
+
+        //鼠标移动时执行的逻辑代码
+        function move(e){
+            console.log(this);
+            console.log(e.offsetX);
+        }
+
+        //通用节流函数
+        function throttle(fn, time){
+            //存放上一次执行了逻辑代码的时间
+            var lastTime = 0;
+            //返回一个函数，这个函数才是事件触发时真正执行的事件函数
+            return function(e){
+                //获取这一次触发事件函数的时间
+                var nowTime = Date.now();
+                //计算距离上一次执行逻辑代码的时间间隔，和time做比较
+                if(nowTime - lastTime < time){
+                    //如果小于，就不能执行逻辑代码，直接返回
+                    return;
+                }
+                //大于时执行逻辑代码，并将e传给逻辑代码，并把逻辑代码中的this指向这里的this，即触发事件函数的对象
+                fn.call(this, e);
+                //逻辑代码执行了，则将这次触发的时间赋值给lastTime，用于下一次判断时间间隔
+                lastTime = nowTime;
+            }
+        }
+    </script>
+</body>
+</html>

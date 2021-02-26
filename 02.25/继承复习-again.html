@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //父类
+        function Good(id, type){
+            this.id = id;
+            this.type = type;
+        }
+        //父类的方法
+        Good.prototype.showId = function(){
+            console.log(this.id);
+        }
+        //子类
+        function Book(id, type, name, author){
+            //构造函数继承
+            //在子类中调用父类，并将父类的this指向当前子类的this
+            Good.call(this, id, type);
+            this.name = name;
+            this.author = author;
+        }
+        //原型链继承
+        //因为不能让子类修改父类，所以不能直接把父类的原型对象赋值给子类的原型对象
+        //父类的实例化对象也能访问到父类的原型对象，所以把父类的实例化对象赋值给子类的原型对象
+        Book.prototype = new Good();
+        //修正构造器指向
+        Book.prototype.constructor = Book;
+        //给子类添加方法
+        Book.prototype.showName = function(){
+            console.log(this.name);
+        }
+
+
+
+        var b1 = new Book(123, 'book', 'aaa', 'a');
+        console.log(b1);
+        console.log(b1.constructor);
+        b1.showId();
+        b1.showName();
+    </script>
+</body>
+</html>
