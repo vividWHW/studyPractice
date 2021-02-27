@@ -36,7 +36,7 @@
         getName(); //1
         new Foo.getName(); //2  //有括号的new的优先级和.操作符相同，无括号的低一级
         new Foo().getName(); //3  //先构造调用Foo，Foo中的this指向它的实例化对象，最后返回this，返回的还是Foo的实例化对象
-        new new Foo().getName(); //3
+        new new Foo().getName(); //3  
     </script>
 </body>
 
