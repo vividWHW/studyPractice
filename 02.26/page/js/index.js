@@ -1,9 +1,30 @@
 
+//侧边栏弹出
+toolbarFunc();
+function toolbarFunc(){
+    var oToolBar = document.querySelector('aside.toolBar');
+    var oTop = document.querySelector('aside.toolBar .outside .top');
+    //点击按钮时移动侧边栏
+    oTop.onclick = function(){
+        //t通过自定义的属性判断toolBar是否已经显示了
+        if(oToolBar.dataset.show){
+            oToolBar.style.right = '-300px';
+            //去掉标记显示的自定义属性
+            delete oToolBar.dataset.show;
+        }else{
+            oToolBar.style.right = '0px';
+            //toolBar完全显示的时候添加一个自定义属性作为标记
+            oToolBar.dataset.show = 'true';
+        }
+    }
+}
+
+
 //加载图片数据
 getPicture();
 function getPicture(){
-    var oPreImg = document.querySelectorAll('con-main .preview-img')
-    //var oBigImg = document.querySelector('.con-main .preview-img .big-img img');
+    var oPreImg = document.querySelector('.con-main .preview-img .img-box');
+    var oBigImg = document.querySelector('.con-main .preview-img .big-img');
     var oUl = document.querySelector('.con-main .preview-scroll ul');
     //小图列表
     goodData.imgsrc.forEach(function(item, index){
@@ -12,8 +33,14 @@ function getPicture(){
         newImg.src = item.s;
         newLi.appendChild(newImg);
         oUl.appendChild(newLi);
+        //把第一张图片作为放大镜的大小两张图
         if(index == 0){
-            oPreImg.appendChild(newImg);
+            var preImg = newImg.cloneNode();
+            oPreImg.appendChild(preImg);
+            //oBigImg中放的是大图
+            var bigImg = newImg.cloneNode();
+            bigImg.src = item.b;
+            oBigImg.appendChild(bigImg);
         }
     });
 }
@@ -105,3 +132,26 @@ function previewScroll(){
         oUl.style.transform = 'translateX(' + -ulLocation + 'px)';
     }
 }
+
+//点击放大镜下面的图片列表
+clickPicList();
+function clickPicList(){
+    var oPreImg = document.querySelector('.con-main .preview-img .img-box');
+    var oBigImg = document.querySelector('.con-main .preview-img .big-img');
+    var oLis = document.querySelectorAll('.con-main .preview-scroll ul li');
+    //遍历li，给每个li绑定点击事件
+    oLis.forEach(function(item, index){
+        item.onclick = function(){
+            //把PreImg和BigImg换成当前点击的图片
+            var preimg = new Image();
+            preimg.src = goodData.imgsrc[index].s;
+            oPreImg.replaceChild(preimg, oPreImg.childNodes[0]);
+            var bigimg = new Image();
+            bigimg.src = goodData.imgsrc[index].b;
+            oBigImg.replaceChild(bigimg, oBigImg.childNodes[0]);
+            //重新调用放大镜
+            imgPreview();
+        }
+    });
+}
+

@@ -14,6 +14,110 @@ p {
   margin: 0;
   padding: 0;
 }
+aside.toolBar {
+  position: fixed;
+  right: -300px;
+  top: 0;
+  width: 306px;
+  height: 100%;
+  z-index: 1;
+  transition: right 0.5s linear;
+}
+aside.toolBar .outside {
+  position: relative;
+  float: left;
+  width: 6px;
+  height: 100%;
+  background-color: #7a6e6e;
+}
+aside.toolBar .top {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  background-color: #7a6e6e;
+  background-image: url(../images/list.png);
+  background-size: cover;
+}
+aside.toolBar ul.middle {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  width: 35px;
+}
+aside.toolBar ul.middle li {
+  position: relative;
+  height: 35px;
+  margin-bottom: 3px;
+  background-color: #7a6e6e;
+  font-size: 12px;
+}
+aside.toolBar ul.middle li:hover a {
+  opacity: 1;
+  left: -70px;
+}
+aside.toolBar ul.middle li div {
+  position: relative;
+  z-index: 1;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  background-color: #7a6e6e;
+  background-image: url(../images/toolbars.png);
+}
+aside.toolBar ul.middle li:nth-of-type(1) div {
+  background-position: -87px -174px;
+}
+aside.toolBar ul.middle li:nth-of-type(2) div {
+  background-position: -50px 0px;
+}
+aside.toolBar ul.middle li:nth-of-type(3) div {
+  background-position: -50px -100px;
+}
+aside.toolBar ul.middle li:nth-of-type(4) div {
+  background-position: -190px -150px;
+}
+aside.toolBar ul.middle li:nth-of-type(5) div {
+  background-position: -50px -150px;
+}
+aside.toolBar ul.middle li:nth-of-type(6) div {
+  background-position: -50px -250px;
+}
+aside.toolBar ul.middle li a {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  width: 70px;
+  height: 35px;
+  line-height: 35px;
+  transition: left 0.3s linear;
+  opacity: 0;
+  background-color: #e1251b;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+}
+aside.toolBar .bottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 35px;
+  height: 35px;
+  background-color: #7a6e6e;
+  background-image: url(../images/toolbars.png);
+  background-position: -50px -250px;
+}
+aside.toolBar .content {
+  position: relative;
+  z-index: 1;
+  float: left;
+  width: 300px;
+  height: 100%;
+  background-color: lightgray;
+}
 header {
   width: 100%;
 }
@@ -90,6 +194,7 @@ header {
 }
 .header-bottom {
   width: 100%;
+  min-width: 1200px;
   border-bottom: 2px solid #e1251b;
 }
 .header-bottom .content {
@@ -373,9 +478,9 @@ section.content {
 section.detail {
   margin: 30px auto 0 auto;
   width: 1200px;
-  border: 1px solid black;
 }
 aside.tab {
+  float: left;
   width: 210px;
   border: 1px solid #ccc;
 }
@@ -401,6 +506,7 @@ aside.tab .tab-title span.active {
 aside.tab .tab-content {
   padding: 10px;
   width: 100%;
+  box-sizing: border-box;
 }
 aside.tab .tab-content .tab-page {
   display: none;
@@ -431,6 +537,12 @@ aside.tab .tab-content .tab-page ul.textList li a:hover {
   text-decoration: underline;
   color: lightgreen;
 }
+aside.tab .tab-content .tab-page ul.imgList {
+  width: 100%;
+}
+aside.tab .tab-content .tab-page ul.imgList li {
+  width: 100%;
+}
 aside.tab .tab-content .tab-page ul.imgList li .goodImg {
   width: 100%;
   text-align: center;
@@ -444,6 +556,7 @@ aside.tab .tab-content .tab-page ul.imgList li p.price {
   color: #e1251b;
 }
 aside.tab .tab-content .tab-page ul.imgList li a {
+  margin: 0 auto;
   display: block;
   width: 90px;
   height: 30px;
@@ -452,4 +565,123 @@ aside.tab .tab-content .tab-page ul.imgList li a {
   color: #666;
   text-align: center;
   text-decoration: none;
+  font-size: 12px;
+}
+.good-detail {
+  width: 980px;
+  float: right;
+}
+.good-match {
+  border: 1px solid #ddd;
+}
+.good-match .title {
+  padding: 5px 0 5px 15px;
+  background-color: #f1f1f1;
+  color: #333;
+  font-weight: bold;
+  font-size: 12px;
+  border-bottom: 1px solid #ddd;
+}
+.good-match .list {
+  padding: 10px 0;
+  height: 160px;
+  display: flex;
+  justify-content: space-between;
+}
+.good-match .list > div {
+  text-align: center;
+}
+.good-match .list .master {
+  position: relative;
+  width: 130px;
+}
+.good-match .list .master p {
+  color: #e1251b;
+  font-size: 16px;
+  font-weight: bolder;
+}
+.good-match .list .master::after {
+  content: '+';
+  position: absolute;
+  top: 30%;
+  left: 100%;
+}
+.good-match .list .match-good p,
+.good-match .list .match-good span {
+  font-size: 12px;
+  color: #333;
+}
+.good-match .list .match-good input,
+.good-match .list .match-good span {
+  display: inline-block;
+  height: 15px;
+  line-height: 15px;
+  vertical-align: middle;
+}
+.good-match .list .result {
+  padding-left: 10px;
+  width: 150px;
+  border-left: 1px solid #ddd;
+  text-align: left;
+}
+.good-match .list .result .num,
+.good-match .list .result b {
+  margin: 10px 0;
+  display: block;
+  font-size: 12px;
+}
+.good-match .list .result .price {
+  font-size: 16px;
+  color: #e1251b;
+}
+.good-match .list .result .addCart {
+  margin-top: 20px;
+  width: 130px;
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+  background-color: #e1251b;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+}
+.good-show {
+  margin-top: 15px;
+  width: 100%;
+}
+.good-show .tab-title {
+  width: 100%;
+  height: 40px;
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+}
+.good-show .tab-title li {
+  float: left;
+}
+.good-show .tab-title li a {
+  display: block;
+  padding: 0 11px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #fff;
+  text-decoration: none;
+  font-size: 12px;
+  color: #666;
+}
+.good-show .tab-title li.active a {
+  background-color: #e1251b;
+  color: #fff;
+}
+.good-show .tab-title li + li a {
+  border-left: 1px solid #ddd;
+}
+.good-show .tab-page ul.good-argu {
+  padding-left: 10px;
+}
+.good-show .tab-page ul.good-argu li {
+  margin: 10px 0;
+  height: 15px;
+  line-height: 15px;
+  font-size: 12px;
+  color: #333;
 }

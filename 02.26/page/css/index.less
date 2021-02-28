@@ -41,6 +41,120 @@ p{
     padding: 0;
 }
 
+//侧边栏
+aside.toolBar{
+    @wd: 35px;
+    @bgc: #7a6e6e;
+    position: fixed;
+    right: -300px;
+    top:0;
+    width: 306px;
+    height: 100%;
+    z-index: 1;
+    transition: right 0.5s linear;
+    //显式在屏幕上的部分
+    .outside{
+        position: relative;
+        float: left;
+        width: 6px;
+        height: 100%;
+        background-color: @bgc;
+    }
+    //顶部
+    .top{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: @wd;
+        height: @wd;
+        cursor: pointer;
+        background-color: @bgc;
+        background-image: url(../images/list.png);
+        background-size: cover;
+    }
+    //中部
+    ul.middle{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0;
+        width: @wd;
+        li{
+            position: relative;
+            height: @wd;
+            margin-bottom: 3px;
+            background-color: @bgc;
+            font-size: 12px;
+            &:hover a{
+                opacity: 1;
+                left: -70px;
+            }
+            //图标
+            div{
+                position: relative;
+                z-index: 1;
+                width: @wd;
+                height: @wd;
+                cursor: pointer;
+                background-color: @bgc;
+                background-image: url(../images/toolbars.png);
+            }
+            &:nth-of-type(1) div{
+                background-position: -87px -174px;
+            }
+            &:nth-of-type(2) div{
+                background-position: -50px -0px;
+            }
+            &:nth-of-type(3) div{
+                background-position: -50px -100px;
+            }
+            &:nth-of-type(4) div{
+                background-position: -190px -150px;
+            }
+            &:nth-of-type(5) div{
+                background-position: -50px -150px;
+            }
+            &:nth-of-type(6) div{
+                background-position: -50px -250px;
+            }
+            a{
+                position: absolute;
+                top: 0;
+                left: 0px;
+                width: 70px;
+                height: @wd;
+                line-height: @wd;
+                transition: left 0.3s linear;
+                opacity: 0;
+                background-color: @colorRed;
+                color: #fff;
+                text-align: center;
+                text-decoration: none;
+            }
+        }
+    }
+    //底部
+    .bottom{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: @wd;
+        height: @wd;
+        background-color: @bgc;
+        background-image: url(../images/toolbars.png);
+        background-position: -50px -250px;
+    }
+    //隐藏在屏幕外的内容区
+    .content{
+        position: relative;
+        z-index: 1;
+        float: left;
+        width: 300px;
+        height: 100%;
+        background-color: lightgray;
+    }
+}
+
 //页面头部
 header{
     width: 100%;
@@ -111,6 +225,7 @@ header{
 .header-bottom{
     @menuHeight: 50px;
     width: 100%;
+    min-width: @conWidth;
     border-bottom: 2px solid @colorRed;
     .content{
         margin: 0 auto;
@@ -161,6 +276,7 @@ section.content{
 }
 .con-main{
     .clearFloat();
+    //放大镜
     .preview{
         float: left;
         width: 402px;
@@ -389,9 +505,11 @@ section.content{
 section.detail{
     margin: 30px auto 0 auto;
     width: @conWidth;
-    .testBorder();
+    //.testBorder();
 }
+//商品详情-左侧
 aside.tab{
+    float: left;
     width: 210px;
     border: 1px solid #ccc;
     //tab标题
@@ -418,6 +536,7 @@ aside.tab{
     .tab-content{
         padding: 10px;
         width: 100%;
+        box-sizing: border-box;
         .tab-page{
             display: none;
             &.active{
@@ -439,7 +558,9 @@ aside.tab{
                 }
             }
             ul.imgList{
+                width: 100%;
                 li{
+                    width: 100%;
                     .goodImg{
                         width: 100%;
                         text-align: center;
@@ -453,6 +574,7 @@ aside.tab{
                         color: @colorRed;
                     }
                     a{
+                        margin: 0 auto;
                         display: block;
                         width: 90px;
                         height: 30px;
@@ -461,8 +583,141 @@ aside.tab{
                         color: #666;
                         text-align: center;
                         text-decoration: none;
+                        font-size: 12px;
                     }
                 }
+            }
+        }
+    }
+}
+
+//商品详情-右侧
+.good-detail{
+    width: 980px;
+    float: right;
+}
+//商品详情-右侧-选择搭配
+.good-match{
+    border: 1px solid #ddd;
+    //标题
+    .title{
+        padding: 5px 0 5px 15px;
+        background-color: #f1f1f1;
+        color: #333;
+        font-weight: bold;
+        font-size: 12px;
+        border-bottom: 1px solid #ddd;
+    }
+    //选择搭配的列表
+    .list{
+        padding: 10px 0;
+        height: 160px;
+        display: flex;
+        justify-content: space-between;
+        //当前商品和所有搭配的商品
+        > div{
+            text-align: center;
+        }
+        //当前商品
+        .master{
+            position: relative;
+            width: 130px;
+            p{
+                color: @colorRed;
+                font-size: 16px;
+                font-weight: bolder;
+            }
+            //加号
+            &::after{
+                content: '+';
+                position: absolute;
+                top: 30%;
+                left: 100%;
+            }
+        }
+        //搭配的商品
+        .match-good{
+            p, span{
+                font-size: 12px;
+                color: #333;
+            }
+            input, span{
+                display: inline-block;
+                height: 15px;
+                line-height: 15px;
+                vertical-align: middle;
+            }
+        }
+        //选购结果
+        .result{
+            padding-left: 10px;
+            width: 150px;
+            border-left: 1px solid #ddd;
+            text-align: left;
+            .num, b{
+                margin: 10px 0;
+                display: block;
+                font-size: 12px;
+            }
+            .price{
+                font-size: 16px;
+                color: @colorRed;
+            }
+            .addCart{
+                margin-top: 20px;
+                width: 130px;
+                height: 40px;
+                line-height: 40px;
+                cursor: pointer;
+                background-color: @colorRed;
+                font-size: 16px;
+                color: #fff;
+                text-align: center;
+            }
+        }
+    }
+}
+//商品详情-右侧-商品展示
+.good-show{
+    margin-top: 15px;
+    width: 100%;
+    //tab标题
+    .tab-title{
+        width: 100%;
+        height: 40px;
+        background-color: #f1f1f1;
+        border: 1px solid #ddd;
+        li{
+            float: left;
+            a{
+                display: block;
+                padding: 0 11px;
+                height: 40px;
+                line-height: 40px;
+                background-color: #fff;
+                text-decoration: none;
+                font-size: 12px;
+                color: #666;
+            }
+            &.active a{
+                background-color: @colorRed;
+                color: #fff;
+            }
+            & + li a{
+                border-left: 1px solid #ddd;
+            }
+        }
+    }
+    //tab内容1-商品介绍
+    .tab-page{
+        ul.good-argu{
+            padding-left: 10px;
+            li{
+                margin: 10px 0;
+                height: 15px;
+                line-height: 15px;
+                font-size: 12px;
+                color: #333;
             }
         }
     }

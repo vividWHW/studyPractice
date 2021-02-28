@@ -10,7 +10,44 @@
 <body>
     <!-- 侧边栏 -->
     <aside class="toolBar">
-        
+        <!-- 显示在屏幕上的部分 -->
+        <div class="outside">
+            <!-- 顶部-打开内容 -->
+            <div class="top"></div>
+            <!-- 中部-导航 -->
+            <ul class="middle">
+                <li>
+                    <div class="icon"></div>
+                    <a href="#">商品会员</a>
+                </li>
+                <li>
+                    <div class="icon"></div>
+                    <a href="#">购物车</a>
+                </li>
+                <li>
+                    <div class="icon"></div>
+                    <a href="#">我的关注</a>
+                </li>
+                <li>
+                    <div class="icon"></div>
+                    <a href="#">我的足迹</a>
+                </li>
+                <li>
+                    <div class="icon"></div>
+                    <a href="#">我的消息</a>
+                </li>
+                <li>
+                    <div class="icon"></div>
+                    <a href="#">咨询客服</a>
+                </li>
+            </ul>
+            <!-- 底部-回到顶部 -->
+            <div class="bottom"></div>
+        </div>
+        <!-- 屏幕外的内容区 -->
+        <div class="content">
+            content
+        </div>
     </aside>
 
     <!-- 页面头部 -->
@@ -73,27 +110,13 @@
             <div class="preview">
                 <div class="preview-img">
                     <div class="img-box"></div>
-                    <!-- <img src="http://ex.lipeihua.vip/images/s1.png" /> -->
                     <div class="mask"></div>
-                    <div class="big-img">
-                        <!-- <img src="http://ex.lipeihua.vip/images/s1.png" /> -->
-                    </div>
+                    <div class="big-img"></div>
                 </div>
                 <div class="preview-scroll">
                     <div class="left">&lt;</div>
                     <div class="list">
                         <ul>
-                            <!-- <li><img src="http://ex.lipeihua.vip/images/s1.png" /></li>
-                            <li><img src="http://ex.lipeihua.vip/images/s2.png" /></li>
-                            <li><img src="http://ex.lipeihua.vip/images/s3.png" /></li>
-                            <li><img src="http://ex.lipeihua.vip/images/s1.png" /></li>
-                            <li><img src="http://ex.lipeihua.vip/images/s2.png" /></li>
-                            <li><img src="http://ex.lipeihua.vip/images/s3.png" /></li>
-                            <li><img src="http://ex.lipeihua.vip/images/s1.png" /></li>
-                            <li><img src="http://ex.lipeihua.vip/images/s2.png" /></li>
-                            <li><img src="http://ex.lipeihua.vip/images/s3.png" /></li>
-                            <li><img src="http://ex.lipeihua.vip/images/s1.png" /></li>
-                         -->
                         </ul>
                     </div>
                     <div class="right">&gt;</div>
@@ -176,6 +199,7 @@
 
     <!-- 商品详情 -->
     <section class="detail">
+        <!-- 左侧 -->
         <aside class="tab">
             <div class="tab-title">
                 <span class="active">相关分类</span>
@@ -225,6 +249,120 @@
                 </div>
             </div>
         </aside>
+        <!-- 右侧-->
+        <div class="good-detail">
+            <!-- 选择搭配 -->
+            <div class="good-match">
+                <p class="title">选择搭配</p>
+                <div class="list">
+                    <!-- 当前商品 -->
+                    <div class="master">
+                        <img src="http://ex.lipeihua.vip/images/l-m01.png" alt="">
+                        <p>¥5949</p>
+                    </div>
+                    <!-- 搭配的商品 -->
+                    <div class="match-good">
+                        <label>
+                            <img src="http://ex.lipeihua.vip/images/dp01.png" />
+                            <p>Feless费勒斯VR</p>
+                            <input type="checkbox" value="39" />
+                            <span>39</span>
+                        </label>
+                    </div>
+                    <div class="match-good">
+                        <label>
+                            <img src="http://ex.lipeihua.vip/images/dp02.png" />
+                            <p>Feless费勒斯VR</p>
+                            <input type="checkbox" value="50" />
+                            <span>50</span>
+                        </label>
+                    </div>
+                    <div class="match-good">
+                        <label>
+                            <img src="http://ex.lipeihua.vip/images/dp03.png" />
+                            <p>Feless费勒斯VR</p>
+                            <input type="checkbox" value="89" />
+                            <span>89</span>
+                        </label>
+                    </div>
+                    <div class="match-good">
+                        <label>
+                            <img src="http://ex.lipeihua.vip/images/dp04.png" />
+                            <p>Feless费勒斯VR</p>
+                            <input type="checkbox" value="139" />
+                            <span>139</span>
+                        </label>
+                    </div>
+                    <!-- 选购结果 -->
+                    <div class="result">
+                        <p class="num">已选购<span>0</span>件商品</p>
+                        <b>套餐价</b>
+                        <p class="price">¥<span>6107</span></p>
+                        <div class="addCart">加入购物车</div>
+                    </div>
+                </div>
+            </div>
+            <!-- 商品展示 -->
+            <div class="good-show">
+                <ul class="tab-title">
+                    <li class="active">
+                        <a href="#">商品介绍</a>
+                    </li>
+                    <li>
+                        <a href="#">规格与包装</a>
+                    </li>
+                    <li>
+                        <a href="#">售后保障</a>
+                    </li>
+                    <li>
+                        <a href="#">商品评价</a>
+                    </li>
+                    <li>
+                        <a href="#">手机社区</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <!-- tab1:商品介绍 -->
+                    <div class="tab-page active">
+                        <!-- 商品参数 -->
+                        <ul class="good-argu">
+                            <li>分辨率：1920*1080(FHD)</li>
+                            <li>后置摄像头：1200万像素</li>
+                            <li>前置摄像头：500万像素</li>
+                            <li>核 数：其他</li>
+                            <li>频 率：以官网信息为准</li>
+                            <li>品牌： Apple</li>
+                            <li>商品名称：APPLEiPhone 6s Plus</li>
+                            <li>商品编号：1861098</li>
+                            <li>商品产地：中国大陆</li>
+                            <li>商品毛重：0.51kg</li>
+                            <li>热点：指纹识别，Apple Pay，金属机身，拍照神器</li>
+                            <li>系统：苹果（IOS）</li>
+                            <li>像素：1000-1600万品毛重：0.51kg</li>
+                            <li>机身内存：64GB</li>
+                        </ul>
+                        <!-- 商品图片 -->
+                        <div class="good-img">
+                            <img src="./images/intro01.png" alt="">
+                            <img src="./images/intro02.png" alt="">
+                            <img src="./images/intro03.png" alt="">
+                        </div>
+                    </div>
+                    <div class="tab-page">
+                        规格与包装
+                    </div>
+                    <div class="tab-page">
+                        售后保障
+                    </div>
+                    <div class="tab-page">
+                        商品评价
+                    </div>
+                    <div class="tab-page">
+                        手机社区
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <script src="./js/data.js"></script>

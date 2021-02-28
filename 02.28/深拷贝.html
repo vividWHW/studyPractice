@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //判断数据类型函数
+        function checkType(obj){
+            return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+        }
+
+        //深拷贝函数
+        function deepCopy(obj){
+            //判断obj的数据类型，根据类型决定新建对象还是数组还是直接返回obj
+            if(checkType(obj) === 'object'){
+                //对象类型则新建成空对象
+                var newObj = {};
+            }else if(checkType(obj) === 'array'){
+                //如果是数组则新建成空数组
+                var newObj = [];
+            }else{
+                //都不是则直接返回
+                return obj;
+            }
+            //遍历这个obj
+            for(var key in obj){
+                //判断obj[key]是否是对象或数组，若是则需要再深拷贝，直到不为对象或数组的时候被直接返回
+                newObj[key] = deepCopy(obj[key]);
+            }
+            //返回拷贝完成后的obj
+            return newObj;
+        }
+
+
+        var obj = {
+            name: 'luchen',
+            englishName: 'Alkaid',
+            character: ['gentle', 'kind', 'myStar'],
+            say: function(){
+                console.log('你的路辰，随时愿意与你同行。')
+            }
+        }
+        var newObj = deepCopy(obj);
+        console.log(newObj);
+        console.log(obj.character === newObj.character);
+        console.log(obj === newObj);
+        //函数不复制也没关系，因为函数不能修改
+        console.log(obj.say === newObj.say);
+        obj.say = function(){
+            console.log(1111)
+        }
+        newObj.say();
+    </script>
+</body>
+</html>
