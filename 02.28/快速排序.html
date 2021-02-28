@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //升序快速排序函数
+        function quickSort(arr){
+            //如果arr的长度比1小，即只有一个值或是空数组，则直接返回它
+            if(arr.length <= 1){
+                return arr;
+            }
+            //把数组的第一个数取出来作为基准值
+            var base = arr.shift();
+            //新建左右两个空数组，分别存放<=基准值和>基准值的数
+            var left = [];
+            var right = [];
+            //遍历数组
+            arr.forEach(function(item){
+                if(item <= base){
+                    left.push(item);
+                }else{
+                    right.push(item);
+                }
+            });
+            //再将左右两个数组进行快排，将三个部分依次合并后返回
+            return quickSort(left).concat(base, quickSort(right));
+        }
+
+        var arr = [1,3,8,3,0,-1,2,3,6,8,2,-5,3,10,'a','10'];
+        console.log(quickSort(arr));
+    </script>
+</body>
+</html>

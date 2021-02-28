@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1">单线程计算</button>
+    <button id="btn2">多线程计算</button>
+    <button id="btn3">测试页面是否假死</button>
+
+    <script>
+        var oBtn1 = document.getElementById('btn1');
+        var oBtn2 = document.getElementById('btn2');
+        var oBtn3 = document.getElementById('btn3');
+        var max = 9000000;
+
+        oBtn1.onclick = function(){
+            var num = 0;
+            for (var i = 0; i < max; i++) {
+                num += Math.sqrt(i)
+            }
+            console.log(num)
+        }
+        oBtn2.onclick = function(){
+            //创建分线程，传入作为分线程的文件路径字符串（在服务器下打开）
+            var wk = new Worker('./worker.js');
+            //向分线程发送数据
+            wk.postMessage({
+                max: max
+            });
+            //接收分线程发来的数据，分线程向主线程发送数据时自动触发
+            wk.onmessage = function(e){
+                console.log(e.data.result);
+            }
+            //在主线程关闭分线程,可能在分线程还未执行完成时就把分线程关闭了
+            //wk.terminate();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+
+    <script>
+        var oBox = document.getElementById('box');
+        oBox.onmousemove = throttle(move, 300);
+
+        //逻辑代码
+        function move(e){
+            console.log(e.offsetX, e.offsetY);
+            console.log(this);
+        }
+
+        //通用节流函数
+        function throttle(fn, time){
+            //存放上一次执行逻辑代码的时间
+            var lastTime = 0;
+            //返回一个函数，这个函数才是真正的事件函数
+            return function(e){
+                //获取这次触发事件的时间
+                var nowTime = Date.now();
+                //计算和上次执行逻辑代码的时间的差值，若比time小则不能执行逻辑代码，直接返回
+                if(nowTime - lastTime < time){
+                    return;
+                }
+                //比time大时执行逻辑代码，并传参和绑定this，参数是event事件对象，this是触发事件的元素
+                fn.call(this, e);
+                //执行了逻辑代码则将这次触发事件的时间赋值给lastTime，用于下一次触发事件时计算时间间隔
+                lastTime = nowTime;
+            }
+        }
+    </script>
+</body>
+</html>
