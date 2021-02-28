@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link type="text/css" rel="stylesheet" href="./index.css" />
+    <link type="text/css" rel="stylesheet" href="./css/index.css" />
     <title>尚品汇页面</title>
 </head>
 <body>
@@ -72,19 +72,28 @@
         <div class="con-main">
             <div class="preview">
                 <div class="preview-img">
-                    <img src="http://ex.lipeihua.vip/images/s1.png" />
+                    <div class="img-box"></div>
+                    <!-- <img src="http://ex.lipeihua.vip/images/s1.png" /> -->
+                    <div class="mask"></div>
+                    <div class="big-img">
+                        <!-- <img src="http://ex.lipeihua.vip/images/s1.png" /> -->
+                    </div>
                 </div>
                 <div class="preview-scroll">
                     <div class="left">&lt;</div>
                     <div class="list">
                         <ul>
-                            <li><img src="http://ex.lipeihua.vip/images/s1.png" /></li>
+                            <!-- <li><img src="http://ex.lipeihua.vip/images/s1.png" /></li>
                             <li><img src="http://ex.lipeihua.vip/images/s2.png" /></li>
                             <li><img src="http://ex.lipeihua.vip/images/s3.png" /></li>
                             <li><img src="http://ex.lipeihua.vip/images/s1.png" /></li>
                             <li><img src="http://ex.lipeihua.vip/images/s2.png" /></li>
                             <li><img src="http://ex.lipeihua.vip/images/s3.png" /></li>
                             <li><img src="http://ex.lipeihua.vip/images/s1.png" /></li>
+                            <li><img src="http://ex.lipeihua.vip/images/s2.png" /></li>
+                            <li><img src="http://ex.lipeihua.vip/images/s3.png" /></li>
+                            <li><img src="http://ex.lipeihua.vip/images/s1.png" /></li>
+                         -->
                         </ul>
                     </div>
                     <div class="right">&gt;</div>
@@ -155,7 +164,7 @@
                 </div>
                 <div class="chooseNum">
                     <div class="num">
-                        <input type="number" />
+                        <input type="text" />
                         <button class="plus">+</button>
                         <button class="mins">-</button>
                     </div>
@@ -174,7 +183,7 @@
             </div>
             <div class="tab-content">
                 <div class="tab-page active">
-                    <ul>
+                    <ul class="textList">
                         <li><a href="#"> 手机</a></li>
                         <li><a href="#">手机壳</a></li>
                         <li><a href="#">内存卡</a></li>
@@ -184,38 +193,41 @@
                         <li><a href="#">移动电源</a></li>
                         <li><a href="#">平板电脑</a></li>
                     </ul>
-                    <ul class="goodList">
+                    <ul class="imgList">
                         <li>
-                            <div class="goodImg"><img src="./images/part01.png" alt=""></div>
-                            <h4>Apple苹果iPhone 6s (A1699)</h4>
-                            <p>¥6088.00</p>
-                            <div class="addCart"><a href="">加入购物车</a></div>
+                            <div class="goodImg"><img src="http://ex.lipeihua.vip/images/part01.png" alt=""></div>
+                            <p class="title">Apple苹果iPhone 6s (A1699)</p>
+                            <p class="price">¥6088.00</p>
+                            <a href="">加入购物车</a>
                         </li>
                         <li>
-                            <div class="goodImg"><img src="./images/part01.png" alt=""></div>
-                            <h4>Apple苹果iPhone 6s (A1699)</h4>
-                            <p>¥6088.00</p>
-                            <div class="addCart"><a href="">加入购物车</a></div>
+                            <div class="goodImg"><img src="http://ex.lipeihua.vip/images/part01.png" alt=""></div>
+                            <p class="title">Apple苹果iPhone 6s (A1699)</p>
+                            <p class="price">¥6088.00</p>
+                            <a href="">加入购物车</a>
                         </li>
                         <li>
-                            <div class="goodImg"><img src="./images/part01.png" alt=""></div>
-                            <h4>Apple苹果iPhone 6s (A1699)</h4>
-                            <p>¥6088.00</p>
-                            <div class="addCart"><a href="">加入购物车</a></div>
+                            <div class="goodImg"><img src="http://ex.lipeihua.vip/images/part01.png" alt=""></div>
+                            <p class="title">Apple苹果iPhone 6s (A1699)</p>
+                            <p class="price">¥6088.00</p>
+                            <a href="">加入购物车</a>
                         </li>
                         <li>
-                            <div class="goodImg"><img src="./images/part01.png" alt=""></div>
-                            <h4>Apple苹果iPhone 6s (A1699)</h4>
-                            <p>¥6088.00</p>
-                            <div class="addCart"><a href="">加入购物车</a></div>
+                            <div class="goodImg"><img src="http://ex.lipeihua.vip/images/part01.png" alt=""></div>
+                            <p class="title">Apple苹果iPhone 6s (A1699)</p>
+                            <p class="price">¥6088.00</p>
+                            <a href="">加入购物车</a>
                         </li>
                     </ul>
                 </div>
-                <div class="tab-pane">
-                    推荐品牌
+                <div class="tab-page">
+                    推荐品牌的内容
                 </div>
             </div>
         </aside>
     </section>
+
+    <script src="./js/data.js"></script>
+    <script src="./js/index.js" ></script>
 </body>
 </html>
