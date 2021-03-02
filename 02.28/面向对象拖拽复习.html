@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 150px;
+            height: 150px;
+        }
+        .box1{
+            background-color: lightblue;
+        }
+        .box2{
+            background-color: lightcoral;
+        }
+        .box3{
+            background-color: lightgreen;
+        }
+        .box4{
+            background-color: lightpink;
+        }
+        .box5{
+            background-color: lightseagreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4"></div>
+    <div class="box5"></div>
+
+    <script>
+        function Drag(selector){
+            //获取元素，并将它保存在它的实例化对象中
+            this.oEle = document.querySelector(selector);
+            //保存这个实例化对象在_this中
+            var _this = this;
+            //绑定鼠标按下事件
+            this.oEle.onmousedown = function(e){
+                _this.downFunc(e);
+            }
+        }
+        //按下后的代码作为公有方法放在Drag的原型对象上
+        Drag.prototype.downFunc = function(e){
+            //阻止默认事件
+            e.preventDefault();
+            //获取鼠标按下时距离元素边缘的位置，并保存在实例化对象中（因为是实例化对象调用的dounFun，所以这里的this也指向实例化对象）
+            this.mousePosition = {
+                x: e.offsetX,
+                y: e.offsetY
+            }
+        }
+
+        new Drag('.box1');
+        new Drag('.box2');
+        new Drag('.box3');
+        new Drag('.box4');
+        new Drag('.box4');
+    </script>
+</body>
+</html>

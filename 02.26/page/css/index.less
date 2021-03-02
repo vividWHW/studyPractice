@@ -140,6 +140,7 @@ aside.toolBar{
         right: 0;
         width: @wd;
         height: @wd;
+        cursor: pointer;
         background-color: @bgc;
         background-image: url(../images/toolbars.png);
         background-position: -50px -250px;
@@ -428,6 +429,7 @@ section.content{
             display: inline-block;
             a{
                 color: @colorRed;
+                text-decoration: none;
             }
         }
     }
@@ -441,6 +443,7 @@ section.content{
             margin-bottom: 13px;
             height: @dlHeight;
             dt{
+                margin-right: 5px;
                 display: inline-block;
                 height: @dlHeight;
                 line-height: @dlHeight;
@@ -474,6 +477,7 @@ section.content{
                 outline: none;
                 border: 1px solid #ddd;
                 box-sizing: border-box;
+                text-align: center;
             }
             button{
                 padding: 0;
@@ -481,6 +485,7 @@ section.content{
                 height: 30px;
                 line-height: 30px;
                 outline: none;
+                cursor: pointer;
                 border: 1px solid #ddd;
                 box-sizing: border-box;
                 vertical-align: bottom;
@@ -637,6 +642,9 @@ aside.tab{
         }
         //搭配的商品
         .match-good{
+            label{
+                display: block;
+            }
             p, span{
                 font-size: 12px;
                 color: #333;
@@ -710,6 +718,10 @@ aside.tab{
     }
     //tab内容1-商品介绍
     .tab-page{
+        display: none;
+        &.active{
+            display: block;
+        }
         ul.good-argu{
             padding-left: 10px;
             li{

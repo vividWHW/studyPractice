@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <ul class="test">
+        <li class="test">111</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+/*             var jLis = $('ul li');
+            console.log(jLis)
+            console.log(jLis[2]);
+            console.log(jLis.get(2));
+            var oLis = document.querySelectorAll('ul li');
+            console.log($(oLis))
+            console.log($(oLis).get(1)); */
+            console.log($('ul li').parent());
+            console.log($('ul').find('.test'));
+        });
+    </script>
+</body>
+</html>

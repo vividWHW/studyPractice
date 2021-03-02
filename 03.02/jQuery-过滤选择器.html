@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>title</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li></li>
+    </ul>
+    <ul>
+        <h5>title</h5>
+        <!-- <li class="test">1</li>
+        <li class="test">2</li> -->
+        <li>
+            <p class="test">test</p>
+        </li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li></li>
+    </ul>
+    <ul>
+        <li>3333</li>
+    </ul>
+    <ul>
+        <li class="test">1</li>
+        <li class="test">2</li>
+        <li class="aaa">3</li>
+    </ul>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            console.log($('ul'));
+            console.log($('ul').find('*'));
+            //$('li:first').css('background', 'blue');
+            //$('li:last').css('color', 'red');
+            //$('li:not(.test)').css('color', 'green');//选择除了匹配.test的li的其他li
+            //$('li:even').css('background', 'red');//索引是偶数的
+            //$('li:odd').css('color', 'red');//索引是奇数的
+            //$('li:eq(1)').css('color', 'red');//选择索引为1的li
+            //$('li').eq(1).css('color', 'red');//同上
+            //$('li:gt(3)').css('color', 'red');//选择索引大于3的（不包括3）
+            //$('li:lt(3)').css('color', 'red');//选择索引小于3的（不包括3）
+            //$('ul :header').css('color', 'red');//只能选择到ul中的标题
+            //$(':header').css('color', 'red');   //选择到所有的标题
+            //$('li:contains(3)').css('color', 'red');//选择到文本内容为3的li
+            //$('li:empty').css('background-color', 'red');//选择不包含子元素或文本的li
+            //$('ul:has(.test)').css('background-color', 'red');//选取后代元素中有class为test的元素 的ul（ul自己匹配上.test不行！！！）
+            //$('li:parent').css('background-color', 'red');//选择含有子元素或文本的li
+            //$('ul li:first-child').css('background-color', 'red');//选择ul中的第一个元素并且这个元素要是li
+            //$('ul li:last-child').css('background-color', 'green');//选择ul中的最后一个元素并且这个元素要是li
+            //$('ul li:only-child').css('background', 'red');//选择ul中只有一个li的li元素
+            //$('li:nth-child(1)').css('color', 'red');//选择在父元素中的第一个子元素且是li的元素
+            //$('li[class]:not(.test)').css('color', 'red');//选择有class属性且不匹配.test的li
+            $('li:not(.test)[class]').css('color', 'green');//同上
+
+        });
+    </script>
+</body>
+</html>
