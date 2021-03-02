@@ -8,8 +8,8 @@
 </head>
 <body>
     <a href="123" class="test">1</a>
-    <a href="123" class="test">2</a>
-    <a href="123">3</a>
+    <a href="12" class="test">2</a>
+    <a href="1234">3</a>
     <a href="3" class="test">4</a>
     <a class="test">5</a>
 
@@ -18,6 +18,12 @@
         $(function(){
             //$('a[href]').css('background-color', 'red');
             //console.log($('a[href]'));
+            //$('a[href = 123]').css('color', 'red');
+            //$('a[href != 123]').css('color', 'red');//没有href的a也能被选中
+            //$('a[href ^= 1]').css('color', 'red');// ^= 要连在一起写
+            //$('a[href $= 3]').css('color', 'red');
+            //$('a[href *= 3]').css('color', 'red');
+            $('a[class][href]').css('color', 'red');
         });
     </script>
 </body>

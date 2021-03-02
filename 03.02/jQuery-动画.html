@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery动画</title>
+    <style>
+        div{
+            width: 250px;
+            height: 250px;
+            background-color: mediumaquamarine;
+        }
+        .bottom{
+            width: 300px;
+            height: 300px;
+            background-color: mediumblue;
+        }
+    </style>
+</head>
+<body>
+    <button>btn</button>
+    <div class="box">
+        <!-- <div>jQuery 中显示方法为 .show(), 隐藏方法为 .hide() 。在无参数的时候,只是硬性的显示内容和隐藏内容jQuery 中显示方法为 .show(), 隐藏方法为 .hide() 。在无参数的时候,只是硬性的显示内容和隐藏内容</div>
+     -->
+    </div>
+    <div class="bottom"></div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $('button').click(function(){
+                /* $('.box').toggle(1000, 'swing', function(){
+                    alert(1)
+                }); */
+                /* $('.box').slideToggle(1000, 'linear', function(){
+                    alert(2)
+                }) */
+                /* $('.box').fadeToggle(1000, 'linear', function(){
+                    alert(3)
+                }) */
+                /* $('.box').animate({
+                    width:'100px',
+                    height:'100px',
+                    opacity:'0.5'
+                }, 1000).animate({
+                    width:'200px'
+                },1000); */
+                $('.box').stop(false, false).delay(1000).slideToggle(1000);
+
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="###"> 
+        <input type="text" name="user" />
+        <input type="password" name="pwd" disabled/>
+        <label><input type="radio" name="sex" value="man"/>man</label>
+        <label><input type="radio" name="sex" value="woman" checked/>woman</label>
+        <select name="mystar">
+            <option value="luchen">luchen</option>
+            <option value="luchen" selected>luchen-yesai</option>
+            <option value="silan">silan</option>
+            <option value="yexuan">yexuan</option>
+        </select>
+        <button>submit</button>
+    </form>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            //$('input:enabled').css('background', 'red');
+            //$('input:disabled').css('background', 'red');
+            $(':input').css('background', 'red');
+
+        });
+    </script>
+</body>
+</html>
