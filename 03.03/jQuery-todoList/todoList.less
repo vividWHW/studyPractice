@@ -1,0 +1,112 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    color: #666;
+}
+//按钮样式
+.buttonStyle(){
+    cursor: pointer;
+    outline: none;
+    padding: 3px 5px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    background-color: lightcoral;
+    color: #fff;
+    &:hover{
+        background-color: rgb(231, 89, 89);
+    }
+}
+//输入框样式
+.inputStyle(@width, @height){
+    padding: 0 10px;
+    width: @width;
+    height: @height;
+    outline: none;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    background-color: rgb(244, 244, 249);
+    &:focus{
+        border-width: 2px;
+        border-color: rgb(113, 209, 241);
+        background-color: #fff;
+    }
+}
+
+.todoBox{
+    margin: 100px auto;
+    width: 600px;
+    border: 1px solid lightgray;
+    .top{
+        height: 50px;
+        line-height: 50px;
+        border-bottom: 1px dotted gray;
+        text-align: center;
+        input{
+            .inputStyle(94%, 30px);
+        }
+    }
+    ul.todo li{
+        position: relative;
+        height: 35px;
+        line-height: 35px;
+        border-bottom: 1px dotted gray;
+        input{
+            margin-left: 15px;
+        }
+        span{
+            margin: 0 5px;
+        }
+        input.editIpt{
+            .inputStyle('120px', 22px);
+            display: none;
+            &.editing{
+                display: inline-block;
+            }
+        }
+        button{
+            display: none;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            .buttonStyle();
+            &.delete{
+                right: 15px;
+            }
+            &.edit{
+                right: 70px;
+            }
+        }
+        &:hover button{
+            display: inline-block;
+        }
+        &.finished input{
+            opacity: .4;
+        }
+        &.finished span{
+            opacity: .4;
+            text-decoration: line-through;
+        }
+    }
+    .bottom{
+        position: relative;
+        margin: 0 15px;
+        height: 50px;
+        line-height: 50px;
+        > span{
+            margin-left: 5px;
+            span{
+                display: inline-block;
+                width: 20px;
+                text-align: center;
+            }
+        }
+        button{
+            position: absolute;
+            top: 50%;
+            right: 0px;
+            transform: translateY(-50%);
+            .buttonStyle();
+        }
+    }
+}

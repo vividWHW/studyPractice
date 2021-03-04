@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red{
+            background-color: red;
+        }
+        div{
+            padding: 10px;
+            width: 300px;
+            height: 300px;
+            border: 1px solid rebeccapurple;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p>123</p>
+        <p>456</p>
+    </div>
+    <button>btn</button>
+    <input type="text" id="ipt" value="111" />
+    <textarea id="text"></textarea>
+    <select>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            //console.log($('.box').html());
+            //$('.box').html($('<span>333</span>'));//把box中原来的内容覆盖了
+            //console.log($('.box').text());
+            //$('.box').text('555');
+            //console.log($('#ipt').val());
+            //$('#ipt').val('222');
+            //console.log($('#ipt').attr('type', 'password'));
+            //console.log($('#ipt').prop('disabled')); //true(布尔值)
+            //console.log($('#ipt').attr('disabled')); //'disabled'(字符串)
+            //$('#ipt').removeAttr('disabled');
+            /* $('button').click(function(){
+                $('.box').css({
+                    color: 'yellow',
+                    'font-size': '24px'
+                });
+                //$('.box').toggleClass('red');
+                //console.log($('.box').width());//300，不加padding和border
+                //$('.box').height(600);
+                //$('.box').height('600px');//带单位的效果同上
+                //console.log($('.box').innerWidth());//320，加了padding
+                //console.log($('.box').outerWidth());//322，加了padding和border
+                //$('.box').outerWidth(10);//还可以用来设置，会自动计算改变width，比padding+border小时，box的总宽度还是padding+border
+                console.log($('.box p').offset());
+                console.log($('.box p').position());
+            }); */
+            $('button').mousedown(function(e){
+                console.log(e);
+            });
+            $('button').mouseup(function(e){
+                console.log(e);
+            });
+            /* $('.box').mouseover(function(e){
+                console.log(e.clientX);
+            }) */
+            /* $('.box').mouseenter(function(e){
+                console.log(e.clientX);
+            }) */
+            $('.box').mousemove(function(e){
+                console.log(e.clientX);
+            })
+            /* $('#ipt').focus(function(e){
+                console.log($(this).val());
+            }) */
+            /* $('#ipt').change(function(){
+                console.log(11)
+                console.log($(this).val());
+            }) */
+            /* 
+            该事件仅适用于文本域（text field），以及 textarea 和 select 元素。
+            当用于 select 元素时，change 事件会在选择某个选项时发生。
+            当用于 text field 或 text area 时，该事件会在元素失去焦点时发生。
+            */
+            /* $("input[type='text']").change( function() {
+                console.log(1)
+            }); */
+            $('#text').change(function(){
+                console.log($(this).val());
+            });
+            $('select').change(function(){
+                console.log($(this).val())
+            });
+        });
+    </script>
+</body>
+</html>

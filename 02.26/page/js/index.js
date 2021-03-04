@@ -332,16 +332,18 @@ function changeMatchPrice(){
             e.stopPropagation();
             //获取对应的input
             var oIpt = div.querySelector('input');
-            //判断input是否被选中
-            if(oIpt.checked === 'checked'){
-                oIpt.checked = '';
-            }else{
-                oIpt.checked = 'checked';
-            }
             //获取对应的价格
             var price = + div.querySelector('input').value;
-            console.log(price)
-            oPrice.textContent = +oPrice.textContent + price;
+            //判断input是否被选中
+            if(oIpt.checked){
+                //本来被选中的话改为不被选中且减去价格
+                oIpt.checked = false;
+                oPrice.textContent = +oPrice.textContent - price;
+            }else{
+                //本来未被选中的话改为选中且加上价格
+                oIpt.checked = true;
+                oPrice.textContent = +oPrice.textContent + price;
+            }
             console.log(oPrice)
         }
     });

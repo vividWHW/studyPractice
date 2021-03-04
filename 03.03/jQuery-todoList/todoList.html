@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="./todoList.css" />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <!-- <script src="./todoList.js"></script> -->
+    <title>jQuery-todoList</title>
+</head>
+<body>
+    <button id="testBtn">test</button>
+    <div class="todoBox">
+        <div class="top">
+            <input type="text" name="content" id="content" placeholder="Please write your task..." autocomplete="off"/>
+        </div>
+        <ul class="todo">
+            
+        </ul>
+        <div class="bottom">
+            <input type="checkbox" id="finishedAll" />
+            <span>
+                finished:<span class="finished">0</span>
+                /
+                total:<span class="total">0</span>
+            </span>
+            <button id="delFinish">delete finished</button>
+        </div>
+    </div>
+
+    <script>
+        $(function(){
+    //用一个数组保存todolist
+    var todoList = [
+        {
+            content: '吃饭',
+            finished: 'unfinished'
+        },{
+            content: '睡觉',
+            finished: 'unfinished'
+        },{
+            content: '敲代码',
+            finished: 'finished'
+        },{
+            content: '处理一下冰箱里的食材',
+            finished: 'finished'
+        },{
+            content: '整理笔记',
+            finished: 'unfinished'
+        }
+    ];
+    //获取input
+    var qIpt = $('#content')
+    //获取ul
+    var qUl = $('ul.todo');
+    //获取totalSpan
+    var qTotal = $('.total');
+    //获取finishedSpan
+    var qFinish = $('.finished');
+    //获取全选input
+    var qFinAll = $('.bottom #finishedAll');
+    //获取删除已完成的按钮  delFinish
+    var qDelFin = $('.bottom #delFinish');
+
+    //测试按钮
+    $('#testBtn').click(function(){
+        console.log(todoList);
+    });
+
+    //添加：在input中按下按键时
+    qIpt.keydown(function(e){
+        //判断按下的按键是否是回车
+        if(e.keyCode !== 13){
+            return;
+        }
+        //获取input的value，去掉首尾空格
+        var content = qIpt.val().trim();
+        //判断是否输入了内容，即content是否为空
+        if(!content){
+            return;
+        }
+        //生成新todo的对象
+        var newTodo = {
+            content: content,
+            finished: 'unfinished'
+        }
+        //输入了内容则将content插入todoList中
+        todoList.push(newTodo);
+        //生成新li
+        var newLi = createLi(newTodo);
+        //插入ul,先将li隐藏，在下滑显示
+        newLi.appendTo(qUl).hide().slideDown(300);
+        //更新total
+        calculateTotal();
+        //判断全选是否该被选中
+        isFinishedAllChecked();
+        //清空input
+        qIpt.val('');
+    });
+
+    //单个删除：点击delete时
+    $('ul.todo').on('click', 'button.delete', function(e){
+        //console.log(e)
+        //根据点击的按钮删除它的父级li
+        deleteTodo($(this));
+    });
+
+    //修改：点击edit时
+    $('ul.todo').on('click', 'button.edit', function(e){
+        //获取到按钮对应的 修改input
+        var qEditIpt = $(this).prevAll('.editIpt');
+        //获取按钮对应的 span，todo的内容
+        var qSpan = $(this).prevAll('span.content');
+        console.log(qEditIpt)
+        console.log(qSpan)
+        //让input中显示todo的内容
+        qEditIpt.val(qSpan.text());
+        //给input添加样式，让它显示
+        qEditIpt.addClass('editing');
+    });
+
+    //修改完成：修改ipt中按下键盘时
+    $('ul.todo').on('keydown blur', 'input.editIpt', function(e){
+        //判断按下的是否是回车,blur事件时keyCode是undefined 
+        if(e.keyCode !== 13 && e.keyCode !== undefined){
+            return;
+        }
+        //获取当前input的value，把它设置给对应span的内容
+        $(this).prevAll('span.content').text($(this).val());
+        //去掉input的样式
+        $(this).removeClass('editing');
+    });
+
+    //完成：点击checkbox时
+    $('ul.todo').on('click', 'input[type = checkbox]', function(){
+        //改变当前点击的input所在的li的样式，有则去掉无则添加
+        $(this).parent().toggleClass('finished');
+        //计算已完成的数目
+        calculateFinished();
+        //判断全选是否该被选中
+        isFinishedAllChecked();
+    });
+
+    //全部完成：点击全选时
+    qFinAll.click(function(){
+        //判断全选是否被选中
+        if(qFinAll.prop('checked')){
+            //全选被选中时让单选全部被选中，并给li添加样式
+            $('ul.todo input[type = checkbox]').prop('checked', true);
+            $('ul.todo li').addClass('finished');
+        }else{
+            //全选未被选中则让所有单选不被选中，并把li的样式都去掉
+            $('ul.todo input[type = checkbox]').prop('checked', false);
+            $('ul.todo li').removeClass('finished');
+        }
+        //计算已完成的数目
+        calculateFinished();
+    });
+
+    //删除所有已完成的：点击delFinish按钮时
+    qDelFin.click(function(){
+        //获取ul中所有被选中的input
+        var qCheckedIpt = $('ul.todo input[type = checkbox]:checked');
+        //判断一下是否有被选中的
+        if(qCheckedIpt.length <= 0){
+            //提示没有选中的
+            alert("You don't have finished tasks");
+            return;
+        }
+        //确认一下是否删除
+        var res = confirm("You'll delete all finished tasks");
+        if(res){
+            //删除所在li
+            qCheckedIpt.parent().remove();
+        }else{
+            return;
+        }
+        //计算已完成的数目
+        calculateFinished();
+        //计算总数
+        calculateTotal();
+    });
+
+    //根据content生成li
+    function createLi(todo){
+        //创建一个li
+        var qLi = $(`<li class="${ todo.finished }">
+                <input type="checkbox" id="check" ${ todo.finished === 'finished' ? 'checked' : ''}/>
+                <span class="content">${ todo.content }</span>
+                <input type="text" class="editIpt" focused/>
+                <button class="edit">edit</button>
+                <button class="delete">delete</button>
+            </li>`);
+        //把新li返回
+        return qLi;
+    }
+    
+    //初始化：根据todoList生成list
+    createList();
+    function createList(){
+        //遍历todoList，根据文本内容创建新的li
+        todoList.forEach(function(item){
+            //调用生成li的函数
+            var newLi = createLi(item);
+            //把li插入ul
+            qUl.append(newLi);
+        });
+    }
+
+    //删除todo
+    function deleteTodo(btn){
+        //删除它的元素
+        btn.parent().slideUp(300, function(){
+            $(this).remove();
+            //计算已完成的数目
+            calculateFinished();
+            //计算总数
+            calculateTotal();
+            //判断全选是否该被选中
+            isFinishedAllChecked();
+        });
+        //在数组中删除对应的数据
+
+    }
+    
+    //计算总共的数目total
+    calculateTotal();
+    function calculateTotal(){
+        //获取所有的li
+        var qLis = $('ul.todo li');
+        //li的数量就是总数
+        qTotal.text(qLis.length);
+    }
+
+    //计算已完成的数目finished
+    function calculateFinished(){
+        //获取所有被选中的type为checkbox的input
+        var qChecks = $('ul.todo input[type = checkbox]:checked');
+        //它的数量就是已完成的数目
+        qFinish.text(qChecks.length);
+    }
+
+    //判断全选是否应该被选中
+    function isFinishedAllChecked(){
+        //获取所有被选中的type为checkbox的input
+        var qChecks = $('ul.todo input[type = checkbox]:checked');
+        //获取所有的li
+        var qLis = $('ul.todo li');
+        //判断数目是否相等，相等则全选被选中
+        if(qChecks.length === qLis.length){
+            qFinAll.prop('checked', true);
+        }else{
+            qFinAll.prop('checked', false);
+        }
+    }
+});
+    </script>
+</body>
+</html>

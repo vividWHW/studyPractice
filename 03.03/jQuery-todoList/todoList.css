@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  color: #666;
+}
+.todoBox {
+  margin: 100px auto;
+  width: 600px;
+  border: 1px solid lightgray;
+}
+.todoBox .top {
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px dotted gray;
+  text-align: center;
+}
+.todoBox .top input {
+  padding: 0 10px;
+  width: 94%;
+  height: 30px;
+  outline: none;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  background-color: #f4f4f9;
+}
+.todoBox .top input:focus {
+  border-width: 2px;
+  border-color: #71d1f1;
+  background-color: #fff;
+}
+.todoBox ul.todo li {
+  position: relative;
+  height: 35px;
+  line-height: 35px;
+  border-bottom: 1px dotted gray;
+}
+.todoBox ul.todo li input {
+  margin-left: 15px;
+}
+.todoBox ul.todo li span {
+  margin: 0 5px;
+}
+.todoBox ul.todo li input.editIpt {
+  padding: 0 10px;
+  width: '120px';
+  height: 22px;
+  outline: none;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  background-color: #f4f4f9;
+  display: none;
+}
+.todoBox ul.todo li input.editIpt:focus {
+  border-width: 2px;
+  border-color: #71d1f1;
+  background-color: #fff;
+}
+.todoBox ul.todo li input.editIpt.editing {
+  display: inline-block;
+}
+.todoBox ul.todo li button {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  outline: none;
+  padding: 3px 5px;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  background-color: lightcoral;
+  color: #fff;
+}
+.todoBox ul.todo li button:hover {
+  background-color: #e75959;
+}
+.todoBox ul.todo li button.delete {
+  right: 15px;
+}
+.todoBox ul.todo li button.edit {
+  right: 70px;
+}
+.todoBox ul.todo li:hover button {
+  display: inline-block;
+}
+.todoBox ul.todo li.finished input {
+  opacity: 0.4;
+}
+.todoBox ul.todo li.finished span {
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+.todoBox .bottom {
+  position: relative;
+  margin: 0 15px;
+  height: 50px;
+  line-height: 50px;
+}
+.todoBox .bottom > span {
+  margin-left: 5px;
+}
+.todoBox .bottom > span span {
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+}
+.todoBox .bottom button {
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  outline: none;
+  padding: 3px 5px;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  background-color: lightcoral;
+  color: #fff;
+}
+.todoBox .bottom button:hover {
+  background-color: #e75959;
+}
