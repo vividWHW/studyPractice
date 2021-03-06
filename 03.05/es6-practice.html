@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/*         {
+            /* for(let i = 1; i <= 4; i++){
+                setTimeout(() => {
+                    console.log(i);
+                }, 0);
+            } */
+            /* for(let i = 1; i <= 4; i++){
+                let i = 'a';
+                console.log(i);
+            }
+            console.log(i); 
+            var a = [];
+            for(var i = 0; i < 5; i++){
+                a[i] = function(){
+                    console.log(i);
+                }
+            }
+            //a[3]();
+
+            var b = [];
+            for(let i = 0; i < 5; i++){
+                b[i] = function(){
+                    console.log(i);
+                }
+            }
+            //b[3]();
+        } */
+
+/*         //console.log(q);//undefined
+        //console.log(n);//n is not defined
+        console.log(m);//Cannot access 'm' before initialization
+        let m = 1;
+        var q = 1; */
+
+/*         console.log(typeof m);
+        let m = 1; */
+
+/*         var x = x;
+        let y = y; */
+/* 
+        {
+            let a = 1;
+            //let a = 2;
+            {
+                let a = 2;
+            }
+        } */
+
+/*         {
+            let x = 1;
+            {
+                console.log(x); //1
+            }
+        }
+        {
+            {
+                let y = 2;
+            }
+            console.log(y); //报错
+        } */
+
+/*         function f() { console.log('I am outside!'); }
+
+        (function () {
+        if (false) {
+            // 重复声明一次函数f
+            function f() { console.log('I am inside!'); }
+        }
+
+        f();
+        }()); */
+
+        //if(true) let w = 1;
+        //let w = 1;
+        //if(true){ let w = 1; }
+
+        //const obj = {};
+/*         'use strict';
+        const obj = Object.freeze({
+            name: [1,2]
+        });
+        obj.name[1] = 1;
+        console.log(obj); */
+
+/*         const arr = [1,2,3]
+        const [a,b,c = 1,d = 1] = arr;
+        console.log(a,b,c,d); */
+/*         const arr = [1,2,3,4,5,6,7,8,9];
+        const [a,b,...c] = arr;
+        console.log(a);
+        console.log(b);
+        console.log(c); */
+/*         const arr = [1,[2,3]];
+        const [a,[b,c]] = arr;
+        console.log(a,b,c); */
+/*         let a = 1, b = 2;
+        [b,a] = [a,b];
+        console.log(a,b); */
+/*         {let a = 1, b = 2;}
+        console.log(b); */
+/*         let [foo = hoo, hoo = 2] = [];
+        console.log(foo, hoo)//Cannot access 'hoo' before initialization */
+/*         const obj = {
+            name: 'luchen',
+            age: '21'
+        }
+        //const { name, age } = obj;
+        //console.log(name, age);
+        const { name: a, age: b} = obj;
+        console.log(a,b) */;
+/*         let { foo: c, hoo: d } = { foo: 1, hoo: 2 };
+        console.log(foo, hoo);//报错
+        console.log(c, d);//1,2 */
+/*         const obj = {
+            a:'aaaa',
+            b:'bbbb'
+        };
+        const {a, b, c = '111'} = obj;
+        console.log(a,b,c); */
+/*         const arr = [1,2,3,4];
+        const {0:a, [arr.length-1]:b} = arr;
+        console.log(a,b); */
+/*         function fn(){
+            //return [1,2,3,4];
+            return {
+                a: '123',
+                b: 456
+            }
+        }
+        //const [a,b] = fn();
+        const {a, b} = fn();
+        console.log(a,b); */
+/*         function fn([a,b,c]){
+            console.log(a+b+c);
+        }
+        fn([1,2,3]);
+        function fn2({a,b,c}){ß
+            console.log(a+b+c);
+        }
+        fn2({ a: 1, b: 2, c: 3}); */
+/*         const [a,b,c] = [1,2,3];
+        function fn(str){
+            return str+str;
+        }
+        const str = `a:${a},b:${b},c${c},${fn('qqq')}----${a===1?'a=1':'a!=1'}`;
+        console.log(str); */
+
+        const str = '     aaa    bbbb    ';
+        //str = '';
+        console.log(str.trim());
+        console.log(str.trimStart());
+        console.log(str.trimEnd());
+        console.log(str);
+
+    </script>
+</body>
+</html>

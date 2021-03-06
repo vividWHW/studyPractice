@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //'use strict';
+        //a = 1;
+        //console.log(a)
+        /* function fn(){
+            console.log(this);
+        }
+        fn(); */
+
+/*         var data = [
+            {
+                name: 'luchen',
+                age: 20
+            },{
+                name: 'silan',
+                age: 19
+            }
+        ];
+        var str = JSON.stringify(data);
+        console.log(str);
+        console.log(JSON.parse(str)); */
+/*         var obj1 = {
+            name: 'luchen'
+        }
+        var obj2 = Object.create(obj1);
+        console.log(obj2); */
+/*         Object.defineProperty(obj2, 'age', {
+            value: '20',
+            writable: false,
+            enumerable: false,
+            configurable: false
+        });
+        console.log(obj2);
+        obj2.age = 21;//writable为false时，修改不会报错，但是不能修改成功 */
+
+/*         Object.defineProperties(obj2, {
+            age: {
+                value: 20,
+                writable: true,
+                enumerable: true,
+                configurable: true
+            },
+            sex: {
+                value: 'nan',
+                //默认都是false
+                writable: false,
+                configurable: false
+            }
+        });
+        console.log(obj2);
+        obj2.age = 25;
+        obj2.sex = '男';
+        console.log(obj2); */
+
+/*         const obj3 = {
+            name: 'luchen',
+            age: 20,
+            sex: 'nan',
+            get mes(){
+                return this.name;
+            },
+            set mes({name, age, sex}){
+                this.name = name;
+                this.age = age;
+                this.sex = sex;
+            }
+        }
+        console.log(obj3.mes);
+        obj3.mes = { name: 'alkaid', age: 21, sex: '男'};
+        console.log(obj3); */
+/* 
+        const arr1 = [1,2,3,4,5,1,2];
+        console.log(arr1.indexOf(1));//0
+        console.log(arr1.indexOf(5));//4
+        console.log(arr1.lastIndexOf(1));//5
+        console.log(arr1.lastIndexOf(2));//6 */
+
+/*         var kvArray = [{key: 1, value: 10},
+               {key: 2, value: 20},
+               {key: 3, value: 30}];
+        var newArr = kvArray.map(function(item){
+            return {
+                [item.key]: item.value 
+            };
+        });
+        console.log(newArr); */
+
+/*         const arr = [
+            {
+                name: 'aaa',
+                age: 20
+            },{
+                name: 'bbb',
+                age: 17
+            },{
+                name: 'ccc',
+                age: 22
+            },{
+                name: 'ddd',
+                age: 12
+            }
+        ];
+        const newArr = arr.filter(function(item){
+            return item.age >= 18;
+        });
+        console.log(newArr); */
+
+        const arr = [1,2,3,4,5,6,1,2,3,4,5,6];
+        const arr2 = [1,2,3,4,5];
+        const arr3 = [];
+        const arr4 = [[1,2],[3,4],[5,6,7],[8],9];
+        const arr5 = [1,2,3,4,5,3,4,5,4,5,5];
+        {
+            const re = arr.reduce(function(prev, curr, index, arr){
+                //console.log(prev, curr, index, arr);
+                return prev + curr;
+            }, 0);
+            //console.log(re);
+        }
+        {
+            const re = arr4.reduce(function(prev, curr){
+                return prev.concat(curr);//[].concat([1,2]).concat([3,4])
+            }, []);
+            //console.log(re);
+        }
+        {
+            //计算数组中元素出现的个数
+            const re = arr5.reduce(function(prev, curr){
+                if(curr in prev){
+                    prev[curr]++;
+                }else{
+                    prev[curr] = 1;
+                }
+                return prev;
+            }, {});
+            //console.log(re);
+            //console.log(3 in [1,2]);
+        }
+        {
+            var people = [
+                { name: 'Alice', age: 21 },
+                { name: 'Max', age: 20 },
+                { name: 'Jane', age: 20 },
+                { name: 'Alkaid', age: 21 }
+            ];
+            function groupBy(arr, prop){
+                return arr.reduce(function(prev, curr){
+                    const key = curr[prop];
+                    if(prev[key]){
+                        prev[key].push(curr);
+                    }else{
+                        prev[key] = [curr];
+                    }
+                    return prev;
+                }, {});
+            }
+            console.log(groupBy(people, 'age'));
+        }
+        
+    </script>
+</body>
+</html>

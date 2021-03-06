@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+        }
+        @media screen {
+            .box{
+                background-color: #aaafff;
+            }
+        }
+        @media print {
+            .box{
+                background-color: #555fff;
+            }
+        }
+    </style>
+    <!-- <style media="screen">
+        .box{
+            background-color: lightsalmon;
+        }
+    </style>
+    <style media="handheld">
+        .box{
+            background-color: lightskyblue;
+        }
+    </style> -->
+    <!-- <link type="text/css" rel="stylesheet" href="./css1.css" media="handheld" />
+    <link type="text/css" rel="stylesheet" href="./css2.css" media="screen" /> -->
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>
