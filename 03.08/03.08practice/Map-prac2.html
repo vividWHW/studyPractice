@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/*         const map1 = new Map([
+            [1,2],
+            [2,3],
+            [{'luchen':'alkaid'},true]
+        ]);
+        console.log(map1);
+        const map2 = new Map();//Map(0) {}
+        console.log(map2);
+        const map3 = new Map([]);//Map(0) {}
+        console.log(map3);
+        //const map4 = new Map([1,2,3]);//Iterator value 1 is not an entry object
+        //console.log(map4);
+        const map5 = new Map([[1,2,3],[4,5]]);//Map(2) {1 => 2, 4 => 5}
+        console.log(map5);
+        const map6 = new Map([[1,2],[1,3],[1,4]]);//Map(1) {1 => 4}
+        console.log(map6);
+        const map7 = new Map([
+            [NaN,1],
+            [NaN,2],
+            [NaN,3]
+        ]);//Map(1) {NaN => 3}
+        console.log(map7); */
+
+        const key = '1234';
+        const map1 = new Map([
+            [1,'a'],
+            ['1','b'],
+            [key,'c']
+        ]);
+        console.log(map1);//{1 => "a", "1" => "b", "1234" => "c"}
+        //console.log(map1.get(key));//'c'
+        //console.log(map1.has(key));//true
+        const re = map1.set(key,'ccc');//Map(3) {1 => "a", "1" => "b", "1234" => "ccc"}
+        //console.log(map1 === re);//true
+        const re2 = map1.set('ddd','d');//Map(4) {1 => "a", "1" => "b", "1234" => "ccc", "ddd" => "d"}
+        //console.log(re2 === map1);//true
+        console.log(map1);
+        map1.forEach((item, index) => console.log(item, index) );
+        /* const re3 = map1.delete(key);
+        console.log(re3);//true
+        console.log(map1);
+        console.log(map1.delete('aaaaaaa'));//false
+        console.log(map1.delete(1));
+        console.log(map1); */
+        //console.log(map1.keys());
+        //console.log(map1.values());
+/*         const mapEn = map1.entries();
+        //console.log(mapEn);
+        const mapEn2 = map1[Symbol.iterator]();
+        console.log(map1.entries === map1[Symbol.iterator]);//true
+        const set1 = new Set('1234');
+        console.log(set1.entries === set1[Symbol.iterator]);//false
+        console.log(set1.values === set1[Symbol.iterator]);//true
+        const arr1 = [1,2,3,4];
+        console.log(arr1.entries === arr1[Symbol.iterator]);//false
+        console.log(arr1.values === arr1[Symbol.iterator]);//true
+        const str1 = 'abcde';
+        console.log(str1.values === str1[Symbol.iterator]);//false
+        console.log(str1.entries === str1[Symbol.iterator]);//false
+        console.log(str1[Symbol.iterator]());
+        console.log(str1.valueOf === str1[Symbol.iterator]);//false
+        console.dir(String);
+        const strIt = str1[Symbol.iterator]();
+        console.log(strIt.next());
+        console.log(strIt.next());
+        console.log(strIt.next()); */
+        //console.log(strIt === str1[Symbol.iterator]);
+        //console.log(set1);
+        //console.log(mapEn2);
+        //console.log(mapEn2.next());
+        //console.log(mapEn.next());
+        /* console.log(en.next());
+        console.log(en.next());
+        console.log(en.next());
+        console.log(en.next());
+        console.log(en.next()); */
+
+/*         {
+            const obj = {
+                a:'aa',
+                b:'bb',
+                c:'cc'
+            }
+            const en = Object.entries(obj);
+            console.log(en)
+            //console.log(en.next());
+        } */
+    </script>
+</body>
+</html>

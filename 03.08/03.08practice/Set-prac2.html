@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr1 = [1,2,3,4,5,4,3];
+/*         const set1 = new Set(arr1);
+        console.log(set1);
+        const arr2 = [...set1]; */
+        //console.log(arr2);
+        //console.log(set1.size);
+        {
+            const set1 = new Set(arr1);
+            //添加某个值，返回添加后的原set
+            console.log(set1.add(9));
+            console.log(set1);
+        }
+        {
+            const set1 = new Set(arr1);
+            //删除某个值，返回布尔值
+            console.log(set1.delete(1));
+            console.log(set1);
+            console.log(set1.delete('a'));
+        }
+        {
+            const set = new Set([1,2,3]);
+            //判断set中是否有该成员，返回布尔值
+            console.log(set.has('a'));//false
+            console.log(set.has(1));//true
+        }
+        {
+            const set = new Set([1,2,3]);
+            //清空set，没有返回值
+            console.log(set.clear());//undefined
+            console.log(set);//{}
+        }
+        {
+            const set = new Set(['a','b','c','d']);
+            console.log(set);
+            console.log(set.entries());
+            console.log(set.keys());
+            console.log(set.values());
+            set.forEach((item, index, s) => {
+                console.log(item, index, s);
+                //s[index] = item + item;
+            });
+            console.log(set);
+        }
+        {
+            //利用Set给字符串去重
+            const str = 'abcdefabcd';
+            //console.log([...new Set([...str])].join(''));
+            console.log([...new Set(str)].join(''));//具有iterator接口的都可以作为参数来初始化set
+        }
+        {
+            //const set = new Set('12345123');//Set(5) {"1", "2", "3", "4", "5"}
+            //const set = new Set({a:1,b:2});//object is not iterable (cannot read property Symbol(Symbol.iterator))at new Set (<anonymous>)
+            /* const set = new Set({
+                0:'a',
+                1:'b',
+                length:2
+            })
+            console.log(set); */
+            /* function test(){
+                console.log(arguments)
+                const set = new Set(arguments);//Set(5) {1, 2, 3, 4, 5}
+                console.log(set);
+            }
+            test(1,2,3,4,5); */
+            /* const map = new Map([
+                ['a','aa'],
+                ['b','bb'],
+                [{age:21},true]
+            ]);
+            console.log(map);
+            const set = new Set(map);//{["a", "aa"], ["b", "bb"], [{age:21}, true]}
+            console.log(set); */
+            const set1 = new Set('1234');
+            console.log(set1);
+            const set2 = new Set(set1);
+            console.log(set2);
+            console.log(set2 === set1);//false
+            console.log(set2[0]);//undefined
+            console.log(set2.keys());
+            //console.log(set2['1']);//undefined
+            for(let i of set2.values()){
+                console.log(i);
+            }
+        }
+
+    </script>
+</body>
+</html>

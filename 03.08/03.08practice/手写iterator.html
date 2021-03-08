@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function myIterator(arr){
+            let index = 0;
+            //返回一个具有next方法的对象
+            return {
+                next(){
+                    //判断是否遍历完了
+                    if(index < arr.length){
+                        return {
+                            value: [index, arr[index++]],
+                            done: false
+                        }
+                    }else{
+                        return {
+                            value: undefined,
+                            done: true
+                        }
+                    }
+                }
+            }
+        }
+
+
+        const arr = [1,2,3];
+        const arrIt = arr.entries();
+        console.log(arrIt.next());
+        console.log(arrIt.next());
+        console.log(arrIt.next());
+        console.log(arrIt.next());
+        console.log('-------------');
+        //myIterator返回一个具有next方法的对象
+        const myArrIt = myIterator(arr);
+        console.log(myArrIt.next());
+        console.log(myArrIt.next());
+        console.log(myArrIt.next());
+        console.log(myArrIt.next());
+        
+    </script>
+</body>
+</html>
