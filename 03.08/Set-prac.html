@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr1 = [1,2,3,4,5];
+        const set1 = new Set(arr1);
+        //console.log(set1);
+        set1.add('a');
+        //console.log(set1);
+        set1.add([1,2,3]);
+        //console.log(set1);
+        set1.add([1,2,3]);
+        //console.log(set1);
+        const arr2 = ['a','b','c'];
+        //set1.add(arr2);
+        //console.log(set1);
+        set1.add(arr2);
+        //console.log(set1);
+        //const hasRe = set1.has(1);
+        //console.log(set1.has(1));//true
+        //console.log(set1.has(arr2));//true
+        //console.log(set1.has('a'));//true
+        //console.log(set1.has([1,2,3]));//flase
+        const addRe = set1.add(9,10,11);//只能添加进第一个值，返回添加了值后的原Set
+        //console.log(addRe);
+        //console.log(set1);
+        //console.log(addRe === set1);
+        const delRe = set1.delete(1);
+        //console.log(delRe);//true
+        //console.log(set1);
+        const delRe2 = set1.delete(1);
+        //console.log(delRe2);//flase
+        //console.log(set1);
+        const clearRe = set1.clear();
+        //console.log(set1);//{}
+        //console.log(clearRe);//undefined
+        const set2 = new Set([3,4,5,'a',{xx:'xx'}]);
+        const arr3 = [...set2];
+        //console.log(arr3);
+        //console.log(set2.values());
+        //console.log(set2.entries());
+        //set2.forEach((item, index) => console.log(item, index));
+        for(let i of set2){
+            //console.log(i);
+        }/* 
+        for(let i in set2){
+            console.log(1)
+            console.log(i);
+        } */
+        const arr = [1,2,3,1,2];
+        //console.log([...new Set(arr)]);//[1,2,3]
+        {
+            const set3 = new Set([1,2,3]);
+            console.log(set3);
+            //console.log(set3.size);
+            const iter = set3[Symbol.iterator]();
+            console.log(iter);
+            console.log(iter.next());
+            console.log(iter.next());
+            console.log(iter.next());
+            console.log(iter.next());
+            console.log(iter.next());
+            console.log(iter.next()); 
+        }
+        {
+            const iter = arr[Symbol.iterator]();
+            console.log(iter);
+            console.log(iter.next());
+            console.log(iter.next());
+            console.log(iter.next());
+            console.log(iter.next());
+            console.log(iter.next());
+            console.log(iter.next());
+        }
+        {
+            const str = '12ab';
+            const iter = str[Symbol.iterator]();
+            console.log(Symbol.iterator);
+            console.log(iter);
+            console.log(iter.next());
+            console.log(iter.next());
+            console.log(iter.next());
+            console.log(iter.next());
+            console.log(iter.next());
+        }
+
+        
+    </script>
+</body>
+</html>

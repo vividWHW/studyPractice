@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* setTimeout(() => {
+            console.log('aaaa');
+        }, 1000);
+        console.log('bbbb'); */
+        const p1 = new Promise((resolve, reject) => {
+            //console.log(111);
+            setTimeout(() => {
+                //console.log('ccccc');
+                resolve({
+                    data: [1,2,3],
+                    code: 1
+                });
+                //reject({a:1});
+            }, 2000);
+        });
+        console.log(p1);
+        const p2 = p1.then((result) => {
+            console.log('111');
+            console.log(result);
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve({
+                        data: [4,5,6]
+                    });
+                }, 1000);
+            });
+        }).catch((error) => {
+            console.log('222');
+            console.log(error);
+            return 2;
+        });
+        console.log(p2);
+        
+        //console.log(p1);
+
+/*         const re = p1.then(
+            (result) => {
+                console.log('aaa')
+                console.log(result);
+                setTimeout(() => {
+                    console.log(result.data);
+                }, 1000);
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
+        re.then(
+
+        ); */
+        //console.log(2222);
+/*         console.log(p1);
+        console.log(re); */
+    </script>
+</body>
+</html>

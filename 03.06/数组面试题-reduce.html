@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //扁平化数组
+        function myFlat(arr){
+            //判断arr是否是数组
+            if(!Array.isArray(arr)){
+                //不是数组则直接返回
+                return arr;
+            }
+            return arr.reduce((prev, curr) => {
+                return prev.concat(myFlat(curr));
+            },[]);
+        }
+        const arr = [1,2,[3,4,[5],6],7,8];
+        console.log(myFlat(arr));
+
+        //数组去重
+        const arr2 = [1,2,3,3,2,5,6];
+        const newArr = [];
+        arr2.forEach((item, index) => {
+            //判断
+            if(newArr.indexOf(item) === index){
+                newArr.push(item);
+            }
+        });
+
+    </script>
+</body>
+</html>

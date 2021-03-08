@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const promise = new Promise((resolve, reject) => {
+            try{
+                console.log('开始请求name');
+                setTimeout(() => {
+                    const data = {
+                        name:'luchen'
+                    }
+                    resolve({
+                        data: data
+                    });
+                    console.log('已经拿到name了');
+                }, 1000);
+            }catch(e){
+                reject(e);
+            }
+        })
+        .then((result) => {
+            return new Promise((resolve, reject) => {
+                try{
+                    console.log('开始请求age');
+                    //throw new Error('请求age的时候出错了');
+                    setTimeout(() => {
+                        const data = {
+                            age: 21
+                        }
+                        resolve({
+                            data: Object.assign(result.data, data)
+                        });
+                        console.log('已经拿到age了');
+                    }, 1000);
+                }catch(e){
+                    reject(e);
+                }
+            });
+        })
+        /* .then((result) => {
+            console.log(result);
+        }) */
+        /* .then(()=>{
+            throw new Error('error');
+            //return new Promise();
+        }) */
+        .then((result) => {
+            return new Promise((resolve, reject) => {
+                try{
+                    console.log('开始请求eng');
+                    setTimeout(() => {
+                        const data = {
+                            eng: 'alkaid'
+                        }
+                        resolve({
+                            data: Object.assign(result.data, data)
+                        });
+                    }, 1000);
+                }catch(e){
+
+                }
+            });
+        })
+        .then((result) => {
+            console.log(result);
+            return result;
+        })
+        .catch((error) => {
+            console.log('出错了：' + error);
+            //throw new Error('b');
+            return error;
+        })
+        .finally(() => {
+            console.log('finally');
+        });
+        console.log(promise);
+        console.log(promise);
+    </script>
+</body>
+</html>
