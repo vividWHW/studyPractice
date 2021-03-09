@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+            any:只要其中的一个 promise 成功，就返回那个已经成功的 promise 。
+                如果可迭代对象中没有一个 promise 成功（即所有的 promises 都失败/拒绝），就返回一个失败的 promise 和AggregateError类型的实例
+        */
+        const p1 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                try{
+                    console.log('p1');
+                    const data = [1,2,3];
+                    resolve(data);
+                }catch(e){
+                    reject(e);
+                }
+            }, 1500);
+        });
+        const p2 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                try{
+                    const data = [4,5,6];
+                    console.log('p2');
+                    resolve(data);
+                }catch(e){
+                    reject(e);
+                }
+            }, 1000);
+        });
+        const p3 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                try{
+                    //throw new Error('p3出错');
+                    console.log('p3');
+                    const data = [7,8,9];
+                    resolve(data);
+                }catch(e){
+                    reject(e);
+                }
+            }, 1800);
+        });
+        //const allRe = Promise.all([p1,p2,p3]);
+        const re = Promise.any([p1,p2,p3]);
+        console.log(re);
+        re.then((result) => {
+            console.log(result);
+            result.forEach((item, index) => {
+                console.log(index, item);
+            });
+        })
+        .catch((error) => console.log(error));
+    </script>
+</body>
+</html>

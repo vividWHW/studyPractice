@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        async function getData(){
+            const re1 = await new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const data = [1,2,3];
+                    resolve(data);
+                }, 1000);
+            });
+            const re2 = await new Promise ((resolve, reject) => {
+                setTimeout(() => {
+                    const data = [4,5,6];
+                    reject('111');
+                    resolve([...re1, ...data]);
+                }, 1500);
+            });
+            return re2;
+            //return 1;
+            //return Promise.reject();
+        }
+
+        const res = getData();
+        console.log(res);
+        //getData返回的值会被then方法的回调函数接收到
+        res.then((result) => {
+            console.log(result);
+        })
+        .catch((e) => {
+            console.log(e);
+        });
+    </script>
+</body>
+</html>

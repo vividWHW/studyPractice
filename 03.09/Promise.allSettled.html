@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+            allSettled:返回一个在所有给定的promise都已经fulfilled或rejected后的promise，
+                    并带有一个对象数组，每个对象表示对应的promise结果。
+        */
+        const p1 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                try{
+                    throw new Error('p1出错');
+                    console.log('p1');
+                    const data = [1,2,3];
+                    resolve(data);
+                }catch(e){
+                    reject(e);
+                }
+            }, 1500);
+        });
+        const p2 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                try{
+                    throw new Error('p2出错');
+                    const data = [4,5,6];
+                    console.log('p2');
+                    resolve(data);
+                }catch(e){
+                    reject(e);
+                }
+            }, 1000);
+        });
+        const p3 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                try{
+                    //throw new Error('p3出错');
+                    console.log('p3');
+                    const data = [7,8,9];
+                    resolve(data);
+                }catch(e){
+                    reject(e);
+                }
+            }, 800);
+        });
+        const allSettledRe = Promise.allSettled([p1,p2,p3]); 
+        console.log(allSettledRe);
+        allSettledRe.then((result) => {
+            console.log(result);
+            result.forEach((item, index) => {
+                console.log(index, item);
+            });
+        })
+        .catch((error) => console.log(error));
+    </script>
+</body>
+</html>
